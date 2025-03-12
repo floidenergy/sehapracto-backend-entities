@@ -1,15 +1,17 @@
 {
   "name": "@sehapracto/backend-entities",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "type": "module",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "cross-env AUTH_TOKEN=$AUTH_TOKEN rollup -c"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@sehapracto"
@@ -22,6 +24,7 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/node": "^22.13.10",
     "add": "^2.0.6",
+    "cross-env": "^7.0.3",
     "rollup": "^4.35.0",
     "tslib": "^2.8.1",
     "typescript": "^5.8.2",
