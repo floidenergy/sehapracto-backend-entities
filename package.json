@@ -1,17 +1,20 @@
 {
   "name": "@sehapracto/backend-entities",
-  "version": "1.0.1",
-  "main": "index.ts",
+  "version": "1.0.2",
+  "main": "dist/index.js",
   "types": "index.d.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "rollup -c"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@sehapracto"
   },
-  "repository": {
-    "url": "git://github.com/sehapracto/backend-entities.git."
-  },
+  "repository": "https://github.com/SehaPracto/backend-entities",
   "author": "Kias Mohamed Islam (floidenergy)",
   "license": "ISC",
   "description": "",
