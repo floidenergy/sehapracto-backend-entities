@@ -9,6 +9,9 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@sehapracto"
   },
+  "repository": {
+    "url": "git://github.com/sehapracto/backend-entities.git."
+  },
   "author": "Kias Mohamed Islam (floidenergy)",
   "license": "ISC",
   "description": "",
