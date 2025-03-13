@@ -8,11 +8,8 @@ export default defineConfig({
       file: "dist/index.js",
       format: "cjs",
       sourcemap: true,
-      
     },
   ],
-  plugins: [typescript({
-    
-  })],
-  external: ["tslib"],
+  plugins: [typescript({})],
+  external: ["tslib", "typeorm"],
 });

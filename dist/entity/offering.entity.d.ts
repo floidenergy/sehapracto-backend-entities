@@ -1,0 +1,37 @@
+export declare class Offering {
+    id: number;
+    countryId: number;
+    cityId: number;
+    hospitalId: number;
+    serviceProviderId: number;
+    title: string;
+    titleEn: string;
+    titleAr: string;
+    titleTr: string;
+    details: string;
+    detailsEn: string;
+    detailsAr: string;
+    detailsTr: string;
+    instructions: string;
+    instructionsEn: string;
+    instructionsAr: string;
+    instructionsTr: string;
+    coverImg: string;
+    whatsapp: string;
+    email: string;
+    website: string;
+    facebookLink: string;
+    instagramLink: string;
+    twitterLink: string;
+    youtubeLink: string;
+    isPremium: boolean;
+    isApproved: boolean;
+    longitude: number;
+    latitude: number;
+    startDate: Date;
+    endDate: Date;
+    rating: number;
+    ratingNumber: number;
+    createdAt: Date;
+    updatedAt: Date;
+}

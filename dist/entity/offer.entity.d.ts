@@ -1,0 +1,32 @@
+export declare class Offer {
+    id: number;
+    countryId: number;
+    medicalSpecialtyId: number;
+    hospitalId: number;
+    offerCategoryId: number;
+    title: string;
+    name: string;
+    address: string;
+    img: string;
+    details: string;
+    ptInstruction: string;
+    price: number;
+    priceBefore: number;
+    discount: number;
+    views: number;
+    clicks: number;
+    ratingTotal: number;
+    ratingNumber: number;
+    facebookLink: string;
+    instagramLink: string;
+    youtubeLink: string;
+    website: string;
+    phone: string;
+    email: string;
+    endDate: Date;
+    isOpen: boolean;
+    isAppear: boolean;
+    isShowPrice: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}

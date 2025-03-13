@@ -1,6 +1,6 @@
 {
   "name": "@sehapracto/backend-entities",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "type": "module",
@@ -11,7 +11,8 @@
     "index.d.ts"
   ],
   "scripts": {
-    "build": "cross-env AUTH_TOKEN=$AUTH_TOKEN rollup -c"
+    "build": "cross-env AUTH_TOKEN=$AUTH_TOKEN rollup -c",
+    "lint": "eslint ."
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@sehapracto"
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "pg": "^8.14.0",
+    "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.21"
   }
 }
