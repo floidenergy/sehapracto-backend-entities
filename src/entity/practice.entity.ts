@@ -13,13 +13,13 @@ export class Practice {
   @ManyToOne(() => Doctor, (doctor) => doctor.id, { onDelete: 'CASCADE' })
   doctor: Doctor;
 
-  @Column({ type: 'string' })
+  @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'string' })
+  @Column({ type: 'varchar', length: 255 })
   img: string;
 
-  @Column({ type: 'string', nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   phone: string;
 
   @CreateDateColumn()

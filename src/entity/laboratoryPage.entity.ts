@@ -36,19 +36,19 @@ export class LaboratoryPage {
     link: string;
 
     @Column({ nullable: true })
-    fbLink: string | null;
+    fbLink?: string;
 
     @Column({ nullable: true })
-    igLink: string | null;
+    igLink?: string;
 
     @Column({ nullable: true })
-    twitterLink: string | null;
+    twitterLink?: string;
 
     @Column({ nullable: true })
-    whatsappLink: string | null;
+    whatsappLink?: string;
 
     @Column({ nullable: true })
-    videoLink: string | null;
+    videoLink?: string;
 
     @Column({ default: false })
     isCreditCard: boolean;

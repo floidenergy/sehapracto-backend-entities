@@ -1,15 +1,31 @@
+// {
+//   "compilerOptions": {
+//     "module": "CommonJS",
+//     "target": "ES2022",
+//     "moduleResolution": "node10",
+//     "declaration": true,
+//     "isolatedModules": true,
+//     "emitDeclarationOnly": false,
+//     "experimentalDecorators": true,
+//     "emitDecoratorMetadata": true,
+//     "useDefineForClassFields": false,
+//     "outDir": "dist",
+//     "rootDir": "src"
+//   },
+//   "include": ["src"]
+// }
+
 {
   "compilerOptions": {
+    "target": "es2022",
+    "moduleResolution": "Node10",
+    "module": "CommonJS",
     "declaration": true,
-    "emitDeclarationOnly": false,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "useDefineForClassFields": false,
-    "module": "ESNext",
-    "target": "ESNext",
+    "isolatedDeclarations": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

@@ -1,16 +1,22 @@
-import { 
-  Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn 
-} from 'typeorm';
-import { Country } from './country.entity';
-import { Department } from './department.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { Country } from "./country.entity";
+import { Department } from "./department.entity";
 
-@Entity('admins')
+@Entity("admins")
 export class Admin {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Department, (department) => department.id, { onDelete: 'CASCADE' })
-  department: Department;
+  // @ManyToOne(() => Department, (department) => department.id, { onDelete: 'CASCADE', })
+  @Column({ type: "integer" })
+  department_id: Department;
 
   @Column()
   name: string;
@@ -18,17 +24,20 @@ export class Admin {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
-  @Column({ default: "https://s3.us-east-2.amazonaws.com/sehapracto-images/user_profile_images/Pc7bLYpjW2c56Jnb8ovCq3ZrA3rO8vPEL0j4ZsXH.jpg" })
+  @Column({
+    default:
+      "https://s3.us-east-2.amazonaws.com/sehapracto-images/user_profile_images/Pc7bLYpjW2c56Jnb8ovCq3ZrA3rO8vPEL0j4ZsXH.jpg",
+  })
   profile_img: string;
 
   @Column()
   phone: string;
 
-  @ManyToOne(() => Country, (country) => country.id, { onDelete: 'CASCADE' })
-  country: Country;
+  @Column({ type: "integer" })
+  country_id: Country;
 
   @Column({ default: false })
   is_active: boolean;
