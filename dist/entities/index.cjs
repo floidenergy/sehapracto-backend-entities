@@ -17,21 +17,6 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/index.ts
-var index_exports = {};
-__export(index_exports, {
-  ADMIN_PERMISSIONS: () => ADMIN_PERMISSIONS,
-  Admin: () => Admin,
-  AdminPermission: () => AdminPermission,
-  Country: () => Country,
-  Department: () => Department,
-  Entities: () => entities_exports,
-  GENDER: () => GENDER,
-  Session: () => Session,
-  User: () => User
-});
-module.exports = __toCommonJS(index_exports);
-
 // src/entities/index.ts
 var entities_exports = {};
 __export(entities_exports, {
@@ -42,6 +27,7 @@ __export(entities_exports, {
   Session: () => Session,
   User: () => User
 });
+module.exports = __toCommonJS(entities_exports);
 
 // src/entities/admin.entity.ts
 var import_typeorm6 = require("typeorm");
@@ -436,52 +422,12 @@ _ts_decorate7([
 Session = _ts_decorate7([
   (0, import_typeorm7.Entity)("sessions")
 ], Session);
-
-// src/types/gender.enum.ts
-var GENDER = /* @__PURE__ */ function(GENDER2) {
-  GENDER2["MALE"] = "MALE";
-  GENDER2["FEMALE"] = "FEMALE";
-  return GENDER2;
-}({});
-
-// src/types/permission.type.ts
-var ADMIN_PERMISSIONS = /* @__PURE__ */ function(ADMIN_PERMISSIONS2) {
-  ADMIN_PERMISSIONS2["READ_SLIDE"] = "SLIDE:READ";
-  ADMIN_PERMISSIONS2["WRITE_SLIDE"] = "SLIDE:WRITE";
-  ADMIN_PERMISSIONS2["READ_COUNTRY"] = "COUNTRY:READ";
-  ADMIN_PERMISSIONS2["WRITE_COUNTRIES"] = "COUNTRY:WRITE";
-  ADMIN_PERMISSIONS2["READ_DOCTOR"] = "DOCTOR:READ";
-  ADMIN_PERMISSIONS2["WRITE_DOCTOR"] = "DOCTOR:WRITE";
-  ADMIN_PERMISSIONS2["READ_HCP"] = "HCP:READ";
-  ADMIN_PERMISSIONS2["WRITE_HCP"] = "HCP:WRITE";
-  ADMIN_PERMISSIONS2["READ_HOSPITAL"] = "HOSPITAL:READ";
-  ADMIN_PERMISSIONS2["WRITE_HOSPITAL"] = "HOSPITAL:WRITE";
-  ADMIN_PERMISSIONS2["READ_PATIENT"] = "PATIENT:READ";
-  ADMIN_PERMISSIONS2["WRITE_PATIENT"] = "PATIENT:WRITE";
-  ADMIN_PERMISSIONS2["READ_OFFER"] = "OFFER:READ";
-  ADMIN_PERMISSIONS2["WRITE_OFFER"] = "OFFER:WRITE";
-  ADMIN_PERMISSIONS2["READ_NOTIFICATION"] = "NOTIFICATION:READ";
-  ADMIN_PERMISSIONS2["WRITE_NOTIFICATION"] = "NOTIFICATION:WRITE";
-  ADMIN_PERMISSIONS2["WRITE_TRANSLATION"] = "TRANSLATION:WRITE";
-  ADMIN_PERMISSIONS2["IS_TRANSLATOR"] = "TRANSLATION:TRANSLATOR";
-  ADMIN_PERMISSIONS2["READ_BLOG"] = "BLOG:READ";
-  ADMIN_PERMISSIONS2["WRITE_BLOG"] = "BLOG:WRITE";
-  ADMIN_PERMISSIONS2["READ_LAB_PAGE"] = "LAB:PAGE:READ";
-  ADMIN_PERMISSIONS2["WRITE_LAB_PAGE"] = "LAB:PAGE:WRITE";
-  ADMIN_PERMISSIONS2["WRITE_LAB_TEST"] = "LAB:TEST:READ";
-  ADMIN_PERMISSIONS2["READ_LAB_REQUEST"] = "LAB:REQUEST:READ";
-  ADMIN_PERMISSIONS2["WRITE_LAB_REQUEST"] = "LAB:REQUEST:WRITE";
-  return ADMIN_PERMISSIONS2;
-}({});
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ADMIN_PERMISSIONS,
   Admin,
   AdminPermission,
   Country,
   Department,
-  Entities,
-  GENDER,
   Session,
   User
 });

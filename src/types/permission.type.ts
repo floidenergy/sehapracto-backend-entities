@@ -1,17 +1,4 @@
-export { i as Entities } from './index-CvfDrJfF.js';
-export { A as Admin, a as AdminPermission } from './admin.entity-DIL3aSg2.js';
-export { Country } from './entities/country.entity.js';
-export { Department } from './entities/department.entity.js';
-export { Session } from './entities/session.entity.js';
-export { User } from './entities/user.entity.js';
-import './entities/baseEntity.entity.js';
-
-declare enum GENDER {
-    MALE = "MALE",
-    FEMALE = "FEMALE"
-}
-
-declare enum ADMIN_PERMISSIONS {
+export enum ADMIN_PERMISSIONS {
     READ_SLIDE = "SLIDE:READ",
     WRITE_SLIDE = "SLIDE:WRITE",
     READ_COUNTRY = "COUNTRY:READ",
@@ -36,7 +23,5 @@ declare enum ADMIN_PERMISSIONS {
     WRITE_LAB_PAGE = "LAB:PAGE:WRITE",
     WRITE_LAB_TEST = "LAB:TEST:READ",
     READ_LAB_REQUEST = "LAB:REQUEST:READ",
-    WRITE_LAB_REQUEST = "LAB:REQUEST:WRITE"
-}
-
-export { ADMIN_PERMISSIONS, GENDER };
+    WRITE_LAB_REQUEST = "LAB:REQUEST:WRITE",
+  }

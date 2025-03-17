@@ -5,6 +5,18 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./entities/*": {
+      "require": "./dist/entities/*.js",
+      "import": "./dist/entities/*.mjs",
+      "types": "./dist/entities/*.d.ts"
+    }
+  },
   "files": [
     "dist/",
     "README.md"
