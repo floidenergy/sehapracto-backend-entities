@@ -1,5 +1,6 @@
 import { BaseEntity } from './baseEntity.entity.js';
 import { Country } from './country.entity.js';
+import { APP_TYPE } from '../types/userType.enum.js';
 
 declare class User extends BaseEntity {
     first_name: string;
@@ -11,8 +12,11 @@ declare class User extends BaseEntity {
     phone: string;
     phone_verified_at: string;
     country: Country;
-    password: string;
+    password?: string;
     profile_img: string;
+    type: APP_TYPE;
+    hashPassword(): Promise<void>;
+    validatePassword(plainPassword: string): Promise<boolean>;
 }
 
 export { User };

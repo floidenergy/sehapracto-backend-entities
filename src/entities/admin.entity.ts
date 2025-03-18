@@ -8,15 +8,20 @@ import {
   OneToOne,
   JoinColumn,
   ManyToMany,
+  JoinTable,
+  DeleteDateColumn,
 } from "typeorm";
 import { Department } from "./department.entity";
 import { BaseEntity } from "./baseEntity.entity";
-import { AdminPermission } from "./adminPermission.entity";
+import { Permission } from "./adminPermission.entity";
 import { User } from "./user.entity";
 
 @Entity("admins")
-export class Admin extends BaseEntity {
-  @OneToOne(() => Department, { onDelete: "SET NULL" })
+export class Admin {
+  @PrimaryGeneratedColumn()
+  adminID: number;
+
+  @ManyToOne(() => Department, { onDelete: "NO ACTION" })
   @JoinColumn({ name: "department_id" })
   department: Department;
 
@@ -27,7 +32,26 @@ export class Admin extends BaseEntity {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToMany(() => AdminPermission, (permission) => permission.admins)
-  @JoinColumn({ name: "permissions_ids" })
-  permissions: AdminPermission[];
+  @ManyToMany(() => Permission)
+  @JoinTable({
+    name: "admin_permissions",
+    joinColumn: {
+      name: "admin_id",
+      referencedColumnName: "adminID",
+    },
+    inverseJoinColumn: {
+      name: "permission_id",
+      referencedColumnName: "id",
+    },
+  })
+  permissions: Permission[];
+
+  @CreateDateColumn({ type: "timestamp" })
+  readonly createdAt!: Date;
+
+  @UpdateDateColumn({ type: "timestamp" })
+  readonly updatedAt!: Date;
+
+  @DeleteDateColumn({ type: "timestamp" })
+  deletedAt!: Date;
 }

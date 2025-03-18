@@ -24,6 +24,7 @@ __export(session_entity_exports, {
 });
 module.exports = __toCommonJS(session_entity_exports);
 var import_typeorm4 = require("typeorm");
+var import_uuid = require("uuid");
 
 // src/entities/user.entity.ts
 var import_typeorm3 = require("typeorm");
@@ -148,7 +149,19 @@ Country = _ts_decorate2([
   (0, import_typeorm2.Entity)("countries")
 ], Country);
 
+// src/types/userType.enum.ts
+var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
+  APP_TYPE2["ADMIN"] = "ADMIN";
+  APP_TYPE2["CLIENT"] = "CLIENT";
+  APP_TYPE2["PHARMACIE"] = "PHARMACIE";
+  APP_TYPE2["HCP"] = "HCP";
+  APP_TYPE2["HOSPITAL"] = "HOSPITAL";
+  APP_TYPE2["DOCTOR"] = "DOCTOR";
+  return APP_TYPE2;
+}({});
+
 // src/entities/user.entity.ts
+var import_bcrypt = require("bcrypt");
 function _ts_decorate3(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -175,6 +188,17 @@ var User = class extends BaseEntity {
   country;
   password;
   profile_img;
+  type;
+  // Hash password before saving
+  async hashPassword() {
+    if (!this.password) return;
+    const salt = await (0, import_bcrypt.genSalt)(10);
+    this.password = await (0, import_bcrypt.hash)(this.password, salt);
+  }
+  // Validate password
+  async validatePassword(plainPassword) {
+    return (0, import_bcrypt.compare)(plainPassword, this.password);
+  }
 };
 _ts_decorate3([
   (0, import_typeorm3.Column)(),
@@ -226,7 +250,7 @@ _ts_decorate3([
 _ts_decorate3([
   (0, import_typeorm3.ManyToOne)(() => Country, {
     nullable: false,
-    onDelete: "SET NULL"
+    onDelete: "NO ACTION"
   }),
   (0, import_typeorm3.JoinColumn)({
     name: "country_id"
@@ -234,7 +258,9 @@ _ts_decorate3([
   _ts_metadata3("design:type", typeof Country === "undefined" ? Object : Country)
 ], User.prototype, "country", void 0);
 _ts_decorate3([
-  (0, import_typeorm3.Column)(),
+  (0, import_typeorm3.Column)({
+    select: false
+  }),
   _ts_metadata3("design:type", String)
 ], User.prototype, "password", void 0);
 _ts_decorate3([
@@ -244,6 +270,21 @@ _ts_decorate3([
   }),
   _ts_metadata3("design:type", String)
 ], User.prototype, "profile_img", void 0);
+_ts_decorate3([
+  (0, import_typeorm3.Column)({
+    type: "enum",
+    enum: APP_TYPE,
+    default: APP_TYPE.CLIENT
+  }),
+  _ts_metadata3("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
+], User.prototype, "type", void 0);
+_ts_decorate3([
+  (0, import_typeorm3.BeforeInsert)(),
+  (0, import_typeorm3.BeforeUpdate)(),
+  _ts_metadata3("design:type", Function),
+  _ts_metadata3("design:paramtypes", []),
+  _ts_metadata3("design:returntype", Promise)
+], User.prototype, "hashPassword", null);
 User = _ts_decorate3([
   (0, import_typeorm3.Entity)("users")
 ], User);
@@ -264,21 +305,30 @@ var Session = class extends BaseEntity {
   static {
     __name(this, "Session");
   }
-  accessToken;
-  refreshToken;
+  accessKey;
+  refreshKey;
   user;
   ipAddress;
+  // CREATE TOKEN EVERY TIME U CREATE A SESSION
+  async createTokens() {
+    this.accessKey = (0, import_uuid.v4)();
+    this.refreshKey = (0, import_uuid.v4)();
+  }
 };
 _ts_decorate4([
-  (0, import_typeorm4.Column)(),
+  (0, import_typeorm4.Column)({
+    nullable: true
+  }),
   _ts_metadata4("design:type", String)
-], Session.prototype, "accessToken", void 0);
+], Session.prototype, "accessKey", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.Column)(),
+  (0, import_typeorm4.Column)({
+    nullable: true
+  }),
   _ts_metadata4("design:type", String)
-], Session.prototype, "refreshToken", void 0);
+], Session.prototype, "refreshKey", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.OneToOne)(() => User, {
+  (0, import_typeorm4.ManyToOne)(() => User, {
     onDelete: "CASCADE"
   }),
   (0, import_typeorm4.JoinColumn)({
@@ -287,9 +337,17 @@ _ts_decorate4([
   _ts_metadata4("design:type", typeof User === "undefined" ? Object : User)
 ], Session.prototype, "user", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.Column)(),
+  (0, import_typeorm4.Column)({
+    nullable: true
+  }),
   _ts_metadata4("design:type", String)
 ], Session.prototype, "ipAddress", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.BeforeInsert)(),
+  _ts_metadata4("design:type", Function),
+  _ts_metadata4("design:paramtypes", []),
+  _ts_metadata4("design:returntype", Promise)
+], Session.prototype, "createTokens", null);
 Session = _ts_decorate4([
   (0, import_typeorm4.Entity)("sessions")
 ], Session);

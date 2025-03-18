@@ -1,19 +1,34 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+} from "typeorm";
+import { v4 as uuid } from "uuid";
 import { User } from "./user.entity";
 import { BaseEntity } from "./baseEntity.entity";
 
 @Entity("sessions")
 export class Session extends BaseEntity {
-  @Column()
-  accessToken: string;
+  @Column({ nullable: true })
+  accessKey: string;
 
-  @Column()
-  refreshToken: string;
+  @Column({ nullable: true })
+  refreshKey: string;
 
-  @OneToOne(() => User, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @Column()
+  @Column({ nullable: true })
   ipAddress: string;
+
+  // CREATE TOKEN EVERY TIME U CREATE A SESSION
+  @BeforeInsert()
+  async createTokens(): Promise<void> {
+    this.accessKey = uuid();
+    this.refreshKey = uuid();
+  }
 }

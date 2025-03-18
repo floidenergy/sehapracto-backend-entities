@@ -1,42 +1,14 @@
-export { i as Entities } from './index-D98HN7GX.cjs';
-export { A as Admin, a as AdminPermission } from './admin.entity-C3V4RJW1.cjs';
+export { i as Entities } from './index-DskwA9Xp.cjs';
+export { GENDER } from './types/gender.enum.cjs';
+export { PERMISSIONS } from './types/permission.enum.cjs';
+export { APP_TYPE } from './types/userType.enum.cjs';
+export { ProtectedRequest, PublicRequest } from './types/request.type.cjs';
+export { IToken } from './types/token.type.cjs';
+export { Admin } from './entities/admin.entity.cjs';
 export { Country } from './entities/country.entity.cjs';
 export { Department } from './entities/department.entity.cjs';
 export { Session } from './entities/session.entity.cjs';
+export { Permission } from './entities/adminPermission.entity.cjs';
 export { User } from './entities/user.entity.cjs';
+export { ApiKey } from './entities/apikey.entity.cjs';
 import './entities/baseEntity.entity.cjs';
-
-declare enum GENDER {
-    MALE = "MALE",
-    FEMALE = "FEMALE"
-}
-
-declare enum ADMIN_PERMISSIONS {
-    READ_SLIDE = "SLIDE:READ",
-    WRITE_SLIDE = "SLIDE:WRITE",
-    READ_COUNTRY = "COUNTRY:READ",
-    WRITE_COUNTRIES = "COUNTRY:WRITE",
-    READ_DOCTOR = "DOCTOR:READ",
-    WRITE_DOCTOR = "DOCTOR:WRITE",
-    READ_HCP = "HCP:READ",
-    WRITE_HCP = "HCP:WRITE",
-    READ_HOSPITAL = "HOSPITAL:READ",
-    WRITE_HOSPITAL = "HOSPITAL:WRITE",
-    READ_PATIENT = "PATIENT:READ",
-    WRITE_PATIENT = "PATIENT:WRITE",
-    READ_OFFER = "OFFER:READ",
-    WRITE_OFFER = "OFFER:WRITE",
-    READ_NOTIFICATION = "NOTIFICATION:READ",
-    WRITE_NOTIFICATION = "NOTIFICATION:WRITE",
-    WRITE_TRANSLATION = "TRANSLATION:WRITE",
-    IS_TRANSLATOR = "TRANSLATION:TRANSLATOR",
-    READ_BLOG = "BLOG:READ",
-    WRITE_BLOG = "BLOG:WRITE",
-    READ_LAB_PAGE = "LAB:PAGE:READ",
-    WRITE_LAB_PAGE = "LAB:PAGE:WRITE",
-    WRITE_LAB_TEST = "LAB:TEST:READ",
-    READ_LAB_REQUEST = "LAB:REQUEST:READ",
-    WRITE_LAB_REQUEST = "LAB:REQUEST:WRITE"
-}
-
-export { ADMIN_PERMISSIONS, GENDER };

@@ -114,26 +114,21 @@ function _ts_metadata3(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata3, "_ts_metadata");
-var AdminPermission = class extends BaseEntity {
+var Permission = class extends BaseEntity {
   static {
-    __name(this, "AdminPermission");
+    __name(this, "Permission");
   }
   name;
-  admins;
 };
 _ts_decorate3([
   (0, import_typeorm3.Column)({
     unique: true
   }),
   _ts_metadata3("design:type", String)
-], AdminPermission.prototype, "name", void 0);
-_ts_decorate3([
-  (0, import_typeorm3.ManyToMany)(() => Admin, (admin) => admin.permissions),
-  _ts_metadata3("design:type", Array)
-], AdminPermission.prototype, "admins", void 0);
-AdminPermission = _ts_decorate3([
-  (0, import_typeorm3.Entity)("admin_permissions")
-], AdminPermission);
+], Permission.prototype, "name", void 0);
+Permission = _ts_decorate3([
+  (0, import_typeorm3.Entity)("permissions")
+], Permission);
 
 // src/entities/user.entity.ts
 var import_typeorm5 = require("typeorm");
@@ -213,7 +208,19 @@ Country = _ts_decorate4([
   (0, import_typeorm4.Entity)("countries")
 ], Country);
 
+// src/types/userType.enum.ts
+var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
+  APP_TYPE2["ADMIN"] = "ADMIN";
+  APP_TYPE2["CLIENT"] = "CLIENT";
+  APP_TYPE2["PHARMACIE"] = "PHARMACIE";
+  APP_TYPE2["HCP"] = "HCP";
+  APP_TYPE2["HOSPITAL"] = "HOSPITAL";
+  APP_TYPE2["DOCTOR"] = "DOCTOR";
+  return APP_TYPE2;
+}({});
+
 // src/entities/user.entity.ts
+var import_bcrypt = require("bcrypt");
 function _ts_decorate5(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -240,6 +247,17 @@ var User = class extends BaseEntity {
   country;
   password;
   profile_img;
+  type;
+  // Hash password before saving
+  async hashPassword() {
+    if (!this.password) return;
+    const salt = await (0, import_bcrypt.genSalt)(10);
+    this.password = await (0, import_bcrypt.hash)(this.password, salt);
+  }
+  // Validate password
+  async validatePassword(plainPassword) {
+    return (0, import_bcrypt.compare)(plainPassword, this.password);
+  }
 };
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
@@ -291,7 +309,7 @@ _ts_decorate5([
 _ts_decorate5([
   (0, import_typeorm5.ManyToOne)(() => Country, {
     nullable: false,
-    onDelete: "SET NULL"
+    onDelete: "NO ACTION"
   }),
   (0, import_typeorm5.JoinColumn)({
     name: "country_id"
@@ -299,7 +317,9 @@ _ts_decorate5([
   _ts_metadata5("design:type", typeof Country === "undefined" ? Object : Country)
 ], User.prototype, "country", void 0);
 _ts_decorate5([
-  (0, import_typeorm5.Column)(),
+  (0, import_typeorm5.Column)({
+    select: false
+  }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "password", void 0);
 _ts_decorate5([
@@ -309,6 +329,21 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profile_img", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)({
+    type: "enum",
+    enum: APP_TYPE,
+    default: APP_TYPE.CLIENT
+  }),
+  _ts_metadata5("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
+], User.prototype, "type", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.BeforeInsert)(),
+  (0, import_typeorm5.BeforeUpdate)(),
+  _ts_metadata5("design:type", Function),
+  _ts_metadata5("design:paramtypes", []),
+  _ts_metadata5("design:returntype", Promise)
+], User.prototype, "hashPassword", null);
 User = _ts_decorate5([
   (0, import_typeorm5.Entity)("users")
 ], User);
@@ -325,18 +360,26 @@ function _ts_metadata6(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata6, "_ts_metadata");
-var Admin = class extends BaseEntity {
+var Admin = class {
   static {
     __name(this, "Admin");
   }
+  adminID;
   department;
   is_active;
   user;
   permissions;
+  createdAt;
+  updatedAt;
+  deletedAt;
 };
 _ts_decorate6([
-  (0, import_typeorm6.OneToOne)(() => Department, {
-    onDelete: "SET NULL"
+  (0, import_typeorm6.PrimaryGeneratedColumn)(),
+  _ts_metadata6("design:type", Number)
+], Admin.prototype, "adminID", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.ManyToOne)(() => Department, {
+    onDelete: "NO ACTION"
   }),
   (0, import_typeorm6.JoinColumn)({
     name: "department_id"
@@ -359,12 +402,38 @@ _ts_decorate6([
   _ts_metadata6("design:type", typeof User === "undefined" ? Object : User)
 ], Admin.prototype, "user", void 0);
 _ts_decorate6([
-  (0, import_typeorm6.ManyToMany)(() => AdminPermission, (permission) => permission.admins),
-  (0, import_typeorm6.JoinColumn)({
-    name: "permissions_ids"
+  (0, import_typeorm6.ManyToMany)(() => Permission),
+  (0, import_typeorm6.JoinTable)({
+    name: "admin_permissions",
+    joinColumn: {
+      name: "admin_id",
+      referencedColumnName: "adminID"
+    },
+    inverseJoinColumn: {
+      name: "permission_id",
+      referencedColumnName: "id"
+    }
   }),
   _ts_metadata6("design:type", Array)
 ], Admin.prototype, "permissions", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.CreateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Admin.prototype, "createdAt", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.UpdateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Admin.prototype, "updatedAt", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.DeleteDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Admin.prototype, "deletedAt", void 0);
 Admin = _ts_decorate6([
   (0, import_typeorm6.Entity)("admins")
 ], Admin);
