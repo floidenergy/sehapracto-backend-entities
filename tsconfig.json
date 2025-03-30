@@ -26,6 +26,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src"],
+  "include": ["src", "../shared-types/src/types/token.type.ts"],
   "exclude": ["node_modules"]
 }

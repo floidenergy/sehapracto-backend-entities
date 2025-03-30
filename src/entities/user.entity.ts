@@ -48,8 +48,9 @@ export class User extends BaseEntity {
   @Column({ nullable: true, default: "avatar.png" })
   profile_img: string;
 
+  // TODO: many to many
   @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.CLIENT })
-  type: APP_TYPE;
+  types: APP_TYPE;
 
   // Hash password before saving
   @BeforeInsert()
