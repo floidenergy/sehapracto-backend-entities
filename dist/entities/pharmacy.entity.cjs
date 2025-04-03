@@ -17,17 +17,13 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/entities/session.entity.ts
-var session_entity_exports = {};
-__export(session_entity_exports, {
-  Session: () => Session
+// src/entities/pharmacy.entity.ts
+var pharmacy_entity_exports = {};
+__export(pharmacy_entity_exports, {
+  Pharmacy: () => Pharmacy
 });
-module.exports = __toCommonJS(session_entity_exports);
+module.exports = __toCommonJS(pharmacy_entity_exports);
 var import_typeorm4 = require("typeorm");
-var import_uuid = require("uuid");
-
-// src/entities/user.entity.ts
-var import_typeorm3 = require("typeorm");
 
 // src/entities/baseEntity.entity.ts
 var import_typeorm = require("typeorm");
@@ -73,6 +69,9 @@ _ts_decorate([
   }),
   _ts_metadata("design:type", typeof Date === "undefined" ? Object : Date)
 ], BaseEntity.prototype, "deletedAt", void 0);
+
+// src/entities/user.entity.ts
+var import_typeorm3 = require("typeorm");
 
 // src/entities/country.entity.ts
 var import_typeorm2 = require("typeorm");
@@ -290,7 +289,7 @@ User = _ts_decorate3([
   (0, import_typeorm3.Entity)("users")
 ], User);
 
-// src/entities/session.entity.ts
+// src/entities/pharmacy.entity.ts
 function _ts_decorate4(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -302,57 +301,30 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var Session = class extends BaseEntity {
+var Pharmacy = class extends BaseEntity {
   static {
-    __name(this, "Session");
+    __name(this, "Pharmacy");
   }
-  accessKey;
-  refreshKey;
+  password;
   user;
-  ipAddress;
-  // CREATE TOKEN EVERY TIME U CREATE A SESSION
-  async createTokens() {
-    this.accessKey = (0, import_uuid.v4)();
-    this.refreshKey = (0, import_uuid.v4)();
-  }
 };
 _ts_decorate4([
-  (0, import_typeorm4.Column)({
-    nullable: true
-  }),
+  (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
-], Session.prototype, "accessKey", void 0);
+], Pharmacy.prototype, "password", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.Column)({
-    nullable: true
-  }),
-  _ts_metadata4("design:type", String)
-], Session.prototype, "refreshKey", void 0);
-_ts_decorate4([
-  (0, import_typeorm4.ManyToOne)(() => User, {
+  (0, import_typeorm4.OneToOne)(() => User, {
     onDelete: "CASCADE"
   }),
   (0, import_typeorm4.JoinColumn)({
     name: "user_id"
   }),
   _ts_metadata4("design:type", typeof User === "undefined" ? Object : User)
-], Session.prototype, "user", void 0);
-_ts_decorate4([
-  (0, import_typeorm4.Column)({
-    nullable: true
-  }),
-  _ts_metadata4("design:type", String)
-], Session.prototype, "ipAddress", void 0);
-_ts_decorate4([
-  (0, import_typeorm4.BeforeInsert)(),
-  _ts_metadata4("design:type", Function),
-  _ts_metadata4("design:paramtypes", []),
-  _ts_metadata4("design:returntype", Promise)
-], Session.prototype, "createTokens", null);
-Session = _ts_decorate4([
-  (0, import_typeorm4.Entity)("sessions")
-], Session);
+], Pharmacy.prototype, "user", void 0);
+Pharmacy = _ts_decorate4([
+  (0, import_typeorm4.Entity)("pharmacies")
+], Pharmacy);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Session
+  Pharmacy
 });

@@ -17,17 +17,13 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/entities/session.entity.ts
-var session_entity_exports = {};
-__export(session_entity_exports, {
-  Session: () => Session
+// src/entities/order.entity.ts
+var order_entity_exports = {};
+__export(order_entity_exports, {
+  Order: () => Order
 });
-module.exports = __toCommonJS(session_entity_exports);
-var import_typeorm4 = require("typeorm");
-var import_uuid = require("uuid");
-
-// src/entities/user.entity.ts
-var import_typeorm3 = require("typeorm");
+module.exports = __toCommonJS(order_entity_exports);
+var import_typeorm7 = require("typeorm");
 
 // src/entities/baseEntity.entity.ts
 var import_typeorm = require("typeorm");
@@ -73,6 +69,9 @@ _ts_decorate([
   }),
   _ts_metadata("design:type", typeof Date === "undefined" ? Object : Date)
 ], BaseEntity.prototype, "deletedAt", void 0);
+
+// src/entities/user.entity.ts
+var import_typeorm3 = require("typeorm");
 
 // src/entities/country.entity.ts
 var import_typeorm2 = require("typeorm");
@@ -290,7 +289,14 @@ User = _ts_decorate3([
   (0, import_typeorm3.Entity)("users")
 ], User);
 
-// src/entities/session.entity.ts
+// src/entities/orderItems.entity.ts
+var import_typeorm6 = require("typeorm");
+
+// src/entities/product.entity.ts
+var import_typeorm5 = require("typeorm");
+
+// src/entities/category.entity.ts
+var import_typeorm4 = require("typeorm");
 function _ts_decorate4(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -302,57 +308,178 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var Session = class extends BaseEntity {
+var Category = class extends BaseEntity {
   static {
-    __name(this, "Session");
+    __name(this, "Category");
   }
-  accessKey;
-  refreshKey;
-  user;
-  ipAddress;
-  // CREATE TOKEN EVERY TIME U CREATE A SESSION
-  async createTokens() {
-    this.accessKey = (0, import_uuid.v4)();
-    this.refreshKey = (0, import_uuid.v4)();
-  }
+  name;
+  products;
 };
 _ts_decorate4([
-  (0, import_typeorm4.Column)({
-    nullable: true
-  }),
+  (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
-], Session.prototype, "accessKey", void 0);
+], Category.prototype, "name", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.Column)({
-    nullable: true
-  }),
-  _ts_metadata4("design:type", String)
-], Session.prototype, "refreshKey", void 0);
-_ts_decorate4([
-  (0, import_typeorm4.ManyToOne)(() => User, {
+  (0, import_typeorm4.OneToMany)(() => Product, (product) => product.category),
+  _ts_metadata4("design:type", Array)
+], Category.prototype, "products", void 0);
+Category = _ts_decorate4([
+  (0, import_typeorm4.Entity)("categories")
+], Category);
+
+// src/entities/product.entity.ts
+function _ts_decorate5(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate5, "_ts_decorate");
+function _ts_metadata5(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata5, "_ts_metadata");
+var Product = class extends BaseEntity {
+  static {
+    __name(this, "Product");
+  }
+  name;
+  sku;
+  category;
+  require_prescription;
+  price;
+  description;
+};
+_ts_decorate5([
+  (0, import_typeorm5.Column)(),
+  _ts_metadata5("design:type", String)
+], Product.prototype, "name", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)(),
+  _ts_metadata5("design:type", String)
+], Product.prototype, "sku", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.ManyToOne)(() => Category, {
     onDelete: "CASCADE"
   }),
-  (0, import_typeorm4.JoinColumn)({
-    name: "user_id"
+  (0, import_typeorm5.JoinColumn)({
+    name: "category_id"
   }),
-  _ts_metadata4("design:type", typeof User === "undefined" ? Object : User)
-], Session.prototype, "user", void 0);
-_ts_decorate4([
-  (0, import_typeorm4.Column)({
-    nullable: true
+  _ts_metadata5("design:type", typeof Category === "undefined" ? Object : Category)
+], Product.prototype, "category", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)(),
+  _ts_metadata5("design:type", Boolean)
+], Product.prototype, "require_prescription", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)(),
+  _ts_metadata5("design:type", Number)
+], Product.prototype, "price", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)(),
+  _ts_metadata5("design:type", String)
+], Product.prototype, "description", void 0);
+Product = _ts_decorate5([
+  (0, import_typeorm5.Entity)("products")
+], Product);
+
+// src/entities/orderItems.entity.ts
+function _ts_decorate6(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate6, "_ts_decorate");
+function _ts_metadata6(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata6, "_ts_metadata");
+var OrderItem = class extends BaseEntity {
+  static {
+    __name(this, "OrderItem");
+  }
+  order;
+  quantity;
+  price;
+  product;
+};
+_ts_decorate6([
+  (0, import_typeorm6.ManyToOne)(() => Order, {
+    onDelete: "CASCADE"
   }),
-  _ts_metadata4("design:type", String)
-], Session.prototype, "ipAddress", void 0);
-_ts_decorate4([
-  (0, import_typeorm4.BeforeInsert)(),
-  _ts_metadata4("design:type", Function),
-  _ts_metadata4("design:paramtypes", []),
-  _ts_metadata4("design:returntype", Promise)
-], Session.prototype, "createTokens", null);
-Session = _ts_decorate4([
-  (0, import_typeorm4.Entity)("sessions")
-], Session);
+  (0, import_typeorm6.JoinColumn)({
+    name: "order_id"
+  }),
+  _ts_metadata6("design:type", typeof Order === "undefined" ? Object : Order)
+], OrderItem.prototype, "order", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.Column)(),
+  _ts_metadata6("design:type", Number)
+], OrderItem.prototype, "quantity", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.Column)(),
+  _ts_metadata6("design:type", Number)
+], OrderItem.prototype, "price", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.OneToOne)(() => Product, {
+    onDelete: "CASCADE"
+  }),
+  (0, import_typeorm6.JoinColumn)({
+    name: "product_id"
+  }),
+  _ts_metadata6("design:type", typeof Product === "undefined" ? Object : Product)
+], OrderItem.prototype, "product", void 0);
+OrderItem = _ts_decorate6([
+  (0, import_typeorm6.Entity)("order_items")
+], OrderItem);
+
+// src/entities/order.entity.ts
+function _ts_decorate7(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate7, "_ts_decorate");
+function _ts_metadata7(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata7, "_ts_metadata");
+var Order = class extends BaseEntity {
+  static {
+    __name(this, "Order");
+  }
+  customer;
+  status;
+  price;
+  orderItems;
+};
+_ts_decorate7([
+  (0, import_typeorm7.ManyToOne)(() => User, {
+    onDelete: "CASCADE"
+  }),
+  (0, import_typeorm7.JoinColumn)({
+    name: "customer_id"
+  }),
+  _ts_metadata7("design:type", typeof User === "undefined" ? Object : User)
+], Order.prototype, "customer", void 0);
+_ts_decorate7([
+  (0, import_typeorm7.Column)(),
+  _ts_metadata7("design:type", String)
+], Order.prototype, "status", void 0);
+_ts_decorate7([
+  (0, import_typeorm7.Column)(),
+  _ts_metadata7("design:type", Number)
+], Order.prototype, "price", void 0);
+_ts_decorate7([
+  (0, import_typeorm7.OneToMany)(() => OrderItem, (orderItem) => orderItem.order),
+  _ts_metadata7("design:type", Array)
+], Order.prototype, "orderItems", void 0);
+Order = _ts_decorate7([
+  (0, import_typeorm7.Entity)("orders")
+], Order);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Session
+  Order
 });

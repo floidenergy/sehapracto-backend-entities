@@ -14,7 +14,7 @@ declare class User extends BaseEntity {
     country: Country;
     password?: string;
     profile_img: string;
-    type: APP_TYPE;
+    types: APP_TYPE;
     hashPassword(): Promise<void>;
     validatePassword(plainPassword: string): Promise<boolean>;
 }
