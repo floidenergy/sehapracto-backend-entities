@@ -1,5 +1,5 @@
 import { BaseEntity } from './baseEntity.entity.js';
-import { O as Order } from '../order.entity-D-2EbKBW.js';
+import { a as Order } from '../order.entity-i9Ta1Ybf.js';
 import { Patient } from './patient.entity.js';
 import { Attachement } from './attachements.entity.js';
 import './user.entity.js';

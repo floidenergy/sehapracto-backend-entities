@@ -2,7 +2,10 @@ var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
 // src/entities/pharmacy.entity.ts
-import { Column as Column3, Entity as Entity3, JoinColumn as JoinColumn2, OneToOne } from "typeorm";
+import { Column as Column3, CreateDateColumn as CreateDateColumn2, DeleteDateColumn as DeleteDateColumn2, Entity as Entity3, JoinColumn as JoinColumn2, OneToOne, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, UpdateDateColumn as UpdateDateColumn2 } from "typeorm";
+
+// src/entities/user.entity.ts
+import { Entity as Entity2, Column as Column2, JoinColumn, ManyToOne, BeforeInsert, BeforeUpdate } from "typeorm";
 
 // src/entities/baseEntity.entity.ts
 import { CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
@@ -48,9 +51,6 @@ _ts_decorate([
   }),
   _ts_metadata("design:type", typeof Date === "undefined" ? Object : Date)
 ], BaseEntity.prototype, "deletedAt", void 0);
-
-// src/entities/user.entity.ts
-import { Entity as Entity2, Column as Column2, JoinColumn, ManyToOne, BeforeInsert, BeforeUpdate } from "typeorm";
 
 // src/entities/country.entity.ts
 import { Entity, Column } from "typeorm";
@@ -280,13 +280,39 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var Pharmacy = class extends BaseEntity {
+var Pharmacy = class {
   static {
     __name(this, "Pharmacy");
   }
+  pharmacy_id;
+  pharmacy_createdAt;
+  pharmacy_updatedAt;
+  pharmacy_deletedAt;
   password;
   user;
 };
+_ts_decorate4([
+  PrimaryGeneratedColumn2(),
+  _ts_metadata4("design:type", Number)
+], Pharmacy.prototype, "pharmacy_id", void 0);
+_ts_decorate4([
+  CreateDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_createdAt", void 0);
+_ts_decorate4([
+  UpdateDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_updatedAt", void 0);
+_ts_decorate4([
+  DeleteDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_deletedAt", void 0);
 _ts_decorate4([
   Column3(),
   _ts_metadata4("design:type", String)

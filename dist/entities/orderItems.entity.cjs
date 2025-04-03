@@ -304,6 +304,13 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
 var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
@@ -323,11 +330,17 @@ _ts_decorate4([
   _ts_metadata4("design:type", typeof User === "undefined" ? Object : User)
 ], Order.prototype, "customer", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.Column)(),
+  (0, import_typeorm4.Column)({
+    type: "enum",
+    enum: OrderStatus,
+    default: "PENDING"
+  }),
   _ts_metadata4("design:type", String)
 ], Order.prototype, "status", void 0);
 _ts_decorate4([
-  (0, import_typeorm4.Column)(),
+  (0, import_typeorm4.Column)({
+    unsigned: true
+  }),
   _ts_metadata4("design:type", Number)
 ], Order.prototype, "price", void 0);
 _ts_decorate4([
@@ -406,7 +419,7 @@ _ts_decorate6([
 ], Product.prototype, "sku", void 0);
 _ts_decorate6([
   (0, import_typeorm6.ManyToOne)(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm6.JoinColumn)({
     name: "category_id"
@@ -418,7 +431,9 @@ _ts_decorate6([
   _ts_metadata6("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate6([
-  (0, import_typeorm6.Column)(),
+  (0, import_typeorm6.Column)({
+    unsigned: true
+  }),
   _ts_metadata6("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate6([
@@ -460,11 +475,15 @@ _ts_decorate7([
   _ts_metadata7("design:type", typeof Order === "undefined" ? Object : Order)
 ], OrderItem.prototype, "order", void 0);
 _ts_decorate7([
-  (0, import_typeorm7.Column)(),
+  (0, import_typeorm7.Column)({
+    unsigned: true
+  }),
   _ts_metadata7("design:type", Number)
 ], OrderItem.prototype, "quantity", void 0);
 _ts_decorate7([
-  (0, import_typeorm7.Column)(),
+  (0, import_typeorm7.Column)({
+    unsigned: true
+  }),
   _ts_metadata7("design:type", Number)
 ], OrderItem.prototype, "price", void 0);
 _ts_decorate7([

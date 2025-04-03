@@ -304,13 +304,39 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var Pharmacy = class extends BaseEntity {
+var Pharmacy = class {
   static {
     __name(this, "Pharmacy");
   }
+  pharmacy_id;
+  pharmacy_createdAt;
+  pharmacy_updatedAt;
+  pharmacy_deletedAt;
   password;
   user;
 };
+_ts_decorate4([
+  (0, import_typeorm4.PrimaryGeneratedColumn)(),
+  _ts_metadata4("design:type", Number)
+], Pharmacy.prototype, "pharmacy_id", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.CreateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_createdAt", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.UpdateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_updatedAt", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.DeleteDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_deletedAt", void 0);
 _ts_decorate4([
   (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
@@ -414,7 +440,7 @@ var PharmacyStore = class extends BaseEntity {
 };
 _ts_decorate6([
   (0, import_typeorm6.OneToOne)(() => Pharmacy, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm6.JoinColumn)({
     name: "manager_id"
@@ -423,7 +449,7 @@ _ts_decorate6([
 ], PharmacyStore.prototype, "manager", void 0);
 _ts_decorate6([
   (0, import_typeorm6.ManyToOne)(() => PharmacyBusiness, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm6.JoinColumn)({
     name: "pharmacy_business_id"
@@ -451,10 +477,7 @@ _ts_decorate6([
   _ts_metadata6("design:type", String)
 ], PharmacyStore.prototype, "address", void 0);
 _ts_decorate6([
-  (0, import_typeorm6.ManyToOne)(() => Country, {
-    nullable: false,
-    onDelete: "NO ACTION"
-  }),
+  (0, import_typeorm6.ManyToOne)(() => Country),
   (0, import_typeorm6.JoinColumn)({
     name: "country_id"
   }),

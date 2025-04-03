@@ -5,14 +5,13 @@ import './patient.entity.cjs';
 import './user.entity.cjs';
 import './country.entity.cjs';
 import '../types/userType.enum.cjs';
-import '../order.entity-Do8VfvzX.cjs';
+import '../order.entity-CA8sr2wJ.cjs';
 
 declare class SaleItem extends BaseEntity {
     product: Product;
     sale: Sale;
     quantity: number;
     selling_price: number;
-    total_price: number;
 }
 
 export { SaleItem };

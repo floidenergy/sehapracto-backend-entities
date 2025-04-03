@@ -342,7 +342,7 @@ _ts_decorate5([
 ], Product.prototype, "sku", void 0);
 _ts_decorate5([
   ManyToOne2(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn2({
     name: "category_id"
@@ -354,7 +354,9 @@ _ts_decorate5([
   _ts_metadata5("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate5([
-  Column4(),
+  Column4({
+    unsigned: true
+  }),
   _ts_metadata5("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate5([
@@ -396,11 +398,15 @@ _ts_decorate6([
   _ts_metadata6("design:type", typeof Order === "undefined" ? Object : Order)
 ], OrderItem.prototype, "order", void 0);
 _ts_decorate6([
-  Column5(),
+  Column5({
+    unsigned: true
+  }),
   _ts_metadata6("design:type", Number)
 ], OrderItem.prototype, "quantity", void 0);
 _ts_decorate6([
-  Column5(),
+  Column5({
+    unsigned: true
+  }),
   _ts_metadata6("design:type", Number)
 ], OrderItem.prototype, "price", void 0);
 _ts_decorate6([
@@ -428,6 +434,13 @@ function _ts_metadata7(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata7, "_ts_metadata");
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
 var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
@@ -447,11 +460,17 @@ _ts_decorate7([
   _ts_metadata7("design:type", typeof User === "undefined" ? Object : User)
 ], Order.prototype, "customer", void 0);
 _ts_decorate7([
-  Column6(),
+  Column6({
+    type: "enum",
+    enum: OrderStatus,
+    default: "PENDING"
+  }),
   _ts_metadata7("design:type", String)
 ], Order.prototype, "status", void 0);
 _ts_decorate7([
-  Column6(),
+  Column6({
+    unsigned: true
+  }),
   _ts_metadata7("design:type", Number)
 ], Order.prototype, "price", void 0);
 _ts_decorate7([
@@ -463,7 +482,7 @@ Order = _ts_decorate7([
 ], Order);
 
 // src/entities/patient.entity.ts
-import { Column as Column7, Entity as Entity7, JoinColumn as JoinColumn5, OneToOne as OneToOne2 } from "typeorm";
+import { Column as Column7, CreateDateColumn as CreateDateColumn2, DeleteDateColumn as DeleteDateColumn2, Entity as Entity7, JoinColumn as JoinColumn5, OneToOne as OneToOne2, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, UpdateDateColumn as UpdateDateColumn2 } from "typeorm";
 function _ts_decorate8(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -475,18 +494,45 @@ function _ts_metadata8(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata8, "_ts_metadata");
-var Patient = class extends BaseEntity {
+var Patient = class {
   static {
     __name(this, "Patient");
   }
+  patient_id;
+  patient_createdAt;
+  patient_updatedAt;
+  patient_deletedAt;
   balance;
   password;
   blood_group;
   user;
 };
 _ts_decorate8([
+  PrimaryGeneratedColumn2(),
+  _ts_metadata8("design:type", Number)
+], Patient.prototype, "patient_id", void 0);
+_ts_decorate8([
+  CreateDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata8("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_createdAt", void 0);
+_ts_decorate8([
+  UpdateDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata8("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_updatedAt", void 0);
+_ts_decorate8([
+  DeleteDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata8("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_deletedAt", void 0);
+_ts_decorate8([
   Column7({
-    default: 0
+    default: 0,
+    unsigned: true
   }),
   _ts_metadata8("design:type", Number)
 ], Patient.prototype, "balance", void 0);
@@ -512,7 +558,7 @@ Patient = _ts_decorate8([
 ], Patient);
 
 // src/entities/attachements.entity.ts
-import { Entity as Entity8 } from "typeorm";
+import { Column as Column8, Entity as Entity8 } from "typeorm";
 function _ts_decorate9(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -520,6 +566,10 @@ function _ts_decorate9(decorators, target, key, desc) {
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 __name(_ts_decorate9, "_ts_decorate");
+function _ts_metadata9(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata9, "_ts_metadata");
 var Attachement = class extends BaseEntity {
   static {
     __name(this, "Attachement");
@@ -529,6 +579,22 @@ var Attachement = class extends BaseEntity {
   meme_type;
   size;
 };
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "bucket_name", void 0);
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "file_name", void 0);
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "meme_type", void 0);
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "size", void 0);
 Attachement = _ts_decorate9([
   Entity8("attachements")
 ], Attachement);
@@ -541,10 +607,10 @@ function _ts_decorate10(decorators, target, key, desc) {
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 __name(_ts_decorate10, "_ts_decorate");
-function _ts_metadata9(k, v) {
+function _ts_metadata10(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
-__name(_ts_metadata9, "_ts_metadata");
+__name(_ts_metadata10, "_ts_metadata");
 var Prescription = class extends BaseEntity {
   static {
     __name(this, "Prescription");
@@ -555,30 +621,30 @@ var Prescription = class extends BaseEntity {
 };
 _ts_decorate10([
   ManyToOne5(() => Order, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn6({
     name: "order_id"
   }),
-  _ts_metadata9("design:type", typeof Order === "undefined" ? Object : Order)
+  _ts_metadata10("design:type", typeof Order === "undefined" ? Object : Order)
 ], Prescription.prototype, "order", void 0);
 _ts_decorate10([
   ManyToOne5(() => Patient, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn6({
     name: "customer_id"
   }),
-  _ts_metadata9("design:type", typeof Patient === "undefined" ? Object : Patient)
+  _ts_metadata10("design:type", typeof Patient === "undefined" ? Object : Patient)
 ], Prescription.prototype, "customer", void 0);
 _ts_decorate10([
   ManyToOne5(() => Attachement, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn6({
     name: "attachement_id"
   }),
-  _ts_metadata9("design:type", typeof Attachement === "undefined" ? Object : Attachement)
+  _ts_metadata10("design:type", typeof Attachement === "undefined" ? Object : Attachement)
 ], Prescription.prototype, "attachement", void 0);
 Prescription = _ts_decorate10([
   Entity9("prescriptions")

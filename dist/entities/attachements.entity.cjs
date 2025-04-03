@@ -78,6 +78,10 @@ function _ts_decorate2(decorators, target, key, desc) {
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 __name(_ts_decorate2, "_ts_decorate");
+function _ts_metadata2(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata2, "_ts_metadata");
 var Attachement = class extends BaseEntity {
   static {
     __name(this, "Attachement");
@@ -87,6 +91,22 @@ var Attachement = class extends BaseEntity {
   meme_type;
   size;
 };
+_ts_decorate2([
+  (0, import_typeorm2.Column)(),
+  _ts_metadata2("design:type", String)
+], Attachement.prototype, "bucket_name", void 0);
+_ts_decorate2([
+  (0, import_typeorm2.Column)(),
+  _ts_metadata2("design:type", String)
+], Attachement.prototype, "file_name", void 0);
+_ts_decorate2([
+  (0, import_typeorm2.Column)(),
+  _ts_metadata2("design:type", String)
+], Attachement.prototype, "meme_type", void 0);
+_ts_decorate2([
+  (0, import_typeorm2.Column)(),
+  _ts_metadata2("design:type", String)
+], Attachement.prototype, "size", void 0);
 Attachement = _ts_decorate2([
   (0, import_typeorm2.Entity)("attachements")
 ], Attachement);

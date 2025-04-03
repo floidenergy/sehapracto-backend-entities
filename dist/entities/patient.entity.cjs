@@ -25,6 +25,9 @@ __export(patient_entity_exports, {
 module.exports = __toCommonJS(patient_entity_exports);
 var import_typeorm4 = require("typeorm");
 
+// src/entities/user.entity.ts
+var import_typeorm3 = require("typeorm");
+
 // src/entities/baseEntity.entity.ts
 var import_typeorm = require("typeorm");
 function _ts_decorate(decorators, target, key, desc) {
@@ -69,9 +72,6 @@ _ts_decorate([
   }),
   _ts_metadata("design:type", typeof Date === "undefined" ? Object : Date)
 ], BaseEntity.prototype, "deletedAt", void 0);
-
-// src/entities/user.entity.ts
-var import_typeorm3 = require("typeorm");
 
 // src/entities/country.entity.ts
 var import_typeorm2 = require("typeorm");
@@ -301,18 +301,45 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var Patient = class extends BaseEntity {
+var Patient = class {
   static {
     __name(this, "Patient");
   }
+  patient_id;
+  patient_createdAt;
+  patient_updatedAt;
+  patient_deletedAt;
   balance;
   password;
   blood_group;
   user;
 };
 _ts_decorate4([
+  (0, import_typeorm4.PrimaryGeneratedColumn)(),
+  _ts_metadata4("design:type", Number)
+], Patient.prototype, "patient_id", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.CreateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_createdAt", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.UpdateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_updatedAt", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.DeleteDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_deletedAt", void 0);
+_ts_decorate4([
   (0, import_typeorm4.Column)({
-    default: 0
+    default: 0,
+    unsigned: true
   }),
   _ts_metadata4("design:type", Number)
 ], Patient.prototype, "balance", void 0);

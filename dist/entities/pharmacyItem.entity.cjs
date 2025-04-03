@@ -138,7 +138,7 @@ _ts_decorate3([
 ], Product.prototype, "sku", void 0);
 _ts_decorate3([
   (0, import_typeorm3.ManyToOne)(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm3.JoinColumn)({
     name: "category_id"
@@ -150,7 +150,9 @@ _ts_decorate3([
   _ts_metadata3("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate3([
-  (0, import_typeorm3.Column)(),
+  (0, import_typeorm3.Column)({
+    unsigned: true
+  }),
   _ts_metadata3("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate3([
@@ -398,13 +400,39 @@ function _ts_metadata6(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata6, "_ts_metadata");
-var Pharmacy = class extends BaseEntity {
+var Pharmacy = class {
   static {
     __name(this, "Pharmacy");
   }
+  pharmacy_id;
+  pharmacy_createdAt;
+  pharmacy_updatedAt;
+  pharmacy_deletedAt;
   password;
   user;
 };
+_ts_decorate6([
+  (0, import_typeorm6.PrimaryGeneratedColumn)(),
+  _ts_metadata6("design:type", Number)
+], Pharmacy.prototype, "pharmacy_id", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.CreateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_createdAt", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.UpdateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_updatedAt", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.DeleteDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_deletedAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.Column)(),
   _ts_metadata6("design:type", String)
@@ -508,7 +536,7 @@ var PharmacyStore = class extends BaseEntity {
 };
 _ts_decorate8([
   (0, import_typeorm8.OneToOne)(() => Pharmacy, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm8.JoinColumn)({
     name: "manager_id"
@@ -517,7 +545,7 @@ _ts_decorate8([
 ], PharmacyStore.prototype, "manager", void 0);
 _ts_decorate8([
   (0, import_typeorm8.ManyToOne)(() => PharmacyBusiness, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm8.JoinColumn)({
     name: "pharmacy_business_id"
@@ -545,10 +573,7 @@ _ts_decorate8([
   _ts_metadata8("design:type", String)
 ], PharmacyStore.prototype, "address", void 0);
 _ts_decorate8([
-  (0, import_typeorm8.ManyToOne)(() => Country, {
-    nullable: false,
-    onDelete: "NO ACTION"
-  }),
+  (0, import_typeorm8.ManyToOne)(() => Country),
   (0, import_typeorm8.JoinColumn)({
     name: "country_id"
   }),
@@ -596,7 +621,9 @@ _ts_decorate9([
   _ts_metadata9("design:type", typeof Product === "undefined" ? Object : Product)
 ], PharmacyItem.prototype, "product", void 0);
 _ts_decorate9([
-  (0, import_typeorm9.Column)(),
+  (0, import_typeorm9.Column)({
+    unsigned: true
+  }),
   _ts_metadata9("design:type", Number)
 ], PharmacyItem.prototype, "quantity", void 0);
 _ts_decorate9([

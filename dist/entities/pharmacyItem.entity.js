@@ -117,7 +117,7 @@ _ts_decorate3([
 ], Product.prototype, "sku", void 0);
 _ts_decorate3([
   ManyToOne(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn({
     name: "category_id"
@@ -129,7 +129,9 @@ _ts_decorate3([
   _ts_metadata3("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate3([
-  Column2(),
+  Column2({
+    unsigned: true
+  }),
   _ts_metadata3("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate3([
@@ -144,7 +146,7 @@ Product = _ts_decorate3([
 import { Column as Column7, Entity as Entity7, JoinColumn as JoinColumn5, ManyToOne as ManyToOne4, OneToOne as OneToOne3 } from "typeorm";
 
 // src/entities/pharmacy.entity.ts
-import { Column as Column5, Entity as Entity5, JoinColumn as JoinColumn3, OneToOne } from "typeorm";
+import { Column as Column5, CreateDateColumn as CreateDateColumn2, DeleteDateColumn as DeleteDateColumn2, Entity as Entity5, JoinColumn as JoinColumn3, OneToOne, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, UpdateDateColumn as UpdateDateColumn2 } from "typeorm";
 
 // src/entities/user.entity.ts
 import { Entity as Entity4, Column as Column4, JoinColumn as JoinColumn2, ManyToOne as ManyToOne2, BeforeInsert, BeforeUpdate } from "typeorm";
@@ -377,13 +379,39 @@ function _ts_metadata6(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata6, "_ts_metadata");
-var Pharmacy = class extends BaseEntity {
+var Pharmacy = class {
   static {
     __name(this, "Pharmacy");
   }
+  pharmacy_id;
+  pharmacy_createdAt;
+  pharmacy_updatedAt;
+  pharmacy_deletedAt;
   password;
   user;
 };
+_ts_decorate6([
+  PrimaryGeneratedColumn2(),
+  _ts_metadata6("design:type", Number)
+], Pharmacy.prototype, "pharmacy_id", void 0);
+_ts_decorate6([
+  CreateDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_createdAt", void 0);
+_ts_decorate6([
+  UpdateDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_updatedAt", void 0);
+_ts_decorate6([
+  DeleteDateColumn2({
+    type: "timestamp"
+  }),
+  _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_deletedAt", void 0);
 _ts_decorate6([
   Column5(),
   _ts_metadata6("design:type", String)
@@ -487,7 +515,7 @@ var PharmacyStore = class extends BaseEntity {
 };
 _ts_decorate8([
   OneToOne3(() => Pharmacy, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn5({
     name: "manager_id"
@@ -496,7 +524,7 @@ _ts_decorate8([
 ], PharmacyStore.prototype, "manager", void 0);
 _ts_decorate8([
   ManyToOne4(() => PharmacyBusiness, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn5({
     name: "pharmacy_business_id"
@@ -524,10 +552,7 @@ _ts_decorate8([
   _ts_metadata8("design:type", String)
 ], PharmacyStore.prototype, "address", void 0);
 _ts_decorate8([
-  ManyToOne4(() => Country, {
-    nullable: false,
-    onDelete: "NO ACTION"
-  }),
+  ManyToOne4(() => Country),
   JoinColumn5({
     name: "country_id"
   }),
@@ -575,7 +600,9 @@ _ts_decorate9([
   _ts_metadata9("design:type", typeof Product === "undefined" ? Object : Product)
 ], PharmacyItem.prototype, "product", void 0);
 _ts_decorate9([
-  Column8(),
+  Column8({
+    unsigned: true
+  }),
   _ts_metadata9("design:type", Number)
 ], PharmacyItem.prototype, "quantity", void 0);
 _ts_decorate9([

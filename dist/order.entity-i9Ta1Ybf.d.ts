@@ -9,11 +9,17 @@ declare class OrderItem extends BaseEntity {
     product: Product;
 }
 
+declare enum OrderStatus {
+    PENDING = "PENDING",
+    CONFIRMED = "CONFIRMED",
+    REJECTED = "REJECTED",
+    CLOSED = "CLOSED"
+}
 declare class Order extends BaseEntity {
     customer: User;
-    status: string;
+    status: OrderStatus;
     price: number;
     orderItems: OrderItem[];
 }
 
-export { Order as O, OrderItem as a };
+export { OrderStatus as O, Order as a, OrderItem as b };

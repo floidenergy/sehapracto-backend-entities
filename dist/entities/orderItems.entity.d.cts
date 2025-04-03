@@ -1,5 +1,5 @@
 import './baseEntity.entity.cjs';
-export { a as OrderItem } from '../order.entity-Do8VfvzX.cjs';
+export { b as OrderItem } from '../order.entity-CA8sr2wJ.cjs';
 import '../category.entity-DugzkOj6.cjs';
 import './user.entity.cjs';
 import './country.entity.cjs';

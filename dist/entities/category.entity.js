@@ -83,7 +83,7 @@ _ts_decorate2([
 ], Product.prototype, "sku", void 0);
 _ts_decorate2([
   ManyToOne(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn({
     name: "category_id"
@@ -95,7 +95,9 @@ _ts_decorate2([
   _ts_metadata2("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate2([
-  Column(),
+  Column({
+    unsigned: true
+  }),
   _ts_metadata2("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate2([

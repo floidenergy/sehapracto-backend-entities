@@ -304,18 +304,45 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var Patient = class extends BaseEntity {
+var Patient = class {
   static {
     __name(this, "Patient");
   }
+  patient_id;
+  patient_createdAt;
+  patient_updatedAt;
+  patient_deletedAt;
   balance;
   password;
   blood_group;
   user;
 };
 _ts_decorate4([
+  (0, import_typeorm4.PrimaryGeneratedColumn)(),
+  _ts_metadata4("design:type", Number)
+], Patient.prototype, "patient_id", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.CreateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_createdAt", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.UpdateDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_updatedAt", void 0);
+_ts_decorate4([
+  (0, import_typeorm4.DeleteDateColumn)({
+    type: "timestamp"
+  }),
+  _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_deletedAt", void 0);
+_ts_decorate4([
   (0, import_typeorm4.Column)({
-    default: 0
+    default: 0,
+    unsigned: true
   }),
   _ts_metadata4("design:type", Number)
 ], Patient.prototype, "balance", void 0);
@@ -414,7 +441,7 @@ _ts_decorate6([
 ], Product.prototype, "sku", void 0);
 _ts_decorate6([
   (0, import_typeorm6.ManyToOne)(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   (0, import_typeorm6.JoinColumn)({
     name: "category_id"
@@ -426,7 +453,9 @@ _ts_decorate6([
   _ts_metadata6("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate6([
-  (0, import_typeorm6.Column)(),
+  (0, import_typeorm6.Column)({
+    unsigned: true
+  }),
   _ts_metadata6("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate6([
@@ -468,11 +497,15 @@ _ts_decorate7([
   _ts_metadata7("design:type", typeof Order === "undefined" ? Object : Order)
 ], OrderItem.prototype, "order", void 0);
 _ts_decorate7([
-  (0, import_typeorm7.Column)(),
+  (0, import_typeorm7.Column)({
+    unsigned: true
+  }),
   _ts_metadata7("design:type", Number)
 ], OrderItem.prototype, "quantity", void 0);
 _ts_decorate7([
-  (0, import_typeorm7.Column)(),
+  (0, import_typeorm7.Column)({
+    unsigned: true
+  }),
   _ts_metadata7("design:type", Number)
 ], OrderItem.prototype, "price", void 0);
 _ts_decorate7([
@@ -500,6 +533,13 @@ function _ts_metadata8(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata8, "_ts_metadata");
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
 var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
@@ -519,11 +559,17 @@ _ts_decorate8([
   _ts_metadata8("design:type", typeof User === "undefined" ? Object : User)
 ], Order.prototype, "customer", void 0);
 _ts_decorate8([
-  (0, import_typeorm8.Column)(),
+  (0, import_typeorm8.Column)({
+    type: "enum",
+    enum: OrderStatus,
+    default: "PENDING"
+  }),
   _ts_metadata8("design:type", String)
 ], Order.prototype, "status", void 0);
 _ts_decorate8([
-  (0, import_typeorm8.Column)(),
+  (0, import_typeorm8.Column)({
+    unsigned: true
+  }),
   _ts_metadata8("design:type", Number)
 ], Order.prototype, "price", void 0);
 _ts_decorate8([
@@ -559,25 +605,23 @@ var Sale = class extends BaseEntity {
   items;
 };
 _ts_decorate9([
-  (0, import_typeorm9.ManyToOne)(() => Patient, {
-    onDelete: "CASCADE"
-  }),
+  (0, import_typeorm9.ManyToOne)(() => Patient),
   (0, import_typeorm9.JoinColumn)({
     name: "customer_id"
   }),
   _ts_metadata9("design:type", typeof Patient === "undefined" ? Object : Patient)
 ], Sale.prototype, "customer", void 0);
 _ts_decorate9([
-  (0, import_typeorm9.ManyToOne)(() => Order, {
-    onDelete: "CASCADE"
-  }),
+  (0, import_typeorm9.ManyToOne)(() => Order),
   (0, import_typeorm9.JoinColumn)({
     name: "order_id"
   }),
   _ts_metadata9("design:type", typeof Order === "undefined" ? Object : Order)
 ], Sale.prototype, "order", void 0);
 _ts_decorate9([
-  (0, import_typeorm9.Column)(),
+  (0, import_typeorm9.Column)({
+    unsigned: true
+  }),
   _ts_metadata9("design:type", Number)
 ], Sale.prototype, "total_amount", void 0);
 _ts_decorate9([

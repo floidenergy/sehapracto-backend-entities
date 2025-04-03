@@ -339,7 +339,7 @@ _ts_decorate5([
 ], Product.prototype, "sku", void 0);
 _ts_decorate5([
   ManyToOne2(() => Category, {
-    onDelete: "CASCADE"
+    onDelete: "SET NULL"
   }),
   JoinColumn2({
     name: "category_id"
@@ -351,7 +351,9 @@ _ts_decorate5([
   _ts_metadata5("design:type", Boolean)
 ], Product.prototype, "require_prescription", void 0);
 _ts_decorate5([
-  Column4(),
+  Column4({
+    unsigned: true
+  }),
   _ts_metadata5("design:type", Number)
 ], Product.prototype, "price", void 0);
 _ts_decorate5([
@@ -393,11 +395,15 @@ _ts_decorate6([
   _ts_metadata6("design:type", typeof Order === "undefined" ? Object : Order)
 ], OrderItem.prototype, "order", void 0);
 _ts_decorate6([
-  Column5(),
+  Column5({
+    unsigned: true
+  }),
   _ts_metadata6("design:type", Number)
 ], OrderItem.prototype, "quantity", void 0);
 _ts_decorate6([
-  Column5(),
+  Column5({
+    unsigned: true
+  }),
   _ts_metadata6("design:type", Number)
 ], OrderItem.prototype, "price", void 0);
 _ts_decorate6([
@@ -425,6 +431,13 @@ function _ts_metadata7(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata7, "_ts_metadata");
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
 var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
@@ -444,11 +457,17 @@ _ts_decorate7([
   _ts_metadata7("design:type", typeof User === "undefined" ? Object : User)
 ], Order.prototype, "customer", void 0);
 _ts_decorate7([
-  Column6(),
+  Column6({
+    type: "enum",
+    enum: OrderStatus,
+    default: "PENDING"
+  }),
   _ts_metadata7("design:type", String)
 ], Order.prototype, "status", void 0);
 _ts_decorate7([
-  Column6(),
+  Column6({
+    unsigned: true
+  }),
   _ts_metadata7("design:type", Number)
 ], Order.prototype, "price", void 0);
 _ts_decorate7([
@@ -459,5 +478,6 @@ Order = _ts_decorate7([
   Entity6("orders")
 ], Order);
 export {
-  Order
+  Order,
+  OrderStatus
 };
