@@ -1,10 +1,31 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./user.entity";
 
 @Entity("patients")
-export class Patient extends BaseEntity {
-  @Column({ default: 0 })
+export class Patient {
+  @PrimaryGeneratedColumn()
+  patient_id!: number;
+
+  @CreateDateColumn({ type: "timestamp" })
+  readonly patient_createdAt!: Date;
+
+  @UpdateDateColumn({ type: "timestamp" })
+  readonly patient_updatedAt!: Date;
+
+  @DeleteDateColumn({ type: "timestamp" })
+  patient_deletedAt!: Date;
+
+  @Column({ default: 0, unsigned: true })
   balance: number;
 
   @Column()

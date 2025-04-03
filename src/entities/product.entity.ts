@@ -9,12 +9,12 @@ export class Product extends BaseEntity {
 
   @Column()
   sku: string;
-  @ManyToOne(() => Category, { onDelete: "CASCADE" })
+  @ManyToOne(() => Category, { onDelete: "SET NULL" })
   @JoinColumn({ name: "category_id" })
   category: Category;
   @Column()
   require_prescription: boolean;
-  @Column()
+  @Column({ unsigned: true })
   price: number;
   @Column()
   description: string;

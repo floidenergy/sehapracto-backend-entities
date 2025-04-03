@@ -16,10 +16,10 @@ export class OrderItem extends BaseEntity {
   @JoinColumn({ name: "order_id" })
   order: Order;
 
-  @Column()
+  @Column({ unsigned: true })
   quantity: number;
 
-  @Column()
+  @Column({ unsigned: true })
   price: number;
 
   @OneToOne(() => Product, { onDelete: "CASCADE" })

@@ -6,15 +6,15 @@ import { Attachement } from "./attachements.entity";
 
 @Entity("prescriptions")
 export class Prescription extends BaseEntity {
-  @ManyToOne(() => Order, { onDelete: "CASCADE" })
+  @ManyToOne(() => Order, { onDelete: "SET NULL" })
   @JoinColumn({ name: "order_id" })
   order: Order;
 
-  @ManyToOne(() => Patient, { onDelete: "CASCADE" })
+  @ManyToOne(() => Patient, { onDelete: "SET NULL" })
   @JoinColumn({ name: "customer_id" })
   customer: Patient;
 
-  @ManyToOne(() => Attachement, { onDelete: "CASCADE" })
+  @ManyToOne(() => Attachement, { onDelete: "SET NULL" })
   @JoinColumn({ name: "attachement_id" })
   attachement: Attachement;
 }

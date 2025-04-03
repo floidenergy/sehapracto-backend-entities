@@ -9,7 +9,7 @@ export class PharmacyItem extends BaseEntity {
   @JoinColumn({ name: "product_id" })
   product: Product;
 
-  @Column()
+  @Column({ unsigned: true })
   quantity: number;
 
   @ManyToOne(() => PharmacyStore, { onDelete: "CASCADE" })

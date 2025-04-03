@@ -5,15 +5,15 @@ import { Order } from "./order.entity";
 
 @Entity("sales")
 export class Sale extends BaseEntity {
-  @ManyToOne(() => Patient, { onDelete: "CASCADE" })
+  @ManyToOne(() => Patient)
   @JoinColumn({ name: "customer_id" })
   customer: Patient;
 
-  @ManyToOne(() => Order, { onDelete: "CASCADE" })
+  @ManyToOne(() => Order)
   @JoinColumn({ name: "order_id" })
   order: Order;
 
-  @Column()
+  @Column({ unsigned: true })
   total_amount: number;
 
   @Column()

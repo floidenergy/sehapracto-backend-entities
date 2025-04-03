@@ -1,9 +1,30 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./user.entity";
 
 @Entity("pharmacies")
-export class Pharmacy extends BaseEntity {
+export class Pharmacy {
+  @PrimaryGeneratedColumn()
+  pharmacy_id!: number;
+
+  @CreateDateColumn({ type: "timestamp" })
+  readonly pharmacy_createdAt!: Date;
+
+  @UpdateDateColumn({ type: "timestamp" })
+  readonly pharmacy_updatedAt!: Date;
+
+  @DeleteDateColumn({ type: "timestamp" })
+  pharmacy_deletedAt!: Date;
+
   @Column()
   password: string;
   @OneToOne(() => User, { onDelete: "CASCADE" })

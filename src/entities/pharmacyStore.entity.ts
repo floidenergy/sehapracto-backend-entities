@@ -6,10 +6,10 @@ import { Country } from "./country.entity";
 
 @Entity("pharmacy_store")
 export class PharmacyStore extends BaseEntity {
-  @OneToOne(() => Pharmacy, { onDelete: "CASCADE" })
+  @OneToOne(() => Pharmacy, { onDelete: "SET NULL" })
   @JoinColumn({ name: "manager_id" })
   manager: Pharmacy;
-  @ManyToOne(() => PharmacyBusiness, { onDelete: "CASCADE" })
+  @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
   @JoinColumn({ name: "pharmacy_business_id" })
   pharmacy_business: Pharmacy;
 
@@ -29,7 +29,7 @@ export class PharmacyStore extends BaseEntity {
   @Column()
   address: string;
 
-  @ManyToOne(() => Country, { nullable: false, onDelete: "NO ACTION" })
+  @ManyToOne(() => Country)
   @JoinColumn({ name: "country_id" })
   country: Country;
 
