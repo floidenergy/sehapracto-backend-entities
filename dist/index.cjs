@@ -291,6 +291,7 @@ var User = class extends BaseEntity {
   }
   first_name;
   last_name;
+  user_name;
   gender;
   birthdate;
   email;
@@ -321,6 +322,12 @@ _ts_decorate5([
   (0, import_typeorm5.Column)(),
   _ts_metadata5("design:type", String)
 ], User.prototype, "last_name", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)({
+    unique: true
+  }),
+  _ts_metadata5("design:type", String)
+], User.prototype, "user_name", void 0);
 _ts_decorate5([
   (0, import_typeorm5.Column)({
     nullable: true

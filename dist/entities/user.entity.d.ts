@@ -5,6 +5,7 @@ import { APP_TYPE } from '../types/userType.enum.js';
 declare class User extends BaseEntity {
     first_name: string;
     last_name: string;
+    user_name: string;
     gender: string;
     birthdate: Date;
     email: string;

@@ -323,6 +323,7 @@ var User = class extends BaseEntity {
   }
   first_name;
   last_name;
+  user_name;
   gender;
   birthdate;
   email;
@@ -353,6 +354,12 @@ _ts_decorate6([
   Column5(),
   _ts_metadata6("design:type", String)
 ], User.prototype, "last_name", void 0);
+_ts_decorate6([
+  Column5({
+    unique: true
+  }),
+  _ts_metadata6("design:type", String)
+], User.prototype, "user_name", void 0);
 _ts_decorate6([
   Column5({
     nullable: true

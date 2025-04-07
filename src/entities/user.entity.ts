@@ -19,6 +19,8 @@ export class User extends BaseEntity {
 
   @Column()
   last_name: string;
+  @Column({ unique: true })
+  user_name: string;
 
   @Column({ nullable: true })
   gender: string;
