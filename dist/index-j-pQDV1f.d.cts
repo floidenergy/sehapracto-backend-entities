@@ -7,7 +7,7 @@ import { User } from './entities/user.entity.cjs';
 import { ApiKey } from './entities/apikey.entity.cjs';
 import { Attachement } from './entities/attachements.entity.cjs';
 import { C as Category, P as Product } from './category.entity-DugzkOj6.cjs';
-import { O as Order, a as OrderItem } from './order.entity-DBg6HcyU.cjs';
+import { O as Order, a as OrderItem } from './order.entity-CaLYRmfb.cjs';
 import { Patient } from './entities/patient.entity.cjs';
 import { Pharmacy } from './entities/pharmacy.entity.cjs';
 import { PharmacyBusiness } from './entities/pharmacyBusiness.entity.cjs';

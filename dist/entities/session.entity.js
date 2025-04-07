@@ -131,8 +131,8 @@ Country = _ts_decorate2([
 // src/types/userType.enum.ts
 var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
   APP_TYPE2["ADMIN"] = "ADMIN";
-  APP_TYPE2["CLIENT"] = "CLIENT";
-  APP_TYPE2["PHARMACIE"] = "PHARMACIE";
+  APP_TYPE2["PATIENT"] = "PATIENT";
+  APP_TYPE2["PHARMACY"] = "PHARMACY";
   APP_TYPE2["HCP"] = "HCP";
   APP_TYPE2["HOSPITAL"] = "HOSPITAL";
   APP_TYPE2["DOCTOR"] = "DOCTOR";
@@ -254,7 +254,7 @@ _ts_decorate3([
   Column2({
     type: "enum",
     enum: APP_TYPE,
-    default: APP_TYPE.CLIENT
+    default: APP_TYPE.PATIENT
   }),
   _ts_metadata3("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
 ], User.prototype, "types", void 0);
@@ -289,6 +289,7 @@ var Session = class extends BaseEntity {
   refreshKey;
   user;
   ipAddress;
+  session_role;
   // CREATE TOKEN EVERY TIME U CREATE A SESSION
   async createTokens() {
     this.accessKey = uuid();
@@ -322,6 +323,14 @@ _ts_decorate4([
   }),
   _ts_metadata4("design:type", String)
 ], Session.prototype, "ipAddress", void 0);
+_ts_decorate4([
+  Column3({
+    type: "enum",
+    enum: APP_TYPE,
+    default: APP_TYPE.PATIENT
+  }),
+  _ts_metadata4("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
+], Session.prototype, "session_role", void 0);
 _ts_decorate4([
   BeforeInsert2(),
   _ts_metadata4("design:type", Function),

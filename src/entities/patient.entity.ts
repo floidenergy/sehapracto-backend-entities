@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./user.entity";
 
 @Entity("patients")

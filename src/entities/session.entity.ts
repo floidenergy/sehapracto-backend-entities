@@ -9,6 +9,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { User } from "./user.entity";
 import { BaseEntity } from "./baseEntity.entity";
+import { APP_TYPE } from "../types";
 
 @Entity("sessions")
 export class Session extends BaseEntity {
@@ -24,6 +25,12 @@ export class Session extends BaseEntity {
 
   @Column({ nullable: true })
   ipAddress: string;
+  @Column({
+    type: "enum",
+    enum: APP_TYPE,
+    default: APP_TYPE.PATIENT,
+  })
+  session_role: APP_TYPE;
 
   // CREATE TOKEN EVERY TIME U CREATE A SESSION
   @BeforeInsert()

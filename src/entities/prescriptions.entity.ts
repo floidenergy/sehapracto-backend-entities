@@ -11,8 +11,8 @@ export class Prescription extends BaseEntity {
   order: Order;
 
   @ManyToOne(() => Patient, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "customer_id" })
-  customer: Patient;
+  @JoinColumn({ name: "patient_id" })
+  patient: Patient;
 
   @ManyToOne(() => Attachement, { onDelete: "SET NULL" })
   @JoinColumn({ name: "attachement_id" })

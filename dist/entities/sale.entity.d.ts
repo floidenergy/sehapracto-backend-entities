@@ -1,6 +1,6 @@
 import { BaseEntity } from './baseEntity.entity.js';
 import { Patient } from './patient.entity.js';
-import { O as Order } from '../order.entity-DurDFPwX.js';
+import { O as Order } from '../order.entity-Bb3fehf5.js';
 import './user.entity.js';
 import './country.entity.js';
 import '../types/userType.enum.js';

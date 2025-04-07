@@ -49,7 +49,7 @@ export class User extends BaseEntity {
   profile_img: string;
 
   // TODO: many to many
-  @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.CLIENT })
+  @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
   types: APP_TYPE;
 
   // Hash password before saving

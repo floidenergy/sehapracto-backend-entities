@@ -7,7 +7,7 @@ export { User } from './user.entity.cjs';
 export { ApiKey } from './apikey.entity.cjs';
 export { Attachement } from './attachements.entity.cjs';
 export { C as Category, P as Product } from '../category.entity-DugzkOj6.cjs';
-export { O as Order, a as OrderItem } from '../order.entity-DBg6HcyU.cjs';
+export { O as Order, a as OrderItem } from '../order.entity-CaLYRmfb.cjs';
 export { Patient } from './patient.entity.cjs';
 export { Pharmacy } from './pharmacy.entity.cjs';
 export { PharmacyBusiness } from './pharmacyBusiness.entity.cjs';

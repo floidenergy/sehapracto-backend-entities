@@ -3,12 +3,13 @@ import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./user.entity";
 import { OrderItem } from "./orderItems.entity";
 import { OrderStatus } from "../types";
+import { Patient } from "./patient.entity";
 
 @Entity("orders")
 export class Order extends BaseEntity {
-  @ManyToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "customer_id" })
-  customer: User;
+  @ManyToOne(() => Patient, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "patient_id" })
+  patient: Patient;
 
   @Column({
     type: "enum",

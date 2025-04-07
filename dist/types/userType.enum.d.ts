@@ -1,7 +1,7 @@
 declare enum APP_TYPE {
     ADMIN = "ADMIN",
-    CLIENT = "CLIENT",
-    PHARMACIE = "PHARMACIE",
+    PATIENT = "PATIENT",
+    PHARMACY = "PHARMACY",
     HCP = "HCP",
     HOSPITAL = "HOSPITAL",
     DOCTOR = "DOCTOR"

@@ -157,8 +157,8 @@ Country = _ts_decorate2([
 // src/types/userType.enum.ts
 var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
   APP_TYPE2["ADMIN"] = "ADMIN";
-  APP_TYPE2["CLIENT"] = "CLIENT";
-  APP_TYPE2["PHARMACIE"] = "PHARMACIE";
+  APP_TYPE2["PATIENT"] = "PATIENT";
+  APP_TYPE2["PHARMACY"] = "PHARMACY";
   APP_TYPE2["HCP"] = "HCP";
   APP_TYPE2["HOSPITAL"] = "HOSPITAL";
   APP_TYPE2["DOCTOR"] = "DOCTOR";
@@ -280,7 +280,7 @@ _ts_decorate3([
   (0, import_typeorm3.Column)({
     type: "enum",
     enum: APP_TYPE,
-    default: APP_TYPE.CLIENT
+    default: APP_TYPE.PATIENT
   }),
   _ts_metadata3("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
 ], User.prototype, "types", void 0);
@@ -549,20 +549,20 @@ var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
   }
-  customer;
+  patient;
   status;
   price;
   orderItems;
 };
 _ts_decorate8([
-  (0, import_typeorm8.ManyToOne)(() => User, {
+  (0, import_typeorm8.ManyToOne)(() => Patient, {
     onDelete: "CASCADE"
   }),
   (0, import_typeorm8.JoinColumn)({
-    name: "customer_id"
+    name: "patient_id"
   }),
-  _ts_metadata8("design:type", typeof User === "undefined" ? Object : User)
-], Order.prototype, "customer", void 0);
+  _ts_metadata8("design:type", typeof Patient === "undefined" ? Object : Patient)
+], Order.prototype, "patient", void 0);
 _ts_decorate8([
   (0, import_typeorm8.Column)({
     type: "enum",
