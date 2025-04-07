@@ -47,8 +47,18 @@ var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
   APP_TYPE2["DOCTOR"] = "DOCTOR";
   return APP_TYPE2;
 }({});
+
+// src/types/orderStatus.ts
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
 export {
   APP_TYPE,
   GENDER,
+  OrderStatus,
   PERMISSIONS
 };

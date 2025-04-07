@@ -188,7 +188,8 @@ var User = class extends BaseEntity {
   country;
   password;
   profile_img;
-  type;
+  // TODO: many to many
+  types;
   // Hash password before saving
   async hashPassword() {
     if (!this.password) return;
@@ -277,7 +278,7 @@ _ts_decorate3([
     default: APP_TYPE.CLIENT
   }),
   _ts_metadata3("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
-], User.prototype, "type", void 0);
+], User.prototype, "types", void 0);
 _ts_decorate3([
   (0, import_typeorm3.BeforeInsert)(),
   (0, import_typeorm3.BeforeUpdate)(),

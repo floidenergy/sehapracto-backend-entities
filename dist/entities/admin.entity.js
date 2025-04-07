@@ -226,7 +226,8 @@ var User = class extends BaseEntity {
   country;
   password;
   profile_img;
-  type;
+  // TODO: many to many
+  types;
   // Hash password before saving
   async hashPassword() {
     if (!this.password) return;
@@ -315,7 +316,7 @@ _ts_decorate5([
     default: APP_TYPE.CLIENT
   }),
   _ts_metadata5("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
-], User.prototype, "type", void 0);
+], User.prototype, "types", void 0);
 _ts_decorate5([
   BeforeInsert(),
   BeforeUpdate(),
@@ -348,9 +349,9 @@ var Admin = class {
   is_active;
   user;
   permissions;
-  createdAt;
-  updatedAt;
-  deletedAt;
+  admin_createdAt;
+  admin_updatedAt;
+  admin_deletedAt;
 };
 _ts_decorate6([
   PrimaryGeneratedColumn2(),
@@ -400,19 +401,19 @@ _ts_decorate6([
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "createdAt", void 0);
+], Admin.prototype, "admin_createdAt", void 0);
 _ts_decorate6([
   UpdateDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "updatedAt", void 0);
+], Admin.prototype, "admin_updatedAt", void 0);
 _ts_decorate6([
   DeleteDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "deletedAt", void 0);
+], Admin.prototype, "admin_deletedAt", void 0);
 Admin = _ts_decorate6([
   Entity5("admins")
 ], Admin);

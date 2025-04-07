@@ -47,11 +47,11 @@ export class Admin {
   permissions: Permission[];
 
   @CreateDateColumn({ type: "timestamp" })
-  readonly createdAt!: Date;
+  readonly admin_createdAt!: Date;
 
   @UpdateDateColumn({ type: "timestamp" })
-  readonly updatedAt!: Date;
+  readonly admin_updatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  deletedAt!: Date;
+  admin_deletedAt!: Date;
 }

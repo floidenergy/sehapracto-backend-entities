@@ -10,9 +10,23 @@ var entities_exports = {};
 __export(entities_exports, {
   Admin: () => Admin,
   ApiKey: () => ApiKey,
+  Attachement: () => Attachement,
+  Category: () => Category,
   Country: () => Country,
   Department: () => Department,
+  Order: () => Order,
+  OrderItem: () => OrderItem,
+  Patient: () => Patient,
   Permission: () => Permission,
+  Pharmacy: () => Pharmacy,
+  PharmacyBusiness: () => PharmacyBusiness,
+  PharmacyItem: () => PharmacyItem,
+  PharmacyStore: () => PharmacyStore,
+  Prescription: () => Prescription,
+  Product: () => Product,
+  Sale: () => Sale,
+  SaleItem: () => SaleItem,
+  SalesRefunds: () => SalesRefunds,
   Session: () => Session,
   User: () => User
 });
@@ -242,7 +256,8 @@ var User = class extends BaseEntity {
   country;
   password;
   profile_img;
-  type;
+  // TODO: many to many
+  types;
   // Hash password before saving
   async hashPassword() {
     if (!this.password) return;
@@ -331,7 +346,7 @@ _ts_decorate5([
     default: APP_TYPE.CLIENT
   }),
   _ts_metadata5("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
-], User.prototype, "type", void 0);
+], User.prototype, "types", void 0);
 _ts_decorate5([
   BeforeInsert(),
   BeforeUpdate(),
@@ -364,9 +379,9 @@ var Admin = class {
   is_active;
   user;
   permissions;
-  createdAt;
-  updatedAt;
-  deletedAt;
+  admin_createdAt;
+  admin_updatedAt;
+  admin_deletedAt;
 };
 _ts_decorate6([
   PrimaryGeneratedColumn2(),
@@ -416,19 +431,19 @@ _ts_decorate6([
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "createdAt", void 0);
+], Admin.prototype, "admin_createdAt", void 0);
 _ts_decorate6([
   UpdateDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "updatedAt", void 0);
+], Admin.prototype, "admin_updatedAt", void 0);
 _ts_decorate6([
   DeleteDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "deletedAt", void 0);
+], Admin.prototype, "admin_deletedAt", void 0);
 Admin = _ts_decorate6([
   Entity5("admins")
 ], Admin);
@@ -540,6 +555,15 @@ var PERMISSIONS = /* @__PURE__ */ function(PERMISSIONS2) {
   return PERMISSIONS2;
 }({});
 
+// src/types/orderStatus.ts
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
+
 // src/entities/apikey.entity.ts
 function _ts_decorate8(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -594,16 +618,827 @@ _ts_decorate8([
 ApiKey = _ts_decorate8([
   Entity7("api_keys")
 ], ApiKey);
+
+// src/entities/attachements.entity.ts
+import { Column as Column8, Entity as Entity8 } from "typeorm";
+function _ts_decorate9(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate9, "_ts_decorate");
+function _ts_metadata9(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata9, "_ts_metadata");
+var Attachement = class extends BaseEntity {
+  static {
+    __name(this, "Attachement");
+  }
+  bucket_name;
+  file_name;
+  meme_type;
+  size;
+};
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "bucket_name", void 0);
+_ts_decorate9([
+  Column8({
+    unique: true
+  }),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "file_name", void 0);
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "meme_type", void 0);
+_ts_decorate9([
+  Column8(),
+  _ts_metadata9("design:type", String)
+], Attachement.prototype, "size", void 0);
+Attachement = _ts_decorate9([
+  Entity8("attachements")
+], Attachement);
+
+// src/entities/category.entity.ts
+import { Column as Column10, Entity as Entity10, OneToMany } from "typeorm";
+
+// src/entities/product.entity.ts
+import { Column as Column9, Entity as Entity9, JoinColumn as JoinColumn4, ManyToOne as ManyToOne4 } from "typeorm";
+function _ts_decorate10(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate10, "_ts_decorate");
+function _ts_metadata10(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata10, "_ts_metadata");
+var Product = class extends BaseEntity {
+  static {
+    __name(this, "Product");
+  }
+  name;
+  sku;
+  category;
+  require_prescription;
+  price;
+  description;
+};
+_ts_decorate10([
+  Column9(),
+  _ts_metadata10("design:type", String)
+], Product.prototype, "name", void 0);
+_ts_decorate10([
+  Column9(),
+  _ts_metadata10("design:type", String)
+], Product.prototype, "sku", void 0);
+_ts_decorate10([
+  ManyToOne4(() => Category, {
+    onDelete: "SET NULL"
+  }),
+  JoinColumn4({
+    name: "category_id"
+  }),
+  _ts_metadata10("design:type", typeof Category === "undefined" ? Object : Category)
+], Product.prototype, "category", void 0);
+_ts_decorate10([
+  Column9(),
+  _ts_metadata10("design:type", Boolean)
+], Product.prototype, "require_prescription", void 0);
+_ts_decorate10([
+  Column9({
+    unsigned: true
+  }),
+  _ts_metadata10("design:type", Number)
+], Product.prototype, "price", void 0);
+_ts_decorate10([
+  Column9(),
+  _ts_metadata10("design:type", String)
+], Product.prototype, "description", void 0);
+Product = _ts_decorate10([
+  Entity9("products")
+], Product);
+
+// src/entities/category.entity.ts
+function _ts_decorate11(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate11, "_ts_decorate");
+function _ts_metadata11(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata11, "_ts_metadata");
+var Category = class extends BaseEntity {
+  static {
+    __name(this, "Category");
+  }
+  name;
+  products;
+};
+_ts_decorate11([
+  Column10(),
+  _ts_metadata11("design:type", String)
+], Category.prototype, "name", void 0);
+_ts_decorate11([
+  OneToMany(() => Product, (product) => product.category),
+  _ts_metadata11("design:type", Array)
+], Category.prototype, "products", void 0);
+Category = _ts_decorate11([
+  Entity10("categories")
+], Category);
+
+// src/entities/order.entity.ts
+import { Column as Column12, Entity as Entity12, JoinColumn as JoinColumn6, ManyToOne as ManyToOne6, OneToMany as OneToMany2 } from "typeorm";
+
+// src/entities/orderItems.entity.ts
+import { Column as Column11, Entity as Entity11, JoinColumn as JoinColumn5, ManyToOne as ManyToOne5, OneToOne as OneToOne2 } from "typeorm";
+function _ts_decorate12(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate12, "_ts_decorate");
+function _ts_metadata12(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata12, "_ts_metadata");
+var OrderItem = class extends BaseEntity {
+  static {
+    __name(this, "OrderItem");
+  }
+  order;
+  quantity;
+  price;
+  product;
+};
+_ts_decorate12([
+  ManyToOne5(() => Order, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn5({
+    name: "order_id"
+  }),
+  _ts_metadata12("design:type", typeof Order === "undefined" ? Object : Order)
+], OrderItem.prototype, "order", void 0);
+_ts_decorate12([
+  Column11({
+    unsigned: true
+  }),
+  _ts_metadata12("design:type", Number)
+], OrderItem.prototype, "quantity", void 0);
+_ts_decorate12([
+  Column11({
+    unsigned: true
+  }),
+  _ts_metadata12("design:type", Number)
+], OrderItem.prototype, "price", void 0);
+_ts_decorate12([
+  OneToOne2(() => Product, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn5({
+    name: "product_id"
+  }),
+  _ts_metadata12("design:type", typeof Product === "undefined" ? Object : Product)
+], OrderItem.prototype, "product", void 0);
+OrderItem = _ts_decorate12([
+  Entity11("order_items")
+], OrderItem);
+
+// src/entities/order.entity.ts
+function _ts_decorate13(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate13, "_ts_decorate");
+function _ts_metadata13(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata13, "_ts_metadata");
+var Order = class extends BaseEntity {
+  static {
+    __name(this, "Order");
+  }
+  customer;
+  status;
+  price;
+  orderItems;
+};
+_ts_decorate13([
+  ManyToOne6(() => User, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn6({
+    name: "customer_id"
+  }),
+  _ts_metadata13("design:type", typeof User === "undefined" ? Object : User)
+], Order.prototype, "customer", void 0);
+_ts_decorate13([
+  Column12({
+    type: "enum",
+    enum: OrderStatus,
+    default: OrderStatus.PENDING
+  }),
+  _ts_metadata13("design:type", typeof OrderStatus === "undefined" ? Object : OrderStatus)
+], Order.prototype, "status", void 0);
+_ts_decorate13([
+  Column12({
+    unsigned: true
+  }),
+  _ts_metadata13("design:type", Number)
+], Order.prototype, "price", void 0);
+_ts_decorate13([
+  OneToMany2(() => OrderItem, (orderItem) => orderItem.order),
+  _ts_metadata13("design:type", Array)
+], Order.prototype, "orderItems", void 0);
+Order = _ts_decorate13([
+  Entity12("orders")
+], Order);
+
+// src/entities/patient.entity.ts
+import { Column as Column13, CreateDateColumn as CreateDateColumn3, DeleteDateColumn as DeleteDateColumn3, Entity as Entity13, JoinColumn as JoinColumn7, OneToOne as OneToOne3, PrimaryGeneratedColumn as PrimaryGeneratedColumn3, UpdateDateColumn as UpdateDateColumn3 } from "typeorm";
+function _ts_decorate14(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate14, "_ts_decorate");
+function _ts_metadata14(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata14, "_ts_metadata");
+var Patient = class {
+  static {
+    __name(this, "Patient");
+  }
+  patient_id;
+  patient_createdAt;
+  patient_updatedAt;
+  patient_deletedAt;
+  balance;
+  password;
+  blood_group;
+  user;
+};
+_ts_decorate14([
+  PrimaryGeneratedColumn3(),
+  _ts_metadata14("design:type", Number)
+], Patient.prototype, "patient_id", void 0);
+_ts_decorate14([
+  CreateDateColumn3({
+    type: "timestamp"
+  }),
+  _ts_metadata14("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_createdAt", void 0);
+_ts_decorate14([
+  UpdateDateColumn3({
+    type: "timestamp"
+  }),
+  _ts_metadata14("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_updatedAt", void 0);
+_ts_decorate14([
+  DeleteDateColumn3({
+    type: "timestamp"
+  }),
+  _ts_metadata14("design:type", typeof Date === "undefined" ? Object : Date)
+], Patient.prototype, "patient_deletedAt", void 0);
+_ts_decorate14([
+  Column13({
+    default: 0,
+    unsigned: true
+  }),
+  _ts_metadata14("design:type", Number)
+], Patient.prototype, "balance", void 0);
+_ts_decorate14([
+  Column13(),
+  _ts_metadata14("design:type", String)
+], Patient.prototype, "password", void 0);
+_ts_decorate14([
+  Column13(),
+  _ts_metadata14("design:type", String)
+], Patient.prototype, "blood_group", void 0);
+_ts_decorate14([
+  OneToOne3(() => User, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn7({
+    name: "user_id"
+  }),
+  _ts_metadata14("design:type", typeof User === "undefined" ? Object : User)
+], Patient.prototype, "user", void 0);
+Patient = _ts_decorate14([
+  Entity13("patients")
+], Patient);
+
+// src/entities/pharmacy.entity.ts
+import { Column as Column14, CreateDateColumn as CreateDateColumn4, DeleteDateColumn as DeleteDateColumn4, Entity as Entity14, JoinColumn as JoinColumn8, OneToOne as OneToOne4, PrimaryGeneratedColumn as PrimaryGeneratedColumn4, UpdateDateColumn as UpdateDateColumn4 } from "typeorm";
+function _ts_decorate15(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate15, "_ts_decorate");
+function _ts_metadata15(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata15, "_ts_metadata");
+var Pharmacy = class {
+  static {
+    __name(this, "Pharmacy");
+  }
+  pharmacy_id;
+  pharmacy_createdAt;
+  pharmacy_updatedAt;
+  pharmacy_deletedAt;
+  password;
+  user;
+};
+_ts_decorate15([
+  PrimaryGeneratedColumn4(),
+  _ts_metadata15("design:type", Number)
+], Pharmacy.prototype, "pharmacy_id", void 0);
+_ts_decorate15([
+  CreateDateColumn4({
+    type: "timestamp"
+  }),
+  _ts_metadata15("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_createdAt", void 0);
+_ts_decorate15([
+  UpdateDateColumn4({
+    type: "timestamp"
+  }),
+  _ts_metadata15("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_updatedAt", void 0);
+_ts_decorate15([
+  DeleteDateColumn4({
+    type: "timestamp"
+  }),
+  _ts_metadata15("design:type", typeof Date === "undefined" ? Object : Date)
+], Pharmacy.prototype, "pharmacy_deletedAt", void 0);
+_ts_decorate15([
+  Column14(),
+  _ts_metadata15("design:type", String)
+], Pharmacy.prototype, "password", void 0);
+_ts_decorate15([
+  OneToOne4(() => User, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn8({
+    name: "user_id"
+  }),
+  _ts_metadata15("design:type", typeof User === "undefined" ? Object : User)
+], Pharmacy.prototype, "user", void 0);
+Pharmacy = _ts_decorate15([
+  Entity14("pharmacies")
+], Pharmacy);
+
+// src/entities/pharmacyBusiness.entity.ts
+import { Column as Column15, Entity as Entity15, JoinColumn as JoinColumn9, ManyToOne as ManyToOne7, OneToOne as OneToOne5 } from "typeorm";
+function _ts_decorate16(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate16, "_ts_decorate");
+function _ts_metadata16(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata16, "_ts_metadata");
+var PharmacyBusiness = class extends BaseEntity {
+  static {
+    __name(this, "PharmacyBusiness");
+  }
+  owner;
+  name;
+  country;
+  phone;
+  email;
+};
+_ts_decorate16([
+  OneToOne5(() => Pharmacy, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn9({
+    name: "owner_id"
+  }),
+  _ts_metadata16("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
+], PharmacyBusiness.prototype, "owner", void 0);
+_ts_decorate16([
+  Column15(),
+  _ts_metadata16("design:type", String)
+], PharmacyBusiness.prototype, "name", void 0);
+_ts_decorate16([
+  ManyToOne7(() => Country, {
+    nullable: false,
+    onDelete: "NO ACTION"
+  }),
+  JoinColumn9({
+    name: "country_id"
+  }),
+  _ts_metadata16("design:type", typeof Country === "undefined" ? Object : Country)
+], PharmacyBusiness.prototype, "country", void 0);
+_ts_decorate16([
+  Column15(),
+  _ts_metadata16("design:type", String)
+], PharmacyBusiness.prototype, "phone", void 0);
+_ts_decorate16([
+  Column15(),
+  _ts_metadata16("design:type", String)
+], PharmacyBusiness.prototype, "email", void 0);
+PharmacyBusiness = _ts_decorate16([
+  Entity15("pharmacy_business")
+], PharmacyBusiness);
+
+// src/entities/pharmacyItem.entity.ts
+import { Column as Column17, Entity as Entity17, JoinColumn as JoinColumn11, ManyToOne as ManyToOne9, OneToOne as OneToOne7 } from "typeorm";
+
+// src/entities/pharmacyStore.entity.ts
+import { Column as Column16, Entity as Entity16, JoinColumn as JoinColumn10, ManyToOne as ManyToOne8, OneToOne as OneToOne6 } from "typeorm";
+function _ts_decorate17(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate17, "_ts_decorate");
+function _ts_metadata17(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata17, "_ts_metadata");
+var PharmacyStore = class extends BaseEntity {
+  static {
+    __name(this, "PharmacyStore");
+  }
+  manager;
+  pharmacy_business;
+  profile_img;
+  cover_img;
+  name;
+  address;
+  country;
+  phone;
+  email;
+};
+_ts_decorate17([
+  OneToOne6(() => Pharmacy, {
+    onDelete: "SET NULL"
+  }),
+  JoinColumn10({
+    name: "manager_id"
+  }),
+  _ts_metadata17("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
+], PharmacyStore.prototype, "manager", void 0);
+_ts_decorate17([
+  ManyToOne8(() => PharmacyBusiness, {
+    onDelete: "SET NULL"
+  }),
+  JoinColumn10({
+    name: "pharmacy_business_id"
+  }),
+  _ts_metadata17("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
+], PharmacyStore.prototype, "pharmacy_business", void 0);
+_ts_decorate17([
+  Column16({
+    nullable: true
+  }),
+  _ts_metadata17("design:type", String)
+], PharmacyStore.prototype, "profile_img", void 0);
+_ts_decorate17([
+  Column16({
+    nullable: true
+  }),
+  _ts_metadata17("design:type", String)
+], PharmacyStore.prototype, "cover_img", void 0);
+_ts_decorate17([
+  Column16(),
+  _ts_metadata17("design:type", String)
+], PharmacyStore.prototype, "name", void 0);
+_ts_decorate17([
+  Column16(),
+  _ts_metadata17("design:type", String)
+], PharmacyStore.prototype, "address", void 0);
+_ts_decorate17([
+  ManyToOne8(() => Country),
+  JoinColumn10({
+    name: "country_id"
+  }),
+  _ts_metadata17("design:type", typeof Country === "undefined" ? Object : Country)
+], PharmacyStore.prototype, "country", void 0);
+_ts_decorate17([
+  Column16(),
+  _ts_metadata17("design:type", String)
+], PharmacyStore.prototype, "phone", void 0);
+_ts_decorate17([
+  Column16(),
+  _ts_metadata17("design:type", String)
+], PharmacyStore.prototype, "email", void 0);
+PharmacyStore = _ts_decorate17([
+  Entity16("pharmacy_store")
+], PharmacyStore);
+
+// src/entities/pharmacyItem.entity.ts
+function _ts_decorate18(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate18, "_ts_decorate");
+function _ts_metadata18(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata18, "_ts_metadata");
+var PharmacyItem = class extends BaseEntity {
+  static {
+    __name(this, "PharmacyItem");
+  }
+  product;
+  quantity;
+  pharmacy_store;
+};
+_ts_decorate18([
+  OneToOne7(() => Product, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn11({
+    name: "product_id"
+  }),
+  _ts_metadata18("design:type", typeof Product === "undefined" ? Object : Product)
+], PharmacyItem.prototype, "product", void 0);
+_ts_decorate18([
+  Column17({
+    unsigned: true
+  }),
+  _ts_metadata18("design:type", Number)
+], PharmacyItem.prototype, "quantity", void 0);
+_ts_decorate18([
+  ManyToOne9(() => PharmacyStore, {
+    onDelete: "CASCADE"
+  }),
+  JoinColumn11({
+    name: "pharmacy_store_id"
+  }),
+  _ts_metadata18("design:type", typeof PharmacyStore === "undefined" ? Object : PharmacyStore)
+], PharmacyItem.prototype, "pharmacy_store", void 0);
+PharmacyItem = _ts_decorate18([
+  Entity17("pharmacy_item")
+], PharmacyItem);
+
+// src/entities/prescriptions.entity.ts
+import { Entity as Entity18, JoinColumn as JoinColumn12, ManyToOne as ManyToOne10 } from "typeorm";
+function _ts_decorate19(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate19, "_ts_decorate");
+function _ts_metadata19(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata19, "_ts_metadata");
+var Prescription = class extends BaseEntity {
+  static {
+    __name(this, "Prescription");
+  }
+  order;
+  customer;
+  attachement;
+};
+_ts_decorate19([
+  ManyToOne10(() => Order, {
+    onDelete: "SET NULL"
+  }),
+  JoinColumn12({
+    name: "order_id"
+  }),
+  _ts_metadata19("design:type", typeof Order === "undefined" ? Object : Order)
+], Prescription.prototype, "order", void 0);
+_ts_decorate19([
+  ManyToOne10(() => Patient, {
+    onDelete: "SET NULL"
+  }),
+  JoinColumn12({
+    name: "customer_id"
+  }),
+  _ts_metadata19("design:type", typeof Patient === "undefined" ? Object : Patient)
+], Prescription.prototype, "customer", void 0);
+_ts_decorate19([
+  ManyToOne10(() => Attachement, {
+    onDelete: "SET NULL"
+  }),
+  JoinColumn12({
+    name: "attachement_id"
+  }),
+  _ts_metadata19("design:type", typeof Attachement === "undefined" ? Object : Attachement)
+], Prescription.prototype, "attachement", void 0);
+Prescription = _ts_decorate19([
+  Entity18("prescriptions")
+], Prescription);
+
+// src/entities/sale.entity.ts
+import { Column as Column18, Entity as Entity19, JoinColumn as JoinColumn13, ManyToOne as ManyToOne11 } from "typeorm";
+function _ts_decorate20(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate20, "_ts_decorate");
+function _ts_metadata20(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata20, "_ts_metadata");
+var Sale = class extends BaseEntity {
+  static {
+    __name(this, "Sale");
+  }
+  customer;
+  order;
+  total_amount;
+  status;
+  payment_methode;
+  sale_date;
+  items;
+};
+_ts_decorate20([
+  ManyToOne11(() => Patient),
+  JoinColumn13({
+    name: "customer_id"
+  }),
+  _ts_metadata20("design:type", typeof Patient === "undefined" ? Object : Patient)
+], Sale.prototype, "customer", void 0);
+_ts_decorate20([
+  ManyToOne11(() => Order),
+  JoinColumn13({
+    name: "order_id"
+  }),
+  _ts_metadata20("design:type", typeof Order === "undefined" ? Object : Order)
+], Sale.prototype, "order", void 0);
+_ts_decorate20([
+  Column18({
+    unsigned: true
+  }),
+  _ts_metadata20("design:type", Number)
+], Sale.prototype, "total_amount", void 0);
+_ts_decorate20([
+  Column18(),
+  _ts_metadata20("design:type", String)
+], Sale.prototype, "status", void 0);
+_ts_decorate20([
+  Column18(),
+  _ts_metadata20("design:type", String)
+], Sale.prototype, "payment_methode", void 0);
+_ts_decorate20([
+  Column18(),
+  _ts_metadata20("design:type", typeof Date === "undefined" ? Object : Date)
+], Sale.prototype, "sale_date", void 0);
+_ts_decorate20([
+  Column18(),
+  _ts_metadata20("design:type", String)
+], Sale.prototype, "items", void 0);
+Sale = _ts_decorate20([
+  Entity19("sales")
+], Sale);
+
+// src/entities/saleItems.entity.ts
+import { Column as Column19, Entity as Entity20, OneToOne as OneToOne8 } from "typeorm";
+function _ts_decorate21(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate21, "_ts_decorate");
+function _ts_metadata21(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata21, "_ts_metadata");
+var SaleItem = class extends BaseEntity {
+  static {
+    __name(this, "SaleItem");
+  }
+  product;
+  sale;
+  quantity;
+  selling_price;
+};
+_ts_decorate21([
+  OneToOne8(() => Product, {
+    onDelete: "CASCADE"
+  }),
+  _ts_metadata21("design:type", typeof Product === "undefined" ? Object : Product)
+], SaleItem.prototype, "product", void 0);
+_ts_decorate21([
+  OneToOne8(() => Sale, {
+    onDelete: "CASCADE"
+  }),
+  _ts_metadata21("design:type", typeof Sale === "undefined" ? Object : Sale)
+], SaleItem.prototype, "sale", void 0);
+_ts_decorate21([
+  Column19({
+    unsigned: true
+  }),
+  _ts_metadata21("design:type", Number)
+], SaleItem.prototype, "quantity", void 0);
+_ts_decorate21([
+  Column19({
+    unsigned: true
+  }),
+  _ts_metadata21("design:type", Number)
+], SaleItem.prototype, "selling_price", void 0);
+SaleItem = _ts_decorate21([
+  Entity20("sale_items")
+], SaleItem);
+
+// src/entities/sales_refunds.entity.ts
+import { BaseEntity as BaseEntity2, Column as Column20, Entity as Entity21, OneToOne as OneToOne9 } from "typeorm";
+function _ts_decorate22(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate22, "_ts_decorate");
+function _ts_metadata22(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata22, "_ts_metadata");
+var SalesRefunds = class extends BaseEntity2 {
+  static {
+    __name(this, "SalesRefunds");
+  }
+  total;
+  status;
+  refunded_date;
+  reason;
+  sale;
+};
+_ts_decorate22([
+  Column20({
+    unsigned: true
+  }),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "total", void 0);
+_ts_decorate22([
+  Column20(),
+  _ts_metadata22("design:type", String)
+], SalesRefunds.prototype, "status", void 0);
+_ts_decorate22([
+  Column20(),
+  _ts_metadata22("design:type", typeof Date === "undefined" ? Object : Date)
+], SalesRefunds.prototype, "refunded_date", void 0);
+_ts_decorate22([
+  Column20(),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "reason", void 0);
+_ts_decorate22([
+  OneToOne9(() => Sale, {}),
+  _ts_metadata22("design:type", typeof Sale === "undefined" ? Object : Sale)
+], SalesRefunds.prototype, "sale", void 0);
+SalesRefunds = _ts_decorate22([
+  Entity21("sales_refunds")
+], SalesRefunds);
 export {
   APP_TYPE,
   Admin,
   ApiKey,
+  Attachement,
+  Category,
   Country,
   Department,
   entities_exports as Entities,
   GENDER,
+  Order,
+  OrderItem,
+  OrderStatus,
   PERMISSIONS,
+  Patient,
   Permission,
+  Pharmacy,
+  PharmacyBusiness,
+  PharmacyItem,
+  PharmacyStore,
+  Prescription,
+  Product,
+  Sale,
+  SaleItem,
+  SalesRefunds,
   Session,
   User
 };

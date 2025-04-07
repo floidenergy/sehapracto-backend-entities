@@ -2,6 +2,7 @@ export { GENDER } from './gender.enum.cjs';
 export { PERMISSIONS } from './permission.enum.cjs';
 export { APP_TYPE } from './userType.enum.cjs';
 export { ProtectedRequest, PublicRequest } from './request.type.cjs';
+export { OrderStatus } from './orderStatus.cjs';
 import 'express';
 import '../entities/admin.entity.cjs';
 import '../entities/department.entity.cjs';
