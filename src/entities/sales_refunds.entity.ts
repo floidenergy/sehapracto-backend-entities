@@ -6,7 +6,7 @@ export class SalesRefunds extends BaseEntity {
   @Column({ unsigned: true })
   total: number;
   @Column()
-  status: number;
+  status: string;
   @Column()
   refunded_date: Date;
   @Column()

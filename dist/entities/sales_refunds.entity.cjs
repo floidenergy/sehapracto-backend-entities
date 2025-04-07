@@ -679,7 +679,7 @@ _ts_decorate10([
 ], SalesRefunds.prototype, "total", void 0);
 _ts_decorate10([
   (0, import_typeorm10.Column)(),
-  _ts_metadata10("design:type", Number)
+  _ts_metadata10("design:type", String)
 ], SalesRefunds.prototype, "status", void 0);
 _ts_decorate10([
   (0, import_typeorm10.Column)(),

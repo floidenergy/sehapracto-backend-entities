@@ -11,7 +11,7 @@ import '../category.entity-XstyC_79.js';
 
 declare class SalesRefunds extends BaseEntity {
     total: number;
-    status: number;
+    status: string;
     refunded_date: Date;
     reason: number;
     sale: Sale;

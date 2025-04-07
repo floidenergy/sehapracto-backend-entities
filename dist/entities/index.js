@@ -1328,7 +1328,7 @@ _ts_decorate22([
 ], SalesRefunds.prototype, "total", void 0);
 _ts_decorate22([
   Column20(),
-  _ts_metadata22("design:type", Number)
+  _ts_metadata22("design:type", String)
 ], SalesRefunds.prototype, "status", void 0);
 _ts_decorate22([
   Column20(),

@@ -11,7 +11,7 @@ import '../category.entity-DugzkOj6.cjs';
 
 declare class SalesRefunds extends BaseEntity {
     total: number;
-    status: number;
+    status: string;
     refunded_date: Date;
     reason: number;
     sale: Sale;
