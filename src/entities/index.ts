@@ -20,3 +20,4 @@ export * from "./prescriptions.entity";
 export * from "./product.entity";
 export * from "./sale.entity";
 export * from "./saleItems.entity";
+export * from "./sales_refunds.entity";
