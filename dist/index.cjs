@@ -59,7 +59,6 @@ __export(entities_exports, {
   Department: () => Department,
   Order: () => Order,
   OrderItem: () => OrderItem,
-  OrderStatus: () => OrderStatus,
   Patient: () => Patient,
   Permission: () => Permission,
   Pharmacy: () => Pharmacy,
@@ -422,9 +421,9 @@ var Admin = class {
   is_active;
   user;
   permissions;
-  createdAt;
-  updatedAt;
-  deletedAt;
+  admin_createdAt;
+  admin_updatedAt;
+  admin_deletedAt;
 };
 _ts_decorate6([
   (0, import_typeorm6.PrimaryGeneratedColumn)(),
@@ -474,19 +473,19 @@ _ts_decorate6([
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "createdAt", void 0);
+], Admin.prototype, "admin_createdAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.UpdateDateColumn)({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "updatedAt", void 0);
+], Admin.prototype, "admin_updatedAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.DeleteDateColumn)({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "deletedAt", void 0);
+], Admin.prototype, "admin_deletedAt", void 0);
 Admin = _ts_decorate6([
   (0, import_typeorm6.Entity)("admins")
 ], Admin);
@@ -598,6 +597,15 @@ var PERMISSIONS = /* @__PURE__ */ function(PERMISSIONS2) {
   return PERMISSIONS2;
 }({});
 
+// src/types/orderStatus.ts
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
+
 // src/entities/apikey.entity.ts
 function _ts_decorate8(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -680,7 +688,9 @@ _ts_decorate9([
   _ts_metadata9("design:type", String)
 ], Attachement.prototype, "bucket_name", void 0);
 _ts_decorate9([
-  (0, import_typeorm9.Column)(),
+  (0, import_typeorm9.Column)({
+    unique: true
+  }),
   _ts_metadata9("design:type", String)
 ], Attachement.prototype, "file_name", void 0);
 _ts_decorate9([
@@ -859,13 +869,6 @@ function _ts_metadata13(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata13, "_ts_metadata");
-var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
-  OrderStatus2["PENDING"] = "PENDING";
-  OrderStatus2["CONFIRMED"] = "CONFIRMED";
-  OrderStatus2["REJECTED"] = "REJECTED";
-  OrderStatus2["CLOSED"] = "CLOSED";
-  return OrderStatus2;
-}({});
 var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
@@ -888,9 +891,9 @@ _ts_decorate13([
   (0, import_typeorm13.Column)({
     type: "enum",
     enum: OrderStatus,
-    default: "PENDING"
+    default: OrderStatus.PENDING
   }),
-  _ts_metadata13("design:type", String)
+  _ts_metadata13("design:type", typeof OrderStatus === "undefined" ? Object : OrderStatus)
 ], Order.prototype, "status", void 0);
 _ts_decorate13([
   (0, import_typeorm13.Column)({

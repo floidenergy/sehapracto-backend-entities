@@ -1,5 +1,6 @@
 import { BaseEntity } from './entities/baseEntity.entity.js';
 import { User } from './entities/user.entity.js';
+import { OrderStatus } from './types/orderStatus.js';
 import { P as Product } from './category.entity-XstyC_79.js';
 
 declare class OrderItem extends BaseEntity {
@@ -9,12 +10,6 @@ declare class OrderItem extends BaseEntity {
     product: Product;
 }
 
-declare enum OrderStatus {
-    PENDING = "PENDING",
-    CONFIRMED = "CONFIRMED",
-    REJECTED = "REJECTED",
-    CLOSED = "CLOSED"
-}
 declare class Order extends BaseEntity {
     customer: User;
     status: OrderStatus;
@@ -22,4 +17,4 @@ declare class Order extends BaseEntity {
     orderItems: OrderItem[];
 }
 
-export { OrderStatus as O, Order as a, OrderItem as b };
+export { Order as O, OrderItem as a };

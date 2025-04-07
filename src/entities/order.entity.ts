@@ -2,13 +2,8 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { User } from "./user.entity";
 import { OrderItem } from "./orderItems.entity";
+import { OrderStatus } from "../types";
 
-export enum OrderStatus {
-  PENDING = "PENDING",
-  CONFIRMED = "CONFIRMED",
-  REJECTED = "REJECTED",
-  CLOSED = "CLOSED",
-}
 @Entity("orders")
 export class Order extends BaseEntity {
   @ManyToOne(() => User, { onDelete: "CASCADE" })

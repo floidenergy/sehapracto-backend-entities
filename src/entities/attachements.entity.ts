@@ -5,7 +5,9 @@ import { BaseEntity } from "./baseEntity.entity";
 export class Attachement extends BaseEntity {
   @Column()
   bucket_name: string;
-  @Column()
+  @Column({
+    unique: true,
+  })
   file_name: string;
   @Column()
   meme_type: string;

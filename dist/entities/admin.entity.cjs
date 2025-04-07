@@ -370,9 +370,9 @@ var Admin = class {
   is_active;
   user;
   permissions;
-  createdAt;
-  updatedAt;
-  deletedAt;
+  admin_createdAt;
+  admin_updatedAt;
+  admin_deletedAt;
 };
 _ts_decorate6([
   (0, import_typeorm6.PrimaryGeneratedColumn)(),
@@ -422,19 +422,19 @@ _ts_decorate6([
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "createdAt", void 0);
+], Admin.prototype, "admin_createdAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.UpdateDateColumn)({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "updatedAt", void 0);
+], Admin.prototype, "admin_updatedAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.DeleteDateColumn)({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "deletedAt", void 0);
+], Admin.prototype, "admin_deletedAt", void 0);
 Admin = _ts_decorate6([
   (0, import_typeorm6.Entity)("admins")
 ], Admin);

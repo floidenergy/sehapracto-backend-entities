@@ -271,6 +271,15 @@ User = _ts_decorate3([
   Entity2("users")
 ], User);
 
+// src/types/orderStatus.ts
+var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
+  OrderStatus2["PENDING"] = "PENDING";
+  OrderStatus2["CONFIRMED"] = "CONFIRMED";
+  OrderStatus2["REJECTED"] = "REJECTED";
+  OrderStatus2["CLOSED"] = "CLOSED";
+  return OrderStatus2;
+}({});
+
 // src/entities/order.entity.ts
 function _ts_decorate4(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -283,13 +292,6 @@ function _ts_metadata4(k, v) {
   if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 }
 __name(_ts_metadata4, "_ts_metadata");
-var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
-  OrderStatus2["PENDING"] = "PENDING";
-  OrderStatus2["CONFIRMED"] = "CONFIRMED";
-  OrderStatus2["REJECTED"] = "REJECTED";
-  OrderStatus2["CLOSED"] = "CLOSED";
-  return OrderStatus2;
-}({});
 var Order = class extends BaseEntity {
   static {
     __name(this, "Order");
@@ -312,9 +314,9 @@ _ts_decorate4([
   Column3({
     type: "enum",
     enum: OrderStatus,
-    default: "PENDING"
+    default: OrderStatus.PENDING
   }),
-  _ts_metadata4("design:type", String)
+  _ts_metadata4("design:type", typeof OrderStatus === "undefined" ? Object : OrderStatus)
 ], Order.prototype, "status", void 0);
 _ts_decorate4([
   Column3({

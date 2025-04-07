@@ -11,9 +11,9 @@ declare class Admin {
     is_active: boolean;
     user: User;
     permissions: Permission[];
-    readonly createdAt: Date;
-    readonly updatedAt: Date;
-    deletedAt: Date;
+    readonly admin_createdAt: Date;
+    readonly admin_updatedAt: Date;
+    admin_deletedAt: Date;
 }
 
 export { Admin };

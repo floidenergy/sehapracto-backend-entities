@@ -5,7 +5,8 @@ import './patient.entity.cjs';
 import './user.entity.cjs';
 import './country.entity.cjs';
 import '../types/userType.enum.cjs';
-import '../order.entity-CA8sr2wJ.cjs';
+import '../order.entity-DBg6HcyU.cjs';
+import '../types/orderStatus.cjs';
 
 declare class SaleItem extends BaseEntity {
     product: Product;

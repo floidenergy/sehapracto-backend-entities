@@ -96,7 +96,9 @@ _ts_decorate2([
   _ts_metadata2("design:type", String)
 ], Attachement.prototype, "bucket_name", void 0);
 _ts_decorate2([
-  (0, import_typeorm2.Column)(),
+  (0, import_typeorm2.Column)({
+    unique: true
+  }),
   _ts_metadata2("design:type", String)
 ], Attachement.prototype, "file_name", void 0);
 _ts_decorate2([

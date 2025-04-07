@@ -1,9 +1,10 @@
 import { BaseEntity } from './baseEntity.entity.js';
 import { Patient } from './patient.entity.js';
-import { a as Order } from '../order.entity-i9Ta1Ybf.js';
+import { O as Order } from '../order.entity-DurDFPwX.js';
 import './user.entity.js';
 import './country.entity.js';
 import '../types/userType.enum.js';
+import '../types/orderStatus.js';
 import '../category.entity-XstyC_79.js';
 
 declare class Sale extends BaseEntity {
