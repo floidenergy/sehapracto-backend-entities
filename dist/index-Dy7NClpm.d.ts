@@ -16,6 +16,7 @@ import { PharmacyStore } from './entities/pharmacyStore.entity.js';
 import { Prescription } from './entities/prescriptions.entity.js';
 import { Sale } from './entities/sale.entity.js';
 import { SaleItem } from './entities/saleItems.entity.js';
+import { SalesRefunds } from './entities/sales_refunds.entity.js';
 
 declare const index_Admin: typeof Admin;
 declare const index_ApiKey: typeof ApiKey;
@@ -35,10 +36,11 @@ declare const index_Prescription: typeof Prescription;
 declare const index_Product: typeof Product;
 declare const index_Sale: typeof Sale;
 declare const index_SaleItem: typeof SaleItem;
+declare const index_SalesRefunds: typeof SalesRefunds;
 declare const index_Session: typeof Session;
 declare const index_User: typeof User;
 declare namespace index {
-  export { index_Admin as Admin, index_ApiKey as ApiKey, index_Attachement as Attachement, index_Category as Category, index_Country as Country, index_Department as Department, index_Order as Order, index_OrderItem as OrderItem, index_Patient as Patient, index_Permission as Permission, index_Pharmacy as Pharmacy, index_PharmacyBusiness as PharmacyBusiness, index_PharmacyItem as PharmacyItem, index_PharmacyStore as PharmacyStore, index_Prescription as Prescription, index_Product as Product, index_Sale as Sale, index_SaleItem as SaleItem, index_Session as Session, index_User as User };
+  export { index_Admin as Admin, index_ApiKey as ApiKey, index_Attachement as Attachement, index_Category as Category, index_Country as Country, index_Department as Department, index_Order as Order, index_OrderItem as OrderItem, index_Patient as Patient, index_Permission as Permission, index_Pharmacy as Pharmacy, index_PharmacyBusiness as PharmacyBusiness, index_PharmacyItem as PharmacyItem, index_PharmacyStore as PharmacyStore, index_Prescription as Prescription, index_Product as Product, index_Sale as Sale, index_SaleItem as SaleItem, index_SalesRefunds as SalesRefunds, index_Session as Session, index_User as User };
 }
 
 export { index as i };

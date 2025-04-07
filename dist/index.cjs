@@ -43,6 +43,7 @@ __export(index_exports, {
   Product: () => Product,
   Sale: () => Sale,
   SaleItem: () => SaleItem,
+  SalesRefunds: () => SalesRefunds,
   Session: () => Session,
   User: () => User
 });
@@ -69,6 +70,7 @@ __export(entities_exports, {
   Product: () => Product,
   Sale: () => Sale,
   SaleItem: () => SaleItem,
+  SalesRefunds: () => SalesRefunds,
   Session: () => Session,
   User: () => User
 });
@@ -1407,6 +1409,55 @@ _ts_decorate21([
 SaleItem = _ts_decorate21([
   (0, import_typeorm21.Entity)("sale_items")
 ], SaleItem);
+
+// src/entities/sales_refunds.entity.ts
+var import_typeorm22 = require("typeorm");
+function _ts_decorate22(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate22, "_ts_decorate");
+function _ts_metadata22(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata22, "_ts_metadata");
+var SalesRefunds = class extends import_typeorm22.BaseEntity {
+  static {
+    __name(this, "SalesRefunds");
+  }
+  total;
+  status;
+  refunded_date;
+  reason;
+  sale;
+};
+_ts_decorate22([
+  (0, import_typeorm22.Column)({
+    unsigned: true
+  }),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "total", void 0);
+_ts_decorate22([
+  (0, import_typeorm22.Column)(),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "status", void 0);
+_ts_decorate22([
+  (0, import_typeorm22.Column)(),
+  _ts_metadata22("design:type", typeof Date === "undefined" ? Object : Date)
+], SalesRefunds.prototype, "refunded_date", void 0);
+_ts_decorate22([
+  (0, import_typeorm22.Column)(),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "reason", void 0);
+_ts_decorate22([
+  (0, import_typeorm22.OneToOne)(() => Sale, {}),
+  _ts_metadata22("design:type", typeof Sale === "undefined" ? Object : Sale)
+], SalesRefunds.prototype, "sale", void 0);
+SalesRefunds = _ts_decorate22([
+  (0, import_typeorm22.Entity)("sales_refunds")
+], SalesRefunds);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   APP_TYPE,
@@ -1432,6 +1483,7 @@ SaleItem = _ts_decorate21([
   Product,
   Sale,
   SaleItem,
+  SalesRefunds,
   Session,
   User
 });

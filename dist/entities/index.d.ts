@@ -16,6 +16,8 @@ export { PharmacyStore } from './pharmacyStore.entity.js';
 export { Prescription } from './prescriptions.entity.js';
 export { Sale } from './sale.entity.js';
 export { SaleItem } from './saleItems.entity.js';
+export { SalesRefunds } from './sales_refunds.entity.js';
 import './baseEntity.entity.js';
 import '../types/userType.enum.js';
 import '../types/orderStatus.js';
+import 'typeorm';

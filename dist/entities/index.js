@@ -1296,6 +1296,55 @@ _ts_decorate21([
 SaleItem = _ts_decorate21([
   Entity20("sale_items")
 ], SaleItem);
+
+// src/entities/sales_refunds.entity.ts
+import { BaseEntity as BaseEntity2, Column as Column20, Entity as Entity21, OneToOne as OneToOne9 } from "typeorm";
+function _ts_decorate22(decorators, target, key, desc) {
+  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+__name(_ts_decorate22, "_ts_decorate");
+function _ts_metadata22(k, v) {
+  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+}
+__name(_ts_metadata22, "_ts_metadata");
+var SalesRefunds = class extends BaseEntity2 {
+  static {
+    __name(this, "SalesRefunds");
+  }
+  total;
+  status;
+  refunded_date;
+  reason;
+  sale;
+};
+_ts_decorate22([
+  Column20({
+    unsigned: true
+  }),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "total", void 0);
+_ts_decorate22([
+  Column20(),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "status", void 0);
+_ts_decorate22([
+  Column20(),
+  _ts_metadata22("design:type", typeof Date === "undefined" ? Object : Date)
+], SalesRefunds.prototype, "refunded_date", void 0);
+_ts_decorate22([
+  Column20(),
+  _ts_metadata22("design:type", Number)
+], SalesRefunds.prototype, "reason", void 0);
+_ts_decorate22([
+  OneToOne9(() => Sale, {}),
+  _ts_metadata22("design:type", typeof Sale === "undefined" ? Object : Sale)
+], SalesRefunds.prototype, "sale", void 0);
+SalesRefunds = _ts_decorate22([
+  Entity21("sales_refunds")
+], SalesRefunds);
 export {
   Admin,
   ApiKey,
@@ -1315,6 +1364,7 @@ export {
   Product,
   Sale,
   SaleItem,
+  SalesRefunds,
   Session,
   User
 };
