@@ -4,10 +4,9 @@ import './baseEntity.entity.cjs';
 import './patient.entity.cjs';
 import './user.entity.cjs';
 import './country.entity.cjs';
-import '../types/userType.enum.cjs';
-import '../order.entity-CaLYRmfb.cjs';
+import '../order.entity-tzrL2zrB.cjs';
 import '../types/orderStatus.cjs';
-import '../category.entity-DugzkOj6.cjs';
+import '../category.entity-ejYyv947.cjs';
 
 declare class SalesRefunds extends BaseEntity {
     total: number;

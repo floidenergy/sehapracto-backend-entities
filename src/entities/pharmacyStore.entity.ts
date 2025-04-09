@@ -11,17 +11,17 @@ export class PharmacyStore extends BaseEntity {
   manager: Pharmacy;
   @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
   @JoinColumn({ name: "pharmacy_business_id" })
-  pharmacy_business: Pharmacy;
+  pharmacyBusiness: Pharmacy;
 
   @Column({
     nullable: true,
   })
-  profile_img: string;
+  profileImg: string;
 
   @Column({
     nullable: true,
   })
-  cover_img: string;
+  coverImg: string;
 
   @Column()
   name: string;

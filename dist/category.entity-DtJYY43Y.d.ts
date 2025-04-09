@@ -1,10 +1,10 @@
-import { BaseEntity } from './entities/baseEntity.entity.cjs';
+import { BaseEntity } from './entities/baseEntity.entity.js';
 
 declare class Product extends BaseEntity {
     name: string;
     sku: string;
     category: Category;
-    require_prescription: boolean;
+    requirePrescription: boolean;
     price: number;
     description: string;
 }

@@ -4,13 +4,13 @@ import { BaseEntity } from "./baseEntity.entity";
 @Entity("attachements")
 export class Attachement extends BaseEntity {
   @Column()
-  bucket_name: string;
+  bucketName: string;
   @Column({
     unique: true,
   })
-  file_name: string;
+  fileName: string;
   @Column()
-  meme_type: string;
+  memeType: string;
   @Column()
   size: string;
 }

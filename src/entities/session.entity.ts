@@ -30,7 +30,7 @@ export class Session extends BaseEntity {
     enum: APP_TYPE,
     default: APP_TYPE.PATIENT,
   })
-  session_role: APP_TYPE;
+  sessionRole: APP_TYPE;
 
   // CREATE TOKEN EVERY TIME U CREATE A SESSION
   @BeforeInsert()

@@ -87,14 +87,14 @@ var Country = class extends BaseEntity {
     __name(this, "Country");
   }
   name;
-  name_ar;
-  tel_code;
-  customer_support;
+  nameAr;
+  telCode;
+  customerSupport;
   currency;
-  currency_vs_dollar;
+  currencyVsDollar;
   timezone;
-  flag_icon;
-  is_active;
+  flagIcon;
+  isActive;
 };
 _ts_decorate2([
   (0, import_typeorm2.Column)({
@@ -107,17 +107,17 @@ _ts_decorate2([
     unique: true
   }),
   _ts_metadata2("design:type", String)
-], Country.prototype, "name_ar", void 0);
+], Country.prototype, "nameAr", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)({
     unique: true
   }),
   _ts_metadata2("design:type", String)
-], Country.prototype, "tel_code", void 0);
+], Country.prototype, "telCode", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
-], Country.prototype, "customer_support", void 0);
+], Country.prototype, "customerSupport", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
@@ -125,7 +125,7 @@ _ts_decorate2([
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
-], Country.prototype, "currency_vs_dollar", void 0);
+], Country.prototype, "currencyVsDollar", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
@@ -133,13 +133,13 @@ _ts_decorate2([
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
-], Country.prototype, "flag_icon", void 0);
+], Country.prototype, "flagIcon", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)({
     default: false
   }),
   _ts_metadata2("design:type", Boolean)
-], Country.prototype, "is_active", void 0);
+], Country.prototype, "isActive", void 0);
 Country = _ts_decorate2([
   (0, import_typeorm2.Entity)("countries")
 ], Country);

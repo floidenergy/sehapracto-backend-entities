@@ -86,25 +86,25 @@ var Attachement = class extends BaseEntity {
   static {
     __name(this, "Attachement");
   }
-  bucket_name;
-  file_name;
-  meme_type;
+  bucketName;
+  fileName;
+  memeType;
   size;
 };
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
-], Attachement.prototype, "bucket_name", void 0);
+], Attachement.prototype, "bucketName", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)({
     unique: true
   }),
   _ts_metadata2("design:type", String)
-], Attachement.prototype, "file_name", void 0);
+], Attachement.prototype, "fileName", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)
-], Attachement.prototype, "meme_type", void 0);
+], Attachement.prototype, "memeType", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", String)

@@ -8,7 +8,7 @@ declare class Session extends BaseEntity {
     refreshKey: string;
     user: User;
     ipAddress: string;
-    session_role: APP_TYPE;
+    sessionRole: APP_TYPE;
     createTokens(): Promise<void>;
 }
 

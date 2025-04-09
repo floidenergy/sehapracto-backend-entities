@@ -6,6 +6,7 @@ import {
   ManyToOne,
   BeforeInsert,
   BeforeUpdate,
+  JoinTable,
 } from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { Country } from "./country.entity";
@@ -15,12 +16,12 @@ import { genSalt, hash, compare } from "bcrypt";
 @Entity("users")
 export class User extends BaseEntity {
   @Column()
-  first_name: string;
+  firstName: string;
 
   @Column()
-  last_name: string;
+  lastName: string;
   @Column({ unique: true })
-  user_name: string;
+  userName: string;
 
   @Column({ nullable: true })
   gender: string;
@@ -32,27 +33,27 @@ export class User extends BaseEntity {
   email: string;
 
   @Column({ type: "timestamp", nullable: true })
-  email_verified_at: string;
+  emailVerifiedAt: Date;
 
   @Column({ unique: true })
   phone: string;
 
   @Column({ type: "timestamp", nullable: true })
-  phone_verified_at: string;
+  phoneVerifiedAt: Date;
 
   @ManyToOne(() => Country, { nullable: false, onDelete: "NO ACTION" })
-  @JoinColumn({ name: "country_id" })
+  @JoinTable({ name: "country_id" })
   country: Country;
 
   @Column({ select: false })
   password?: string;
 
   @Column({ nullable: true, default: "avatar.png" })
-  profile_img: string;
+  profileImg: string;
 
   // TODO: many to many
-  @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
-  types: APP_TYPE;
+  // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
+  // types: APP_TYPE;
 
   // Hash password before saving
   @BeforeInsert()
@@ -61,7 +62,7 @@ export class User extends BaseEntity {
     if (!this.password) return;
 
     const salt = await genSalt(10);
-    this.password = await hash(this.password, salt);
+    this.password = await hash(this.password as string, salt);
   }
 
   // Validate password

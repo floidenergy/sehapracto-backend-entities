@@ -14,5 +14,5 @@ export class PharmacyItem extends BaseEntity {
 
   @ManyToOne(() => PharmacyStore, { onDelete: "CASCADE" })
   @JoinColumn({ name: "pharmacy_store_id" })
-  pharmacy_store: PharmacyStore;
+  pharmacyStore: PharmacyStore;
 }

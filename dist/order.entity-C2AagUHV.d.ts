@@ -1,7 +1,7 @@
-import { BaseEntity } from './entities/baseEntity.entity.cjs';
-import { Patient } from './entities/patient.entity.cjs';
-import { OrderStatus } from './types/orderStatus.cjs';
-import { P as Product } from './category.entity-DugzkOj6.cjs';
+import { BaseEntity } from './entities/baseEntity.entity.js';
+import { Patient } from './entities/patient.entity.js';
+import { OrderStatus } from './types/orderStatus.js';
+import { P as Product } from './category.entity-DtJYY43Y.js';
 
 declare class OrderItem extends BaseEntity {
     order: Order;

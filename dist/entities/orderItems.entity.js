@@ -52,17 +52,6 @@ _ts_decorate([
 // src/entities/order.entity.ts
 import { Column as Column4, Entity as Entity4, JoinColumn as JoinColumn3, ManyToOne as ManyToOne2, OneToMany } from "typeorm";
 
-// src/types/userType.enum.ts
-var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
-  APP_TYPE2["ADMIN"] = "ADMIN";
-  APP_TYPE2["PATIENT"] = "PATIENT";
-  APP_TYPE2["PHARMACY"] = "PHARMACY";
-  APP_TYPE2["HCP"] = "HCP";
-  APP_TYPE2["HOSPITAL"] = "HOSPITAL";
-  APP_TYPE2["DOCTOR"] = "DOCTOR";
-  return APP_TYPE2;
-}({});
-
 // src/types/orderStatus.ts
 var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
   OrderStatus2["PENDING"] = "PENDING";
@@ -96,14 +85,14 @@ var Country = class extends BaseEntity {
     __name(this, "Country");
   }
   name;
-  name_ar;
-  tel_code;
-  customer_support;
+  nameAr;
+  telCode;
+  customerSupport;
   currency;
-  currency_vs_dollar;
+  currencyVsDollar;
   timezone;
-  flag_icon;
-  is_active;
+  flagIcon;
+  isActive;
 };
 _ts_decorate2([
   Column({
@@ -116,17 +105,17 @@ _ts_decorate2([
     unique: true
   }),
   _ts_metadata2("design:type", String)
-], Country.prototype, "name_ar", void 0);
+], Country.prototype, "nameAr", void 0);
 _ts_decorate2([
   Column({
     unique: true
   }),
   _ts_metadata2("design:type", String)
-], Country.prototype, "tel_code", void 0);
+], Country.prototype, "telCode", void 0);
 _ts_decorate2([
   Column(),
   _ts_metadata2("design:type", String)
-], Country.prototype, "customer_support", void 0);
+], Country.prototype, "customerSupport", void 0);
 _ts_decorate2([
   Column(),
   _ts_metadata2("design:type", String)
@@ -134,7 +123,7 @@ _ts_decorate2([
 _ts_decorate2([
   Column(),
   _ts_metadata2("design:type", String)
-], Country.prototype, "currency_vs_dollar", void 0);
+], Country.prototype, "currencyVsDollar", void 0);
 _ts_decorate2([
   Column(),
   _ts_metadata2("design:type", String)
@@ -142,13 +131,13 @@ _ts_decorate2([
 _ts_decorate2([
   Column(),
   _ts_metadata2("design:type", String)
-], Country.prototype, "flag_icon", void 0);
+], Country.prototype, "flagIcon", void 0);
 _ts_decorate2([
   Column({
     default: false
   }),
   _ts_metadata2("design:type", Boolean)
-], Country.prototype, "is_active", void 0);
+], Country.prototype, "isActive", void 0);
 Country = _ts_decorate2([
   Entity("countries")
 ], Country);
@@ -170,20 +159,21 @@ var User = class extends BaseEntity {
   static {
     __name(this, "User");
   }
-  first_name;
-  last_name;
-  user_name;
+  firstName;
+  lastName;
+  userName;
   gender;
   birthdate;
   email;
-  email_verified_at;
+  emailVerifiedAt;
   phone;
-  phone_verified_at;
+  phoneVerifiedAt;
   country;
   password;
-  profile_img;
+  profileImg;
   // TODO: many to many
-  types;
+  // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
+  // types: APP_TYPE;
   // Hash password before saving
   async hashPassword() {
     if (!this.password) return;
@@ -198,17 +188,17 @@ var User = class extends BaseEntity {
 _ts_decorate3([
   Column2(),
   _ts_metadata3("design:type", String)
-], User.prototype, "first_name", void 0);
+], User.prototype, "firstName", void 0);
 _ts_decorate3([
   Column2(),
   _ts_metadata3("design:type", String)
-], User.prototype, "last_name", void 0);
+], User.prototype, "lastName", void 0);
 _ts_decorate3([
   Column2({
     unique: true
   }),
   _ts_metadata3("design:type", String)
-], User.prototype, "user_name", void 0);
+], User.prototype, "userName", void 0);
 _ts_decorate3([
   Column2({
     nullable: true
@@ -233,8 +223,8 @@ _ts_decorate3([
     type: "timestamp",
     nullable: true
   }),
-  _ts_metadata3("design:type", String)
-], User.prototype, "email_verified_at", void 0);
+  _ts_metadata3("design:type", typeof Date === "undefined" ? Object : Date)
+], User.prototype, "emailVerifiedAt", void 0);
 _ts_decorate3([
   Column2({
     unique: true
@@ -246,8 +236,8 @@ _ts_decorate3([
     type: "timestamp",
     nullable: true
   }),
-  _ts_metadata3("design:type", String)
-], User.prototype, "phone_verified_at", void 0);
+  _ts_metadata3("design:type", typeof Date === "undefined" ? Object : Date)
+], User.prototype, "phoneVerifiedAt", void 0);
 _ts_decorate3([
   ManyToOne(() => Country, {
     nullable: false,
@@ -270,15 +260,7 @@ _ts_decorate3([
     default: "avatar.png"
   }),
   _ts_metadata3("design:type", String)
-], User.prototype, "profile_img", void 0);
-_ts_decorate3([
-  Column2({
-    type: "enum",
-    enum: APP_TYPE,
-    default: APP_TYPE.PATIENT
-  }),
-  _ts_metadata3("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
-], User.prototype, "types", void 0);
+], User.prototype, "profileImg", void 0);
 _ts_decorate3([
   BeforeInsert(),
   BeforeUpdate(),
@@ -306,37 +288,37 @@ var Patient = class {
   static {
     __name(this, "Patient");
   }
-  patient_id;
-  patient_createdAt;
-  patient_updatedAt;
-  patient_deletedAt;
+  patientId;
+  patientCreatedAt;
+  patientUpdatedAt;
+  patientDeletedAt;
   balance;
   password;
-  blood_group;
+  bloodGroup;
   user;
 };
 _ts_decorate4([
   PrimaryGeneratedColumn2(),
   _ts_metadata4("design:type", Number)
-], Patient.prototype, "patient_id", void 0);
+], Patient.prototype, "patientId", void 0);
 _ts_decorate4([
   CreateDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
-], Patient.prototype, "patient_createdAt", void 0);
+], Patient.prototype, "patientCreatedAt", void 0);
 _ts_decorate4([
   UpdateDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
-], Patient.prototype, "patient_updatedAt", void 0);
+], Patient.prototype, "patientUpdatedAt", void 0);
 _ts_decorate4([
   DeleteDateColumn2({
     type: "timestamp"
   }),
   _ts_metadata4("design:type", typeof Date === "undefined" ? Object : Date)
-], Patient.prototype, "patient_deletedAt", void 0);
+], Patient.prototype, "patientDeletedAt", void 0);
 _ts_decorate4([
   Column3({
     default: 0,
@@ -351,7 +333,7 @@ _ts_decorate4([
 _ts_decorate4([
   Column3(),
   _ts_metadata4("design:type", String)
-], Patient.prototype, "blood_group", void 0);
+], Patient.prototype, "bloodGroup", void 0);
 _ts_decorate4([
   OneToOne(() => User, {
     onDelete: "CASCADE"
@@ -471,7 +453,7 @@ var Product = class extends BaseEntity {
   name;
   sku;
   category;
-  require_prescription;
+  requirePrescription;
   price;
   description;
 };
@@ -495,7 +477,7 @@ _ts_decorate7([
 _ts_decorate7([
   Column6(),
   _ts_metadata7("design:type", Boolean)
-], Product.prototype, "require_prescription", void 0);
+], Product.prototype, "requirePrescription", void 0);
 _ts_decorate7([
   Column6({
     unsigned: true

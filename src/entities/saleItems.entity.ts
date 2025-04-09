@@ -15,5 +15,5 @@ export class SaleItem extends BaseEntity {
   quantity: number;
 
   @Column({ unsigned: true })
-  selling_price: number;
+  sellingPrice: number;
 }

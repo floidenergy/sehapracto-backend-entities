@@ -1,21 +1,19 @@
 import { BaseEntity } from './baseEntity.entity.cjs';
 import { Country } from './country.entity.cjs';
-import { APP_TYPE } from '../types/userType.enum.cjs';
 
 declare class User extends BaseEntity {
-    first_name: string;
-    last_name: string;
-    user_name: string;
+    firstName: string;
+    lastName: string;
+    userName: string;
     gender: string;
     birthdate: Date;
     email: string;
-    email_verified_at: string;
+    emailVerifiedAt: Date;
     phone: string;
-    phone_verified_at: string;
+    phoneVerifiedAt: Date;
     country: Country;
     password?: string;
-    profile_img: string;
-    types: APP_TYPE;
+    profileImg: string;
     hashPassword(): Promise<void>;
     validatePassword(plainPassword: string): Promise<boolean>;
 }

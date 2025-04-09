@@ -100,7 +100,7 @@ var Product = class extends BaseEntity {
   name;
   sku;
   category;
-  require_prescription;
+  requirePrescription;
   price;
   description;
 };
@@ -124,7 +124,7 @@ _ts_decorate3([
 _ts_decorate3([
   Column2(),
   _ts_metadata3("design:type", Boolean)
-], Product.prototype, "require_prescription", void 0);
+], Product.prototype, "requirePrescription", void 0);
 _ts_decorate3([
   Column2({
     unsigned: true

@@ -14,16 +14,16 @@ export class Sale extends BaseEntity {
   order: Order;
 
   @Column({ unsigned: true })
-  total_amount: number;
+  totalAmount: number;
 
   @Column()
   status: string;
 
   @Column()
-  payment_methode: string;
+  paymentMethode: string;
 
   @Column()
-  sale_date: Date;
+  saleDate: Date;
 
   @Column()
   items: string;

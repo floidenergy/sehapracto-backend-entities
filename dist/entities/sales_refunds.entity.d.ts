@@ -4,10 +4,9 @@ import './baseEntity.entity.js';
 import './patient.entity.js';
 import './user.entity.js';
 import './country.entity.js';
-import '../types/userType.enum.js';
-import '../order.entity-Bb3fehf5.js';
+import '../order.entity-C2AagUHV.js';
 import '../types/orderStatus.js';
-import '../category.entity-XstyC_79.js';
+import '../category.entity-DtJYY43Y.js';
 
 declare class SalesRefunds extends BaseEntity {
     total: number;

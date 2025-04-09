@@ -3,17 +3,16 @@ import { Permission } from './adminPermission.entity.js';
 import { User } from './user.entity.js';
 import './baseEntity.entity.js';
 import './country.entity.js';
-import '../types/userType.enum.js';
 
 declare class Admin {
     adminID: number;
     department: Department;
-    is_active: boolean;
+    isActive: boolean;
     user: User;
     permissions: Permission[];
-    readonly admin_createdAt: Date;
-    readonly admin_updatedAt: Date;
-    admin_deletedAt: Date;
+    readonly adminCreatedAt: Date;
+    readonly adminUpdatedAt: Date;
+    adminDeletedAt: Date;
 }
 
 export { Admin };

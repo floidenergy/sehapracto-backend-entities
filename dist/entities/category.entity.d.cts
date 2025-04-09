@@ -1,2 +1,2 @@
 import './baseEntity.entity.cjs';
-export { C as Category } from '../category.entity-DugzkOj6.cjs';
+export { C as Category } from '../category.entity-ejYyv947.cjs';

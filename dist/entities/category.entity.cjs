@@ -90,7 +90,7 @@ var Product = class extends BaseEntity {
   name;
   sku;
   category;
-  require_prescription;
+  requirePrescription;
   price;
   description;
 };
@@ -114,7 +114,7 @@ _ts_decorate2([
 _ts_decorate2([
   (0, import_typeorm2.Column)(),
   _ts_metadata2("design:type", Boolean)
-], Product.prototype, "require_prescription", void 0);
+], Product.prototype, "requirePrescription", void 0);
 _ts_decorate2([
   (0, import_typeorm2.Column)({
     unsigned: true

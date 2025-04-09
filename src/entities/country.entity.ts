@@ -13,26 +13,26 @@ export class Country extends BaseEntity {
   name: string;
 
   @Column({ unique: true })
-  name_ar: string;
+  nameAr: string;
 
   @Column({ unique: true })
-  tel_code: string;
+  telCode: string;
 
   @Column()
-  customer_support: string;
+  customerSupport: string;
 
   @Column()
   currency: string;
 
   @Column()
-  currency_vs_dollar: string;
+  currencyVsDollar: string;
 
   @Column()
   timezone: string;
 
   @Column()
-  flag_icon: string;
+  flagIcon: string;
 
   @Column({ default: false })
-  is_active: boolean;
+  isActive: boolean;
 }

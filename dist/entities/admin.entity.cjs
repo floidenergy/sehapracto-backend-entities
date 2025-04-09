@@ -151,14 +151,14 @@ var Country = class extends BaseEntity {
     __name(this, "Country");
   }
   name;
-  name_ar;
-  tel_code;
-  customer_support;
+  nameAr;
+  telCode;
+  customerSupport;
   currency;
-  currency_vs_dollar;
+  currencyVsDollar;
   timezone;
-  flag_icon;
-  is_active;
+  flagIcon;
+  isActive;
 };
 _ts_decorate4([
   (0, import_typeorm4.Column)({
@@ -171,17 +171,17 @@ _ts_decorate4([
     unique: true
   }),
   _ts_metadata4("design:type", String)
-], Country.prototype, "name_ar", void 0);
+], Country.prototype, "nameAr", void 0);
 _ts_decorate4([
   (0, import_typeorm4.Column)({
     unique: true
   }),
   _ts_metadata4("design:type", String)
-], Country.prototype, "tel_code", void 0);
+], Country.prototype, "telCode", void 0);
 _ts_decorate4([
   (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
-], Country.prototype, "customer_support", void 0);
+], Country.prototype, "customerSupport", void 0);
 _ts_decorate4([
   (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
@@ -189,7 +189,7 @@ _ts_decorate4([
 _ts_decorate4([
   (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
-], Country.prototype, "currency_vs_dollar", void 0);
+], Country.prototype, "currencyVsDollar", void 0);
 _ts_decorate4([
   (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
@@ -197,27 +197,16 @@ _ts_decorate4([
 _ts_decorate4([
   (0, import_typeorm4.Column)(),
   _ts_metadata4("design:type", String)
-], Country.prototype, "flag_icon", void 0);
+], Country.prototype, "flagIcon", void 0);
 _ts_decorate4([
   (0, import_typeorm4.Column)({
     default: false
   }),
   _ts_metadata4("design:type", Boolean)
-], Country.prototype, "is_active", void 0);
+], Country.prototype, "isActive", void 0);
 Country = _ts_decorate4([
   (0, import_typeorm4.Entity)("countries")
 ], Country);
-
-// src/types/userType.enum.ts
-var APP_TYPE = /* @__PURE__ */ function(APP_TYPE2) {
-  APP_TYPE2["ADMIN"] = "ADMIN";
-  APP_TYPE2["PATIENT"] = "PATIENT";
-  APP_TYPE2["PHARMACY"] = "PHARMACY";
-  APP_TYPE2["HCP"] = "HCP";
-  APP_TYPE2["HOSPITAL"] = "HOSPITAL";
-  APP_TYPE2["DOCTOR"] = "DOCTOR";
-  return APP_TYPE2;
-}({});
 
 // src/entities/user.entity.ts
 var import_bcrypt = require("bcrypt");
@@ -236,20 +225,21 @@ var User = class extends BaseEntity {
   static {
     __name(this, "User");
   }
-  first_name;
-  last_name;
-  user_name;
+  firstName;
+  lastName;
+  userName;
   gender;
   birthdate;
   email;
-  email_verified_at;
+  emailVerifiedAt;
   phone;
-  phone_verified_at;
+  phoneVerifiedAt;
   country;
   password;
-  profile_img;
+  profileImg;
   // TODO: many to many
-  types;
+  // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
+  // types: APP_TYPE;
   // Hash password before saving
   async hashPassword() {
     if (!this.password) return;
@@ -264,17 +254,17 @@ var User = class extends BaseEntity {
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
   _ts_metadata5("design:type", String)
-], User.prototype, "first_name", void 0);
+], User.prototype, "firstName", void 0);
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
   _ts_metadata5("design:type", String)
-], User.prototype, "last_name", void 0);
+], User.prototype, "lastName", void 0);
 _ts_decorate5([
   (0, import_typeorm5.Column)({
     unique: true
   }),
   _ts_metadata5("design:type", String)
-], User.prototype, "user_name", void 0);
+], User.prototype, "userName", void 0);
 _ts_decorate5([
   (0, import_typeorm5.Column)({
     nullable: true
@@ -299,8 +289,8 @@ _ts_decorate5([
     type: "timestamp",
     nullable: true
   }),
-  _ts_metadata5("design:type", String)
-], User.prototype, "email_verified_at", void 0);
+  _ts_metadata5("design:type", typeof Date === "undefined" ? Object : Date)
+], User.prototype, "emailVerifiedAt", void 0);
 _ts_decorate5([
   (0, import_typeorm5.Column)({
     unique: true
@@ -312,8 +302,8 @@ _ts_decorate5([
     type: "timestamp",
     nullable: true
   }),
-  _ts_metadata5("design:type", String)
-], User.prototype, "phone_verified_at", void 0);
+  _ts_metadata5("design:type", typeof Date === "undefined" ? Object : Date)
+], User.prototype, "phoneVerifiedAt", void 0);
 _ts_decorate5([
   (0, import_typeorm5.ManyToOne)(() => Country, {
     nullable: false,
@@ -336,15 +326,7 @@ _ts_decorate5([
     default: "avatar.png"
   }),
   _ts_metadata5("design:type", String)
-], User.prototype, "profile_img", void 0);
-_ts_decorate5([
-  (0, import_typeorm5.Column)({
-    type: "enum",
-    enum: APP_TYPE,
-    default: APP_TYPE.PATIENT
-  }),
-  _ts_metadata5("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
-], User.prototype, "types", void 0);
+], User.prototype, "profileImg", void 0);
 _ts_decorate5([
   (0, import_typeorm5.BeforeInsert)(),
   (0, import_typeorm5.BeforeUpdate)(),
@@ -374,12 +356,12 @@ var Admin = class {
   }
   adminID;
   department;
-  is_active;
+  isActive;
   user;
   permissions;
-  admin_createdAt;
-  admin_updatedAt;
-  admin_deletedAt;
+  adminCreatedAt;
+  adminUpdatedAt;
+  adminDeletedAt;
 };
 _ts_decorate6([
   (0, import_typeorm6.PrimaryGeneratedColumn)(),
@@ -399,7 +381,7 @@ _ts_decorate6([
     default: false
   }),
   _ts_metadata6("design:type", Boolean)
-], Admin.prototype, "is_active", void 0);
+], Admin.prototype, "isActive", void 0);
 _ts_decorate6([
   (0, import_typeorm6.OneToOne)(() => User, {
     onDelete: "CASCADE"
@@ -429,19 +411,19 @@ _ts_decorate6([
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "admin_createdAt", void 0);
+], Admin.prototype, "adminCreatedAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.UpdateDateColumn)({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "admin_updatedAt", void 0);
+], Admin.prototype, "adminUpdatedAt", void 0);
 _ts_decorate6([
   (0, import_typeorm6.DeleteDateColumn)({
     type: "timestamp"
   }),
   _ts_metadata6("design:type", typeof Date === "undefined" ? Object : Date)
-], Admin.prototype, "admin_deletedAt", void 0);
+], Admin.prototype, "adminDeletedAt", void 0);
 Admin = _ts_decorate6([
   (0, import_typeorm6.Entity)("admins")
 ], Admin);

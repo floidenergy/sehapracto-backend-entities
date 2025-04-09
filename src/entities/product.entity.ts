@@ -13,7 +13,7 @@ export class Product extends BaseEntity {
   @JoinColumn({ name: "category_id" })
   category: Category;
   @Column()
-  require_prescription: boolean;
+  requirePrescription: boolean;
   @Column({ unsigned: true })
   price: number;
   @Column()

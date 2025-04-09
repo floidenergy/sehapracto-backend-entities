@@ -13,16 +13,16 @@ import { User } from "./user.entity";
 @Entity("patients")
 export class Patient {
   @PrimaryGeneratedColumn()
-  patient_id!: number;
+  patientId!: number;
 
   @CreateDateColumn({ type: "timestamp" })
-  readonly patient_createdAt!: Date;
+  readonly patientCreatedAt!: Date;
 
   @UpdateDateColumn({ type: "timestamp" })
-  readonly patient_updatedAt!: Date;
+  readonly patientUpdatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  patient_deletedAt!: Date;
+  patientDeletedAt!: Date;
 
   @Column({ default: 0, unsigned: true })
   balance: number;
@@ -31,7 +31,7 @@ export class Patient {
   password: string;
 
   @Column()
-  blood_group: string;
+  bloodGroup: string;
 
   @OneToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })

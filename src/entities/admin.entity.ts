@@ -26,7 +26,7 @@ export class Admin {
   department: Department;
 
   @Column({ default: false })
-  is_active: boolean;
+  isActive: boolean;
 
   @OneToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })
@@ -47,11 +47,11 @@ export class Admin {
   permissions: Permission[];
 
   @CreateDateColumn({ type: "timestamp" })
-  readonly admin_createdAt!: Date;
+  readonly adminCreatedAt!: Date;
 
   @UpdateDateColumn({ type: "timestamp" })
-  readonly admin_updatedAt!: Date;
+  readonly adminUpdatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  admin_deletedAt!: Date;
+  adminDeletedAt!: Date;
 }

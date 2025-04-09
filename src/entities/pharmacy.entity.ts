@@ -13,16 +13,16 @@ import { User } from "./user.entity";
 @Entity("pharmacies")
 export class Pharmacy {
   @PrimaryGeneratedColumn()
-  pharmacy_id!: number;
+  pharmacyId!: number;
 
   @CreateDateColumn({ type: "timestamp" })
-  readonly pharmacy_createdAt!: Date;
+  readonly pharmacyCreatedAt!: Date;
 
   @UpdateDateColumn({ type: "timestamp" })
-  readonly pharmacy_updatedAt!: Date;
+  readonly pharmacyUpdatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  pharmacy_deletedAt!: Date;
+  pharmacyDeletedAt!: Date;
 
   @Column()
   password: string;
