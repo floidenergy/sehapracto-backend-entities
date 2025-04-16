@@ -11,7 +11,7 @@ import {
 import { BaseEntity } from "./baseEntity.entity";
 import { Country } from "./country.entity";
 import { APP_TYPE } from "../types/userType.enum";
-import { genSalt, hash, compare } from "bcrypt";
+// import { genSalt, hash, compare } from "bcrypt";
 
 @Entity("users")
 export class User extends BaseEntity {
@@ -45,9 +45,6 @@ export class User extends BaseEntity {
   @JoinTable({ name: "country_id" })
   country: Country;
 
-  @Column({ select: false })
-  password?: string;
-
   @Column({ nullable: true, default: "avatar.png" })
   profileImg: string;
 
@@ -55,18 +52,18 @@ export class User extends BaseEntity {
   // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
   // types: APP_TYPE;
 
-  // Hash password before saving
-  @BeforeInsert()
-  @BeforeUpdate()
-  async hashPassword(): Promise<void> {
-    if (!this.password) return;
+  // // Hash password before saving
+  // @BeforeInsert()
+  // @BeforeUpdate()
+  // async hashPassword(): Promise<void> {
+  //   if (!this.password) return;
 
-    const salt = await genSalt(10);
-    this.password = await hash(this.password as string, salt);
-  }
+  //   const salt = await genSalt(10);
+  //   this.password = await hash(this.password as string, salt);
+  // }
 
-  // Validate password
-  async validatePassword(plainPassword: string): Promise<boolean> {
-    return compare(plainPassword, this.password);
-  }
+  // // Validate password
+  // async validatePassword(plainPassword: string): Promise<boolean> {
+  //   return compare(plainPassword, this.password);
+  // }
 }

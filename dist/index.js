@@ -32,7 +32,7 @@ __export(entities_exports, {
 });
 
 // src/entities/admin.entity.ts
-import { Entity as Entity5, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, Column as Column5, ManyToOne as ManyToOne2, CreateDateColumn as CreateDateColumn2, UpdateDateColumn as UpdateDateColumn2, OneToOne, JoinColumn as JoinColumn2, ManyToMany, JoinTable, DeleteDateColumn as DeleteDateColumn2 } from "typeorm";
+import { Entity as Entity5, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, Column as Column5, ManyToOne as ManyToOne2, CreateDateColumn as CreateDateColumn2, UpdateDateColumn as UpdateDateColumn2, OneToOne, JoinColumn, ManyToMany, JoinTable as JoinTable2, DeleteDateColumn as DeleteDateColumn2 } from "typeorm";
 
 // src/entities/department.entity.ts
 import { Entity, Column } from "typeorm";
@@ -140,7 +140,7 @@ Permission = _ts_decorate3([
 ], Permission);
 
 // src/entities/user.entity.ts
-import { Entity as Entity4, Column as Column4, JoinColumn, ManyToOne, BeforeInsert, BeforeUpdate } from "typeorm";
+import { Entity as Entity4, Column as Column4, ManyToOne, JoinTable } from "typeorm";
 
 // src/entities/country.entity.ts
 import { Entity as Entity3, Column as Column3 } from "typeorm";
@@ -218,7 +218,6 @@ Country = _ts_decorate4([
 ], Country);
 
 // src/entities/user.entity.ts
-import { genSalt, hash, compare } from "bcrypt";
 function _ts_decorate5(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -244,21 +243,7 @@ var User = class extends BaseEntity {
   phone;
   phoneVerifiedAt;
   country;
-  password;
   profileImg;
-  // TODO: many to many
-  // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
-  // types: APP_TYPE;
-  // Hash password before saving
-  async hashPassword() {
-    if (!this.password) return;
-    const salt = await genSalt(10);
-    this.password = await hash(this.password, salt);
-  }
-  // Validate password
-  async validatePassword(plainPassword) {
-    return compare(plainPassword, this.password);
-  }
 };
 _ts_decorate5([
   Column4(),
@@ -318,17 +303,11 @@ _ts_decorate5([
     nullable: false,
     onDelete: "NO ACTION"
   }),
-  JoinColumn({
+  JoinTable({
     name: "country_id"
   }),
   _ts_metadata5("design:type", typeof Country === "undefined" ? Object : Country)
 ], User.prototype, "country", void 0);
-_ts_decorate5([
-  Column4({
-    select: false
-  }),
-  _ts_metadata5("design:type", String)
-], User.prototype, "password", void 0);
 _ts_decorate5([
   Column4({
     nullable: true,
@@ -336,13 +315,6 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profileImg", void 0);
-_ts_decorate5([
-  BeforeInsert(),
-  BeforeUpdate(),
-  _ts_metadata5("design:type", Function),
-  _ts_metadata5("design:paramtypes", []),
-  _ts_metadata5("design:returntype", Promise)
-], User.prototype, "hashPassword", null);
 User = _ts_decorate5([
   Entity4("users")
 ], User);
@@ -380,7 +352,7 @@ _ts_decorate6([
   ManyToOne2(() => Department, {
     onDelete: "NO ACTION"
   }),
-  JoinColumn2({
+  JoinColumn({
     name: "department_id"
   }),
   _ts_metadata6("design:type", typeof Department === "undefined" ? Object : Department)
@@ -395,14 +367,14 @@ _ts_decorate6([
   OneToOne(() => User, {
     onDelete: "CASCADE"
   }),
-  JoinColumn2({
+  JoinColumn({
     name: "user_id"
   }),
   _ts_metadata6("design:type", typeof User === "undefined" ? Object : User)
 ], Admin.prototype, "user", void 0);
 _ts_decorate6([
   ManyToMany(() => Permission),
-  JoinTable({
+  JoinTable2({
     name: "admin_permissions",
     joinColumn: {
       name: "admin_id",
@@ -438,7 +410,7 @@ Admin = _ts_decorate6([
 ], Admin);
 
 // src/entities/session.entity.ts
-import { BeforeInsert as BeforeInsert2, Column as Column6, Entity as Entity6, JoinColumn as JoinColumn3, ManyToOne as ManyToOne3 } from "typeorm";
+import { BeforeInsert, Column as Column6, Entity as Entity6, JoinColumn as JoinColumn2, ManyToOne as ManyToOne3 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
 // src/types/gender.enum.ts
@@ -543,7 +515,7 @@ _ts_decorate7([
   ManyToOne3(() => User, {
     onDelete: "CASCADE"
   }),
-  JoinColumn3({
+  JoinColumn2({
     name: "user_id"
   }),
   _ts_metadata7("design:type", typeof User === "undefined" ? Object : User)
@@ -563,7 +535,7 @@ _ts_decorate7([
   _ts_metadata7("design:type", typeof APP_TYPE === "undefined" ? Object : APP_TYPE)
 ], Session.prototype, "sessionRole", void 0);
 _ts_decorate7([
-  BeforeInsert2(),
+  BeforeInsert(),
   _ts_metadata7("design:type", Function),
   _ts_metadata7("design:paramtypes", []),
   _ts_metadata7("design:returntype", Promise)
@@ -676,7 +648,7 @@ Attachement = _ts_decorate9([
 import { Column as Column10, Entity as Entity10, OneToMany } from "typeorm";
 
 // src/entities/product.entity.ts
-import { Column as Column9, Entity as Entity9, JoinColumn as JoinColumn4, ManyToOne as ManyToOne4 } from "typeorm";
+import { Column as Column9, Entity as Entity9, JoinColumn as JoinColumn3, ManyToOne as ManyToOne4 } from "typeorm";
 function _ts_decorate10(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -711,7 +683,7 @@ _ts_decorate10([
   ManyToOne4(() => Category, {
     onDelete: "SET NULL"
   }),
-  JoinColumn4({
+  JoinColumn3({
     name: "category_id"
   }),
   _ts_metadata10("design:type", typeof Category === "undefined" ? Object : Category)
@@ -766,10 +738,10 @@ Category = _ts_decorate11([
 ], Category);
 
 // src/entities/order.entity.ts
-import { Column as Column13, Entity as Entity13, JoinColumn as JoinColumn7, ManyToOne as ManyToOne6, OneToMany as OneToMany2 } from "typeorm";
+import { Column as Column13, Entity as Entity13, JoinColumn as JoinColumn6, ManyToOne as ManyToOne6, OneToMany as OneToMany2 } from "typeorm";
 
 // src/entities/orderItems.entity.ts
-import { Column as Column11, Entity as Entity11, JoinColumn as JoinColumn5, ManyToOne as ManyToOne5, OneToOne as OneToOne2 } from "typeorm";
+import { Column as Column11, Entity as Entity11, JoinColumn as JoinColumn4, ManyToOne as ManyToOne5, OneToOne as OneToOne2 } from "typeorm";
 function _ts_decorate12(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -794,7 +766,7 @@ _ts_decorate12([
   ManyToOne5(() => Order, {
     onDelete: "CASCADE"
   }),
-  JoinColumn5({
+  JoinColumn4({
     name: "order_id"
   }),
   _ts_metadata12("design:type", typeof Order === "undefined" ? Object : Order)
@@ -815,7 +787,7 @@ _ts_decorate12([
   OneToOne2(() => Product, {
     onDelete: "CASCADE"
   }),
-  JoinColumn5({
+  JoinColumn4({
     name: "product_id"
   }),
   _ts_metadata12("design:type", typeof Product === "undefined" ? Object : Product)
@@ -825,7 +797,7 @@ OrderItem = _ts_decorate12([
 ], OrderItem);
 
 // src/entities/patient.entity.ts
-import { Column as Column12, CreateDateColumn as CreateDateColumn3, DeleteDateColumn as DeleteDateColumn3, Entity as Entity12, JoinColumn as JoinColumn6, OneToOne as OneToOne3, PrimaryGeneratedColumn as PrimaryGeneratedColumn3, UpdateDateColumn as UpdateDateColumn3 } from "typeorm";
+import { Column as Column12, CreateDateColumn as CreateDateColumn3, DeleteDateColumn as DeleteDateColumn3, Entity as Entity12, JoinColumn as JoinColumn5, OneToOne as OneToOne3, PrimaryGeneratedColumn as PrimaryGeneratedColumn3, UpdateDateColumn as UpdateDateColumn3 } from "typeorm";
 function _ts_decorate13(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -891,7 +863,7 @@ _ts_decorate13([
   OneToOne3(() => User, {
     onDelete: "CASCADE"
   }),
-  JoinColumn6({
+  JoinColumn5({
     name: "user_id"
   }),
   _ts_metadata13("design:type", typeof User === "undefined" ? Object : User)
@@ -925,7 +897,7 @@ _ts_decorate14([
   ManyToOne6(() => Patient, {
     onDelete: "CASCADE"
   }),
-  JoinColumn7({
+  JoinColumn6({
     name: "patient_id"
   }),
   _ts_metadata14("design:type", typeof Patient === "undefined" ? Object : Patient)
@@ -953,7 +925,7 @@ Order = _ts_decorate14([
 ], Order);
 
 // src/entities/pharmacy.entity.ts
-import { Column as Column14, CreateDateColumn as CreateDateColumn4, DeleteDateColumn as DeleteDateColumn4, Entity as Entity14, JoinColumn as JoinColumn8, OneToOne as OneToOne4, PrimaryGeneratedColumn as PrimaryGeneratedColumn4, UpdateDateColumn as UpdateDateColumn4 } from "typeorm";
+import { Column as Column14, CreateDateColumn as CreateDateColumn4, DeleteDateColumn as DeleteDateColumn4, Entity as Entity14, JoinColumn as JoinColumn7, OneToOne as OneToOne4, PrimaryGeneratedColumn as PrimaryGeneratedColumn4, UpdateDateColumn as UpdateDateColumn4 } from "typeorm";
 function _ts_decorate15(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1006,7 +978,7 @@ _ts_decorate15([
   OneToOne4(() => User, {
     onDelete: "CASCADE"
   }),
-  JoinColumn8({
+  JoinColumn7({
     name: "user_id"
   }),
   _ts_metadata15("design:type", typeof User === "undefined" ? Object : User)
@@ -1016,7 +988,7 @@ Pharmacy = _ts_decorate15([
 ], Pharmacy);
 
 // src/entities/pharmacyBusiness.entity.ts
-import { Column as Column15, Entity as Entity15, JoinColumn as JoinColumn9, ManyToOne as ManyToOne7, OneToOne as OneToOne5 } from "typeorm";
+import { Column as Column15, Entity as Entity15, JoinColumn as JoinColumn8, ManyToOne as ManyToOne7, OneToOne as OneToOne5 } from "typeorm";
 function _ts_decorate16(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1042,7 +1014,7 @@ _ts_decorate16([
   OneToOne5(() => Pharmacy, {
     onDelete: "CASCADE"
   }),
-  JoinColumn9({
+  JoinColumn8({
     name: "owner_id"
   }),
   _ts_metadata16("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
@@ -1056,7 +1028,7 @@ _ts_decorate16([
     nullable: false,
     onDelete: "NO ACTION"
   }),
-  JoinColumn9({
+  JoinColumn8({
     name: "country_id"
   }),
   _ts_metadata16("design:type", typeof Country === "undefined" ? Object : Country)
@@ -1074,10 +1046,10 @@ PharmacyBusiness = _ts_decorate16([
 ], PharmacyBusiness);
 
 // src/entities/pharmacyItem.entity.ts
-import { Column as Column17, Entity as Entity17, JoinColumn as JoinColumn11, ManyToOne as ManyToOne9, OneToOne as OneToOne7 } from "typeorm";
+import { Column as Column17, Entity as Entity17, JoinColumn as JoinColumn10, ManyToOne as ManyToOne9, OneToOne as OneToOne7 } from "typeorm";
 
 // src/entities/pharmacyStore.entity.ts
-import { Column as Column16, Entity as Entity16, JoinColumn as JoinColumn10, ManyToOne as ManyToOne8, OneToOne as OneToOne6 } from "typeorm";
+import { Column as Column16, Entity as Entity16, JoinColumn as JoinColumn9, ManyToOne as ManyToOne8, OneToOne as OneToOne6 } from "typeorm";
 function _ts_decorate17(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1107,7 +1079,7 @@ _ts_decorate17([
   OneToOne6(() => Pharmacy, {
     onDelete: "SET NULL"
   }),
-  JoinColumn10({
+  JoinColumn9({
     name: "manager_id"
   }),
   _ts_metadata17("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
@@ -1116,7 +1088,7 @@ _ts_decorate17([
   ManyToOne8(() => PharmacyBusiness, {
     onDelete: "SET NULL"
   }),
-  JoinColumn10({
+  JoinColumn9({
     name: "pharmacy_business_id"
   }),
   _ts_metadata17("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
@@ -1143,7 +1115,7 @@ _ts_decorate17([
 ], PharmacyStore.prototype, "address", void 0);
 _ts_decorate17([
   ManyToOne8(() => Country),
-  JoinColumn10({
+  JoinColumn9({
     name: "country_id"
   }),
   _ts_metadata17("design:type", typeof Country === "undefined" ? Object : Country)
@@ -1184,7 +1156,7 @@ _ts_decorate18([
   OneToOne7(() => Product, {
     onDelete: "CASCADE"
   }),
-  JoinColumn11({
+  JoinColumn10({
     name: "product_id"
   }),
   _ts_metadata18("design:type", typeof Product === "undefined" ? Object : Product)
@@ -1199,7 +1171,7 @@ _ts_decorate18([
   ManyToOne9(() => PharmacyStore, {
     onDelete: "CASCADE"
   }),
-  JoinColumn11({
+  JoinColumn10({
     name: "pharmacy_store_id"
   }),
   _ts_metadata18("design:type", typeof PharmacyStore === "undefined" ? Object : PharmacyStore)
@@ -1209,7 +1181,7 @@ PharmacyItem = _ts_decorate18([
 ], PharmacyItem);
 
 // src/entities/prescriptions.entity.ts
-import { Entity as Entity18, JoinColumn as JoinColumn12, ManyToOne as ManyToOne10 } from "typeorm";
+import { Entity as Entity18, JoinColumn as JoinColumn11, ManyToOne as ManyToOne10 } from "typeorm";
 function _ts_decorate19(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1233,7 +1205,7 @@ _ts_decorate19([
   ManyToOne10(() => Order, {
     onDelete: "SET NULL"
   }),
-  JoinColumn12({
+  JoinColumn11({
     name: "order_id"
   }),
   _ts_metadata19("design:type", typeof Order === "undefined" ? Object : Order)
@@ -1242,7 +1214,7 @@ _ts_decorate19([
   ManyToOne10(() => Patient, {
     onDelete: "SET NULL"
   }),
-  JoinColumn12({
+  JoinColumn11({
     name: "patient_id"
   }),
   _ts_metadata19("design:type", typeof Patient === "undefined" ? Object : Patient)
@@ -1251,7 +1223,7 @@ _ts_decorate19([
   ManyToOne10(() => Attachement, {
     onDelete: "SET NULL"
   }),
-  JoinColumn12({
+  JoinColumn11({
     name: "attachement_id"
   }),
   _ts_metadata19("design:type", typeof Attachement === "undefined" ? Object : Attachement)
@@ -1261,7 +1233,7 @@ Prescription = _ts_decorate19([
 ], Prescription);
 
 // src/entities/sale.entity.ts
-import { Column as Column18, Entity as Entity19, JoinColumn as JoinColumn13, ManyToOne as ManyToOne11 } from "typeorm";
+import { Column as Column18, Entity as Entity19, JoinColumn as JoinColumn12, ManyToOne as ManyToOne11 } from "typeorm";
 function _ts_decorate20(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1287,14 +1259,14 @@ var Sale = class extends BaseEntity {
 };
 _ts_decorate20([
   ManyToOne11(() => Patient),
-  JoinColumn13({
+  JoinColumn12({
     name: "customer_id"
   }),
   _ts_metadata20("design:type", typeof Patient === "undefined" ? Object : Patient)
 ], Sale.prototype, "customer", void 0);
 _ts_decorate20([
   ManyToOne11(() => Order),
-  JoinColumn13({
+  JoinColumn12({
     name: "order_id"
   }),
   _ts_metadata20("design:type", typeof Order === "undefined" ? Object : Order)

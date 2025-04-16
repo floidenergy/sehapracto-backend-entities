@@ -262,7 +262,6 @@ Country = _ts_decorate4([
 ], Country);
 
 // src/entities/user.entity.ts
-var import_bcrypt = require("bcrypt");
 function _ts_decorate5(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -288,21 +287,7 @@ var User = class extends BaseEntity {
   phone;
   phoneVerifiedAt;
   country;
-  password;
   profileImg;
-  // TODO: many to many
-  // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
-  // types: APP_TYPE;
-  // Hash password before saving
-  async hashPassword() {
-    if (!this.password) return;
-    const salt = await (0, import_bcrypt.genSalt)(10);
-    this.password = await (0, import_bcrypt.hash)(this.password, salt);
-  }
-  // Validate password
-  async validatePassword(plainPassword) {
-    return (0, import_bcrypt.compare)(plainPassword, this.password);
-  }
 };
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
@@ -362,17 +347,11 @@ _ts_decorate5([
     nullable: false,
     onDelete: "NO ACTION"
   }),
-  (0, import_typeorm5.JoinColumn)({
+  (0, import_typeorm5.JoinTable)({
     name: "country_id"
   }),
   _ts_metadata5("design:type", typeof Country === "undefined" ? Object : Country)
 ], User.prototype, "country", void 0);
-_ts_decorate5([
-  (0, import_typeorm5.Column)({
-    select: false
-  }),
-  _ts_metadata5("design:type", String)
-], User.prototype, "password", void 0);
 _ts_decorate5([
   (0, import_typeorm5.Column)({
     nullable: true,
@@ -380,13 +359,6 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profileImg", void 0);
-_ts_decorate5([
-  (0, import_typeorm5.BeforeInsert)(),
-  (0, import_typeorm5.BeforeUpdate)(),
-  _ts_metadata5("design:type", Function),
-  _ts_metadata5("design:paramtypes", []),
-  _ts_metadata5("design:returntype", Promise)
-], User.prototype, "hashPassword", null);
 User = _ts_decorate5([
   (0, import_typeorm5.Entity)("users")
 ], User);

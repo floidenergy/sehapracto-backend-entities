@@ -12,10 +12,7 @@ declare class User extends BaseEntity {
     phone: string;
     phoneVerifiedAt: Date;
     country: Country;
-    password?: string;
     profileImg: string;
-    hashPassword(): Promise<void>;
-    validatePassword(plainPassword: string): Promise<boolean>;
 }
 
 export { User };

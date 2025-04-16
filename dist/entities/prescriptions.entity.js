@@ -2,7 +2,7 @@ var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
 // src/entities/prescriptions.entity.ts
-import { Entity as Entity9, JoinColumn as JoinColumn6, ManyToOne as ManyToOne5 } from "typeorm";
+import { Entity as Entity9, JoinColumn as JoinColumn5, ManyToOne as ManyToOne5 } from "typeorm";
 
 // src/entities/baseEntity.entity.ts
 import { CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
@@ -50,7 +50,7 @@ _ts_decorate([
 ], BaseEntity.prototype, "deletedAt", void 0);
 
 // src/entities/order.entity.ts
-import { Column as Column7, Entity as Entity7, JoinColumn as JoinColumn5, ManyToOne as ManyToOne4, OneToMany as OneToMany2 } from "typeorm";
+import { Column as Column7, Entity as Entity7, JoinColumn as JoinColumn4, ManyToOne as ManyToOne4, OneToMany as OneToMany2 } from "typeorm";
 
 // src/entities/orderItems.entity.ts
 import { Column as Column3, Entity as Entity3, JoinColumn as JoinColumn2, ManyToOne as ManyToOne2, OneToOne } from "typeorm";
@@ -213,10 +213,10 @@ var OrderStatus = /* @__PURE__ */ function(OrderStatus2) {
 }({});
 
 // src/entities/patient.entity.ts
-import { Column as Column6, CreateDateColumn as CreateDateColumn2, DeleteDateColumn as DeleteDateColumn2, Entity as Entity6, JoinColumn as JoinColumn4, OneToOne as OneToOne2, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, UpdateDateColumn as UpdateDateColumn2 } from "typeorm";
+import { Column as Column6, CreateDateColumn as CreateDateColumn2, DeleteDateColumn as DeleteDateColumn2, Entity as Entity6, JoinColumn as JoinColumn3, OneToOne as OneToOne2, PrimaryGeneratedColumn as PrimaryGeneratedColumn2, UpdateDateColumn as UpdateDateColumn2 } from "typeorm";
 
 // src/entities/user.entity.ts
-import { Entity as Entity5, Column as Column5, JoinColumn as JoinColumn3, ManyToOne as ManyToOne3, BeforeInsert, BeforeUpdate } from "typeorm";
+import { Entity as Entity5, Column as Column5, ManyToOne as ManyToOne3, JoinTable } from "typeorm";
 
 // src/entities/country.entity.ts
 import { Entity as Entity4, Column as Column4 } from "typeorm";
@@ -294,7 +294,6 @@ Country = _ts_decorate5([
 ], Country);
 
 // src/entities/user.entity.ts
-import { genSalt, hash, compare } from "bcrypt";
 function _ts_decorate6(decorators, target, key, desc) {
   var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
   if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -320,21 +319,7 @@ var User = class extends BaseEntity {
   phone;
   phoneVerifiedAt;
   country;
-  password;
   profileImg;
-  // TODO: many to many
-  // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
-  // types: APP_TYPE;
-  // Hash password before saving
-  async hashPassword() {
-    if (!this.password) return;
-    const salt = await genSalt(10);
-    this.password = await hash(this.password, salt);
-  }
-  // Validate password
-  async validatePassword(plainPassword) {
-    return compare(plainPassword, this.password);
-  }
 };
 _ts_decorate6([
   Column5(),
@@ -394,17 +379,11 @@ _ts_decorate6([
     nullable: false,
     onDelete: "NO ACTION"
   }),
-  JoinColumn3({
+  JoinTable({
     name: "country_id"
   }),
   _ts_metadata6("design:type", typeof Country === "undefined" ? Object : Country)
 ], User.prototype, "country", void 0);
-_ts_decorate6([
-  Column5({
-    select: false
-  }),
-  _ts_metadata6("design:type", String)
-], User.prototype, "password", void 0);
 _ts_decorate6([
   Column5({
     nullable: true,
@@ -412,13 +391,6 @@ _ts_decorate6([
   }),
   _ts_metadata6("design:type", String)
 ], User.prototype, "profileImg", void 0);
-_ts_decorate6([
-  BeforeInsert(),
-  BeforeUpdate(),
-  _ts_metadata6("design:type", Function),
-  _ts_metadata6("design:paramtypes", []),
-  _ts_metadata6("design:returntype", Promise)
-], User.prototype, "hashPassword", null);
 User = _ts_decorate6([
   Entity5("users")
 ], User);
@@ -489,7 +461,7 @@ _ts_decorate7([
   OneToOne2(() => User, {
     onDelete: "CASCADE"
   }),
-  JoinColumn4({
+  JoinColumn3({
     name: "user_id"
   }),
   _ts_metadata7("design:type", typeof User === "undefined" ? Object : User)
@@ -523,7 +495,7 @@ _ts_decorate8([
   ManyToOne4(() => Patient, {
     onDelete: "CASCADE"
   }),
-  JoinColumn5({
+  JoinColumn4({
     name: "patient_id"
   }),
   _ts_metadata8("design:type", typeof Patient === "undefined" ? Object : Patient)
@@ -618,7 +590,7 @@ _ts_decorate10([
   ManyToOne5(() => Order, {
     onDelete: "SET NULL"
   }),
-  JoinColumn6({
+  JoinColumn5({
     name: "order_id"
   }),
   _ts_metadata10("design:type", typeof Order === "undefined" ? Object : Order)
@@ -627,7 +599,7 @@ _ts_decorate10([
   ManyToOne5(() => Patient, {
     onDelete: "SET NULL"
   }),
-  JoinColumn6({
+  JoinColumn5({
     name: "patient_id"
   }),
   _ts_metadata10("design:type", typeof Patient === "undefined" ? Object : Patient)
@@ -636,7 +608,7 @@ _ts_decorate10([
   ManyToOne5(() => Attachement, {
     onDelete: "SET NULL"
   }),
-  JoinColumn6({
+  JoinColumn5({
     name: "attachement_id"
   }),
   _ts_metadata10("design:type", typeof Attachement === "undefined" ? Object : Attachement)
