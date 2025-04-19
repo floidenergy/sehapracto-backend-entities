@@ -22,13 +22,13 @@ export class Patient {
   readonly patientUpdatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  patientDeletedAt!: Date;
+  readonly patientDeletedAt!: Date;
 
   @Column({ default: 0, unsigned: true })
   balance: number;
 
   @Column()
-  password: string;
+  password?: string;
 
   @Column()
   bloodGroup: string;

@@ -53,5 +53,5 @@ export class Admin {
   readonly adminUpdatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  adminDeletedAt!: Date;
+  readonly adminDeletedAt!: Date;
 }

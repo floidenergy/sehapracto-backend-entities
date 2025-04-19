@@ -6,9 +6,9 @@ declare class Patient {
     patientId: number;
     readonly patientCreatedAt: Date;
     readonly patientUpdatedAt: Date;
-    patientDeletedAt: Date;
+    readonly patientDeletedAt: Date;
     balance: number;
-    password: string;
+    password?: string;
     bloodGroup: string;
     user: User;
 }

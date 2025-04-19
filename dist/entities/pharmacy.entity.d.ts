@@ -6,8 +6,8 @@ declare class Pharmacy {
     pharmacyId: number;
     readonly pharmacyCreatedAt: Date;
     readonly pharmacyUpdatedAt: Date;
-    pharmacyDeletedAt: Date;
-    password: string;
+    readonly pharmacyDeletedAt?: Date;
+    password?: string;
     user: User;
 }
 

@@ -22,10 +22,11 @@ export class Pharmacy {
   readonly pharmacyUpdatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  pharmacyDeletedAt!: Date;
+  readonly pharmacyDeletedAt?: Date;
 
   @Column()
-  password: string;
+  password?: string;
+  
   @OneToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })
   user: User;

@@ -12,7 +12,7 @@ declare class Admin {
     permissions: Permission[];
     readonly adminCreatedAt: Date;
     readonly adminUpdatedAt: Date;
-    adminDeletedAt: Date;
+    readonly adminDeletedAt: Date;
 }
 
 export { Admin };
