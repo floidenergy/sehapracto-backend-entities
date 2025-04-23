@@ -172,6 +172,7 @@ var User = class extends BaseEntity {
   phoneVerifiedAt;
   country;
   profileImg;
+  active;
 };
 _ts_decorate3([
   (0, import_typeorm3.Column)(),
@@ -243,6 +244,12 @@ _ts_decorate3([
   }),
   _ts_metadata3("design:type", String)
 ], User.prototype, "profileImg", void 0);
+_ts_decorate3([
+  (0, import_typeorm3.Column)({
+    default: true
+  }),
+  _ts_metadata3("design:type", Boolean)
+], User.prototype, "active", void 0);
 User = _ts_decorate3([
   (0, import_typeorm3.Entity)("users")
 ], User);

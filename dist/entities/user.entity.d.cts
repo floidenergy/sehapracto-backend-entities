@@ -13,6 +13,7 @@ declare class User extends BaseEntity {
     phoneVerifiedAt: Date;
     country: Country;
     profileImg: string;
+    active: boolean;
 }
 
 export { User };

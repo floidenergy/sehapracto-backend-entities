@@ -244,6 +244,7 @@ var User = class extends BaseEntity {
   phoneVerifiedAt;
   country;
   profileImg;
+  active;
 };
 _ts_decorate5([
   Column4(),
@@ -315,6 +316,12 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profileImg", void 0);
+_ts_decorate5([
+  Column4({
+    default: true
+  }),
+  _ts_metadata5("design:type", Boolean)
+], User.prototype, "active", void 0);
 User = _ts_decorate5([
   Entity4("users")
 ], User);
@@ -820,6 +827,7 @@ var Patient = class {
   balance;
   password;
   bloodGroup;
+  active;
   user;
 };
 _ts_decorate13([
@@ -859,6 +867,12 @@ _ts_decorate13([
   Column12(),
   _ts_metadata13("design:type", String)
 ], Patient.prototype, "bloodGroup", void 0);
+_ts_decorate13([
+  Column12({
+    default: true
+  }),
+  _ts_metadata13("design:type", Boolean)
+], Patient.prototype, "active", void 0);
 _ts_decorate13([
   OneToOne3(() => User, {
     onDelete: "CASCADE"
@@ -946,6 +960,7 @@ var Pharmacy = class {
   pharmacyUpdatedAt;
   pharmacyDeletedAt;
   password;
+  active;
   user;
 };
 _ts_decorate15([
@@ -974,6 +989,12 @@ _ts_decorate15([
   Column14(),
   _ts_metadata15("design:type", String)
 ], Pharmacy.prototype, "password", void 0);
+_ts_decorate15([
+  Column14({
+    default: true
+  }),
+  _ts_metadata15("design:type", Boolean)
+], Pharmacy.prototype, "active", void 0);
 _ts_decorate15([
   OneToOne4(() => User, {
     onDelete: "CASCADE"

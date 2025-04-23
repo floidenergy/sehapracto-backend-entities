@@ -10,6 +10,7 @@ declare class Patient {
     balance: number;
     password?: string;
     bloodGroup: string;
+    active: boolean;
     user: User;
 }
 

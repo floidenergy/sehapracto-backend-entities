@@ -26,7 +26,12 @@ export class Pharmacy {
 
   @Column()
   password?: string;
-  
+
+  @Column({
+    default: true,
+  })
+  active: boolean;
+
   @OneToOne(() => User, { onDelete: "CASCADE" })
   @JoinColumn({ name: "user_id" })
   user: User;

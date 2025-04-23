@@ -169,6 +169,7 @@ var User = class extends BaseEntity {
   phoneVerifiedAt;
   country;
   profileImg;
+  active;
 };
 _ts_decorate3([
   Column2(),
@@ -240,6 +241,12 @@ _ts_decorate3([
   }),
   _ts_metadata3("design:type", String)
 ], User.prototype, "profileImg", void 0);
+_ts_decorate3([
+  Column2({
+    default: true
+  }),
+  _ts_metadata3("design:type", Boolean)
+], User.prototype, "active", void 0);
 User = _ts_decorate3([
   Entity2("users")
 ], User);
@@ -267,6 +274,7 @@ var Patient = class {
   balance;
   password;
   bloodGroup;
+  active;
   user;
 };
 _ts_decorate4([
@@ -306,6 +314,12 @@ _ts_decorate4([
   Column3(),
   _ts_metadata4("design:type", String)
 ], Patient.prototype, "bloodGroup", void 0);
+_ts_decorate4([
+  Column3({
+    default: true
+  }),
+  _ts_metadata4("design:type", Boolean)
+], Patient.prototype, "active", void 0);
 _ts_decorate4([
   OneToOne(() => User, {
     onDelete: "CASCADE"

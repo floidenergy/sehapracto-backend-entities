@@ -48,6 +48,11 @@ export class User extends BaseEntity {
   @Column({ nullable: true, default: "avatar.png" })
   profileImg: string;
 
+  @Column({
+    default: true,
+  })
+  active: boolean;
+
   // TODO: many to many
   // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
   // types: APP_TYPE;

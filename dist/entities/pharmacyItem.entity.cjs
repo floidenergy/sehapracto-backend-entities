@@ -274,6 +274,7 @@ var User = class extends BaseEntity {
   phoneVerifiedAt;
   country;
   profileImg;
+  active;
 };
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
@@ -345,6 +346,12 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profileImg", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)({
+    default: true
+  }),
+  _ts_metadata5("design:type", Boolean)
+], User.prototype, "active", void 0);
 User = _ts_decorate5([
   (0, import_typeorm5.Entity)("users")
 ], User);
@@ -370,6 +377,7 @@ var Pharmacy = class {
   pharmacyUpdatedAt;
   pharmacyDeletedAt;
   password;
+  active;
   user;
 };
 _ts_decorate6([
@@ -398,6 +406,12 @@ _ts_decorate6([
   (0, import_typeorm6.Column)(),
   _ts_metadata6("design:type", String)
 ], Pharmacy.prototype, "password", void 0);
+_ts_decorate6([
+  (0, import_typeorm6.Column)({
+    default: true
+  }),
+  _ts_metadata6("design:type", Boolean)
+], Pharmacy.prototype, "active", void 0);
 _ts_decorate6([
   (0, import_typeorm6.OneToOne)(() => User, {
     onDelete: "CASCADE"

@@ -257,6 +257,7 @@ var User = class extends BaseEntity {
   phoneVerifiedAt;
   country;
   profileImg;
+  active;
 };
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
@@ -328,6 +329,12 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profileImg", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)({
+    default: true
+  }),
+  _ts_metadata5("design:type", Boolean)
+], User.prototype, "active", void 0);
 User = _ts_decorate5([
   (0, import_typeorm5.Entity)("users")
 ], User);
@@ -794,6 +801,7 @@ var Patient = class {
   balance;
   password;
   bloodGroup;
+  active;
   user;
 };
 _ts_decorate13([
@@ -833,6 +841,12 @@ _ts_decorate13([
   (0, import_typeorm13.Column)(),
   _ts_metadata13("design:type", String)
 ], Patient.prototype, "bloodGroup", void 0);
+_ts_decorate13([
+  (0, import_typeorm13.Column)({
+    default: true
+  }),
+  _ts_metadata13("design:type", Boolean)
+], Patient.prototype, "active", void 0);
 _ts_decorate13([
   (0, import_typeorm13.OneToOne)(() => User, {
     onDelete: "CASCADE"
@@ -920,6 +934,7 @@ var Pharmacy = class {
   pharmacyUpdatedAt;
   pharmacyDeletedAt;
   password;
+  active;
   user;
 };
 _ts_decorate15([
@@ -948,6 +963,12 @@ _ts_decorate15([
   (0, import_typeorm15.Column)(),
   _ts_metadata15("design:type", String)
 ], Pharmacy.prototype, "password", void 0);
+_ts_decorate15([
+  (0, import_typeorm15.Column)({
+    default: true
+  }),
+  _ts_metadata15("design:type", Boolean)
+], Pharmacy.prototype, "active", void 0);
 _ts_decorate15([
   (0, import_typeorm15.OneToOne)(() => User, {
     onDelete: "CASCADE"

@@ -235,6 +235,7 @@ var User = class extends BaseEntity {
   phoneVerifiedAt;
   country;
   profileImg;
+  active;
 };
 _ts_decorate5([
   (0, import_typeorm5.Column)(),
@@ -306,6 +307,12 @@ _ts_decorate5([
   }),
   _ts_metadata5("design:type", String)
 ], User.prototype, "profileImg", void 0);
+_ts_decorate5([
+  (0, import_typeorm5.Column)({
+    default: true
+  }),
+  _ts_metadata5("design:type", Boolean)
+], User.prototype, "active", void 0);
 User = _ts_decorate5([
   (0, import_typeorm5.Entity)("users")
 ], User);
