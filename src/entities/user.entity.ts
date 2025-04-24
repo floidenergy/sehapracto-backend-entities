@@ -8,7 +8,7 @@ import {
   BeforeUpdate,
   JoinTable,
 } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Country } from "./country.entity";
 import { APP_TYPE } from "../types/userType.enum";
 // import { genSalt, hash, compare } from "bcrypt";
@@ -56,19 +56,4 @@ export class User extends BaseEntity {
   // TODO: many to many
   // @Column({ type: "enum", enum: APP_TYPE, default: APP_TYPE.PATIENT })
   // types: APP_TYPE;
-
-  // // Hash password before saving
-  // @BeforeInsert()
-  // @BeforeUpdate()
-  // async hashPassword(): Promise<void> {
-  //   if (!this.password) return;
-
-  //   const salt = await genSalt(10);
-  //   this.password = await hash(this.password as string, salt);
-  // }
-
-  // // Validate password
-  // async validatePassword(plainPassword: string): Promise<boolean> {
-  //   return compare(plainPassword, this.password);
-  // }
 }

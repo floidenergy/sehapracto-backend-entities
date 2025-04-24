@@ -6,9 +6,10 @@ import {
   OneToMany,
   OneToOne,
 } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Order } from "./order.entity";
 import { Product } from "./product.entity";
+
 
 @Entity("order_items")
 export class OrderItem extends BaseEntity {

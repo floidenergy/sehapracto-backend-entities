@@ -1,5 +1,5 @@
 import { Column, Entity } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 
 @Entity("attachements")
 export class Attachement extends BaseEntity {

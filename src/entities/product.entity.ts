@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Category } from "./category.entity";
 
 @Entity("products")

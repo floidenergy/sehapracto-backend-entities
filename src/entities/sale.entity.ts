@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Patient } from "./patient.entity";
 import { Order } from "./order.entity";
 

@@ -1,27 +1,17 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
-import { Pharmacy } from "./pharmacy.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { PharmacyBusiness } from "./pharmacyBusiness.entity";
-import { Country } from "./country.entity";
 
 @Entity("pharmacy_store")
 export class PharmacyStore extends BaseEntity {
-  @OneToOne(() => Pharmacy, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "manager_id" })
-  manager: Pharmacy;
-  @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "pharmacy_business_id" })
-  pharmacyBusiness: Pharmacy;
+  @Column()
+  managerId: number;
 
-  @Column({
-    nullable: true,
-  })
-  profileImg: string;
+  @Column()
+  phone: string;
 
-  @Column({
-    nullable: true,
-  })
-  coverImg: string;
+  @Column()
+  email: string;
 
   @Column()
   name: string;
@@ -29,13 +19,29 @@ export class PharmacyStore extends BaseEntity {
   @Column()
   address: string;
 
-  @ManyToOne(() => Country)
-  @JoinColumn({ name: "country_id" })
-  country: Country;
+  @Column()
+  countryId: number;
 
   @Column()
-  phone: string;
+  cityId: number;
 
-  @Column()
-  email: string;
+  @Column({
+    default: true,
+    select: false,
+  })
+  active?: boolean;
+
+  @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
+  @JoinColumn({ name: "businessId" })
+  business: PharmacyBusiness;
+
+  @Column({
+    nullable: true,
+  })
+  profileImgId?: number;
+
+  @Column({
+    nullable: true,
+  })
+  coverImgId: number;
 }

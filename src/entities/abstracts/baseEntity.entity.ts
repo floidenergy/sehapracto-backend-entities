@@ -1,14 +1,13 @@
 import {
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 
 export class BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  readonly id!: number;
 
   @CreateDateColumn({ type: "timestamp" })
   readonly createdAt!: Date;

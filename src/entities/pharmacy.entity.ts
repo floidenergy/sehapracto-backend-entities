@@ -9,11 +9,12 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "./user.entity";
+import { Profile } from "./abstracts/profile.entity";
 
 @Entity("pharmacies")
-export class Pharmacy {
+export class Pharmacy extends Profile {
   @PrimaryGeneratedColumn()
-  pharmacyId!: number;
+  readonly pharmacyId!: number;
 
   @CreateDateColumn({ type: "timestamp" })
   readonly pharmacyCreatedAt!: Date;
@@ -23,16 +24,4 @@ export class Pharmacy {
 
   @DeleteDateColumn({ type: "timestamp" })
   readonly pharmacyDeletedAt?: Date;
-
-  @Column()
-  password?: string;
-
-  @Column({
-    default: true,
-  })
-  active: boolean;
-
-  @OneToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
-  user: User;
 }

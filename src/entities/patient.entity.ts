@@ -9,9 +9,10 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "./user.entity";
+import { Profile } from "./abstracts/profile.entity";
 
 @Entity("patients")
-export class Patient {
+export class Patient extends Profile {
   @PrimaryGeneratedColumn()
   patientId!: number;
 
@@ -28,17 +29,10 @@ export class Patient {
   balance: number;
 
   @Column()
-  password?: string;
-
-  @Column()
   bloodGroup: string;
 
-  @Column({
-    default: true,
-  })
-  active: boolean;
-
-  @OneToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
-  user: User;
+  constructor() {
+    super();
+    this.active = true;
+  }
 }

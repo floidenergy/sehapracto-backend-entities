@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from "typeorm";
 import { Country } from "./country.entity";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 
 @Entity("cities")
 export class City extends BaseEntity {

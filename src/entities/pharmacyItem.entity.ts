@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Product } from "./product.entity";
 import { PharmacyStore } from "./pharmacyStore.entity";
 
@@ -12,7 +12,6 @@ export class PharmacyItem extends BaseEntity {
   @Column({ unsigned: true })
   quantity: number;
 
-  @ManyToOne(() => PharmacyStore, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "pharmacy_store_id" })
-  pharmacyStore: PharmacyStore;
+  @Column()
+  pharmacyStoreId: number;
 }
