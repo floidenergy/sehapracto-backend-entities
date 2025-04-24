@@ -5,8 +5,11 @@ import { Sale } from "./sale.entity";
 
 @Entity("sale_items")
 export class SaleItem extends BaseEntity {
-  @OneToOne(() => Product, { onDelete: "CASCADE" })
-  product: Product;
+  @Column({
+    type: "int",
+    nullable: false,
+  })
+  product: number;
 
   @OneToOne(() => Sale, { onDelete: "CASCADE" })
   sale: Sale;

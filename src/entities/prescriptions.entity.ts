@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
 import { Order } from "./order.entity";
 import { Patient } from "./patient.entity";
@@ -10,11 +10,15 @@ export class Prescription extends BaseEntity {
   @JoinColumn({ name: "order_id" })
   order: Order;
 
-  @ManyToOne(() => Patient, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "patient_id" })
-  patient: Patient;
+  @Column({
+    type: "int",
+    nullable: false,
+  })
+  patient: number;
 
-  @ManyToOne(() => Attachement, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "attachement_id" })
-  attachement: Attachement;
+  @Column({
+    type: "int",
+    nullable: false,
+  })
+  attachement: number;
 }

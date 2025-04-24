@@ -5,9 +5,11 @@ import { Order } from "./order.entity";
 
 @Entity("sales")
 export class Sale extends BaseEntity {
-  @ManyToOne(() => Patient)
-  @JoinColumn({ name: "customer_id" })
-  customer: Patient;
+  @Column({
+    type: "int",
+    nullable: false,
+  })
+  customer: number;
 
   @ManyToOne(() => Order)
   @JoinColumn({ name: "order_id" })

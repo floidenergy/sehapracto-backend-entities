@@ -7,9 +7,11 @@ import { Patient } from "./patient.entity";
 
 @Entity("orders")
 export class Order extends BaseEntity {
-  @ManyToOne(() => Patient, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "patient_id" })
-  patient: Patient;
+  @Column({
+    type: "int",
+    nullable: false,
+  })
+  patient: number;
 
   @Column({
     type: "enum",

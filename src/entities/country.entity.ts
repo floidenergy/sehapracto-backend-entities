@@ -1,11 +1,6 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import { Entity, Column, OneToOne } from "typeorm";
 import { BaseEntity } from "./baseEntity.entity";
+import { Attachement } from "./attachements.entity";
 
 @Entity("countries")
 export class Country extends BaseEntity {
@@ -30,9 +25,10 @@ export class Country extends BaseEntity {
   @Column()
   timezone: string;
 
-  @Column()
-  flagIcon: string;
+  // TODO: uncomment this when the adding the attachement
+  // @OneToOne(() => Attachement)
+  // flagIcon: string;
 
-  @Column({ default: false })
+  @Column({ default: true })
   isActive: boolean;
 }

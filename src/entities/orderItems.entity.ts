@@ -22,7 +22,9 @@ export class OrderItem extends BaseEntity {
   @Column({ unsigned: true })
   price: number;
 
-  @OneToOne(() => Product, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "product_id" })
-  product: Product;
+  @Column({
+    type: "int",
+    nullable: false,
+  })
+  product: number;
 }
