@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { User } from "./user.entity";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { APP_TYPE } from "../types";
 
 @Entity("sessions")

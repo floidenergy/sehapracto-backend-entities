@@ -12,7 +12,7 @@ import {
   DeleteDateColumn,
 } from "typeorm";
 import { Department } from "./department.entity";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Permission } from "./adminPermission.entity";
 import { User } from "./user.entity";
 

@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Product } from "./product.entity";
 import { Sale } from "./sale.entity";
 

@@ -1,5 +1,5 @@
 import { Entity, Column, OneToOne } from "typeorm";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Attachement } from "./attachements.entity";
 
 @Entity("countries")

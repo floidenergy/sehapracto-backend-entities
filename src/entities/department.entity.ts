@@ -7,7 +7,7 @@ import {
   ManyToOne,
 } from "typeorm";
 import { Admin } from "../entities-old/admin.entity";
-import { BaseEntity } from "./baseEntity.entity";
+import { BaseEntity } from "./abstracts/baseEntity.entity";
 
 @Entity("departments")
 export class Department extends BaseEntity {
