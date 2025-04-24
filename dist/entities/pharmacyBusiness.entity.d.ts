@@ -1,12 +1,9 @@
 import { BaseEntity } from './baseEntity.entity.js';
-import { Pharmacy } from './pharmacy.entity.js';
-import { Country } from './country.entity.js';
-import './user.entity.js';
 
 declare class PharmacyBusiness extends BaseEntity {
-    owner: Pharmacy;
+    owner: number;
     name: string;
-    country: Country;
+    country: number;
     phone: string;
     email: string;
 }

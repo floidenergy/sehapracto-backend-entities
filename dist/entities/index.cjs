@@ -999,34 +999,37 @@ var PharmacyBusiness = class extends BaseEntity {
   static {
     __name(this, "PharmacyBusiness");
   }
+  // @OneToOne(() => Pharmacy, { onDelete: "CASCADE" })
+  // @JoinColumn({ name: "owner_id" })
+  // owner: Pharmacy;
   owner;
   name;
+  // @ManyToOne(() => Country, { nullable: false, onDelete: "NO ACTION" })
+  // @JoinColumn({ name: "country_id" })
+  // country: Country;
   country;
   phone;
   email;
 };
 _ts_decorate16([
-  (0, import_typeorm16.OneToOne)(() => Pharmacy, {
-    onDelete: "CASCADE"
+  (0, import_typeorm16.Column)({
+    type: "int",
+    nullable: false,
+    unique: true
   }),
-  (0, import_typeorm16.JoinColumn)({
-    name: "owner_id"
-  }),
-  _ts_metadata16("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
+  _ts_metadata16("design:type", Number)
 ], PharmacyBusiness.prototype, "owner", void 0);
 _ts_decorate16([
   (0, import_typeorm16.Column)(),
   _ts_metadata16("design:type", String)
 ], PharmacyBusiness.prototype, "name", void 0);
 _ts_decorate16([
-  (0, import_typeorm16.ManyToOne)(() => Country, {
+  (0, import_typeorm16.Column)({
+    type: "int",
     nullable: false,
-    onDelete: "NO ACTION"
+    unique: true
   }),
-  (0, import_typeorm16.JoinColumn)({
-    name: "country_id"
-  }),
-  _ts_metadata16("design:type", typeof Country === "undefined" ? Object : Country)
+  _ts_metadata16("design:type", Number)
 ], PharmacyBusiness.prototype, "country", void 0);
 _ts_decorate16([
   (0, import_typeorm16.Column)(),
@@ -1060,33 +1063,40 @@ var PharmacyStore = class extends BaseEntity {
   static {
     __name(this, "PharmacyStore");
   }
+  // @OneToOne(() => Pharmacy, { onDelete: "SET NULL" })
+  // @JoinColumn({ name: "manager_id" })
+  // manager: Pharmacy;
+  // @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
+  // @JoinColumn({ name: "pharmacy_business_id" })
+  // pharmacyBusiness: Pharmacy;
   manager;
   pharmacyBusiness;
   profileImg;
   coverImg;
   name;
   address;
+  // @ManyToOne(() => Country)
+  // @JoinColumn({ name: "country_id" })
+  // country: Country;
   country;
   phone;
   email;
 };
 _ts_decorate17([
-  (0, import_typeorm17.OneToOne)(() => Pharmacy, {
-    onDelete: "SET NULL"
+  (0, import_typeorm17.Column)({
+    type: "int",
+    nullable: false,
+    unique: true
   }),
-  (0, import_typeorm17.JoinColumn)({
-    name: "manager_id"
-  }),
-  _ts_metadata17("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
+  _ts_metadata17("design:type", Number)
 ], PharmacyStore.prototype, "manager", void 0);
 _ts_decorate17([
-  (0, import_typeorm17.ManyToOne)(() => PharmacyBusiness, {
-    onDelete: "SET NULL"
+  (0, import_typeorm17.Column)({
+    type: "int",
+    nullable: false,
+    unique: true
   }),
-  (0, import_typeorm17.JoinColumn)({
-    name: "pharmacy_business_id"
-  }),
-  _ts_metadata17("design:type", typeof Pharmacy === "undefined" ? Object : Pharmacy)
+  _ts_metadata17("design:type", Number)
 ], PharmacyStore.prototype, "pharmacyBusiness", void 0);
 _ts_decorate17([
   (0, import_typeorm17.Column)({
@@ -1109,11 +1119,12 @@ _ts_decorate17([
   _ts_metadata17("design:type", String)
 ], PharmacyStore.prototype, "address", void 0);
 _ts_decorate17([
-  (0, import_typeorm17.ManyToOne)(() => Country),
-  (0, import_typeorm17.JoinColumn)({
-    name: "country_id"
+  (0, import_typeorm17.Column)({
+    type: "int",
+    nullable: false,
+    unique: true
   }),
-  _ts_metadata17("design:type", typeof Country === "undefined" ? Object : Country)
+  _ts_metadata17("design:type", Number)
 ], PharmacyStore.prototype, "country", void 0);
 _ts_decorate17([
   (0, import_typeorm17.Column)(),
@@ -1143,18 +1154,20 @@ var PharmacyItem = class extends BaseEntity {
   static {
     __name(this, "PharmacyItem");
   }
+  // @OneToOne(() => Product, { onDelete: "CASCADE" })
+  // @JoinColumn({ name: "product_id" })
+  // product: Product;
   product;
   quantity;
   pharmacyStore;
 };
 _ts_decorate18([
-  (0, import_typeorm18.OneToOne)(() => Product, {
-    onDelete: "CASCADE"
+  (0, import_typeorm18.Column)({
+    type: "int",
+    nullable: false,
+    unique: true
   }),
-  (0, import_typeorm18.JoinColumn)({
-    name: "product_id"
-  }),
-  _ts_metadata18("design:type", typeof Product === "undefined" ? Object : Product)
+  _ts_metadata18("design:type", Number)
 ], PharmacyItem.prototype, "product", void 0);
 _ts_decorate18([
   (0, import_typeorm18.Column)({

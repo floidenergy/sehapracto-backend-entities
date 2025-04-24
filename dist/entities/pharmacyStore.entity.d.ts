@@ -1,16 +1,13 @@
 import { BaseEntity } from './baseEntity.entity.js';
-import { Pharmacy } from './pharmacy.entity.js';
-import { Country } from './country.entity.js';
-import './user.entity.js';
 
 declare class PharmacyStore extends BaseEntity {
-    manager: Pharmacy;
-    pharmacyBusiness: Pharmacy;
+    manager: number;
+    pharmacyBusiness: number;
     profileImg: string;
     coverImg: string;
     name: string;
     address: string;
-    country: Country;
+    country: number;
     phone: string;
     email: string;
 }

@@ -6,12 +6,24 @@ import { Country } from "./country.entity";
 
 @Entity("pharmacy_store")
 export class PharmacyStore extends BaseEntity {
-  @OneToOne(() => Pharmacy, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "manager_id" })
-  manager: Pharmacy;
-  @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "pharmacy_business_id" })
-  pharmacyBusiness: Pharmacy;
+  // @OneToOne(() => Pharmacy, { onDelete: "SET NULL" })
+  // @JoinColumn({ name: "manager_id" })
+  // manager: Pharmacy;
+  // @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
+  // @JoinColumn({ name: "pharmacy_business_id" })
+  // pharmacyBusiness: Pharmacy;
+  @Column({
+    type: "int",
+    nullable: false,
+    unique: true,
+  })
+  manager: number;
+  @Column({
+    type: "int",
+    nullable: false,
+    unique: true,
+  })
+  pharmacyBusiness: number;
 
   @Column({
     nullable: true,
@@ -29,9 +41,15 @@ export class PharmacyStore extends BaseEntity {
   @Column()
   address: string;
 
-  @ManyToOne(() => Country)
-  @JoinColumn({ name: "country_id" })
-  country: Country;
+  // @ManyToOne(() => Country)
+  // @JoinColumn({ name: "country_id" })
+  // country: Country;
+  @Column({
+    type: "int",
+    nullable: false,
+    unique: true,
+  })
+  country: number;
 
   @Column()
   phone: string;
