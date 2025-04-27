@@ -17,7 +17,8 @@ export class PharmacyItem extends BaseEntity {
 
   @Column({ unsigned: true })
   quantity: number;
-
+  @Column({ unsigned: true })
+  price: number;
   @Column()
   pharmacyStoreId: number;
 }

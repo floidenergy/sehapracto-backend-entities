@@ -8,14 +8,17 @@ export class Product extends BaseEntity {
   name: string;
 
   @Column()
+  pharmacyId: number;
+
+  @Column()
   sku: string;
   @ManyToOne(() => Category, { onDelete: "SET NULL" })
   @JoinColumn({ name: "category_id" })
   category: Category;
   @Column()
   requirePrescription: boolean;
-  @Column({ unsigned: true })
-  price: number;
   @Column()
   description: string;
+  // @Column({ unsigned: true })
+  // price: number;
 }

@@ -2,9 +2,8 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { User } from "./user.entity";
 import { OrderItem } from "./orderItems.entity";
-import { OrderStatus } from "../types";
+import { OrderStatus, OrderType, PaymentMethod } from "../types";
 import { Patient } from "./patient.entity";
-
 
 @Entity("orders")
 export class Order extends BaseEntity {
@@ -20,6 +19,18 @@ export class Order extends BaseEntity {
     default: OrderStatus.PENDING,
   })
   status: OrderStatus;
+  @Column({
+    type: "enum",
+    enum: OrderType,
+    default: OrderType.DELIVERY,
+  })
+  orderType: OrderType;
+  @Column({
+    type: "enum",
+    enum: PaymentMethod,
+    default: PaymentMethod.CASH,
+  })
+  paymentMethod: PaymentMethod;
 
   @Column({ unsigned: true })
   price: number;
