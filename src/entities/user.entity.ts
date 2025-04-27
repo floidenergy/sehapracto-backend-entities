@@ -41,9 +41,8 @@ export class User extends BaseEntity {
   @Column({ type: "timestamp", nullable: true })
   phoneVerifiedAt: Date;
 
-  @ManyToOne(() => Country, { nullable: false, onDelete: "NO ACTION" })
-  @JoinTable({ name: "country_id" })
-  country: Country;
+  @Column()
+  countryId: number;
 
   @Column({ nullable: true, default: "avatar.png" })
   profileImg: string;

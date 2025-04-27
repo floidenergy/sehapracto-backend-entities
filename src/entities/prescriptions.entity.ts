@@ -7,14 +7,14 @@ import { Attachement } from "./attachements.entity";
 @Entity("prescriptions")
 export class Prescription extends BaseEntity {
   @ManyToOne(() => Order, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "order_id" })
+  @JoinColumn({ name: "orderId" })
   order: Order;
 
   @ManyToOne(() => Patient, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "patient_id" })
+  @JoinColumn({ name: "patientId" })
   patient: Patient;
 
   @ManyToOne(() => Attachement, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "attachement_id" })
+  @JoinColumn({ name: "attachementId" })
   attachement: Attachement;
 }

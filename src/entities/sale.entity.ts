@@ -6,11 +6,11 @@ import { Order } from "./order.entity";
 @Entity("sales")
 export class Sale extends BaseEntity {
   @ManyToOne(() => Patient)
-  @JoinColumn({ name: "customer_id" })
+  @JoinColumn({ name: "customerId" })
   customer: Patient;
 
   @ManyToOne(() => Order)
-  @JoinColumn({ name: "order_id" })
+  @JoinColumn({ name: "orderId" })
   order: Order;
 
   @Column({ unsigned: true })

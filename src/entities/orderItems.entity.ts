@@ -14,7 +14,7 @@ import { Product } from "./product.entity";
 @Entity("order_items")
 export class OrderItem extends BaseEntity {
   @ManyToOne(() => Order, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "order_id" })
+  @JoinColumn({ name: "orderId" })
   order: Order;
 
   @Column({ unsigned: true })
@@ -24,6 +24,6 @@ export class OrderItem extends BaseEntity {
   price: number;
 
   @OneToOne(() => Product, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "product_id" })
+  @JoinColumn({ name: "productId" })
   product: Product;
 }

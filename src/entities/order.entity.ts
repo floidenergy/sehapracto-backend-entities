@@ -9,7 +9,7 @@ import { Patient } from "./patient.entity";
 @Entity("orders")
 export class Order extends BaseEntity {
   @ManyToOne(() => Patient, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "patient_id" })
+  @JoinColumn({ name: "patientId" })
   patient: Patient;
 
   @Column({

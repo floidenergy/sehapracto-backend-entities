@@ -9,7 +9,7 @@ export class SalesRefunds extends BaseEntity {
   @Column()
   status: string;
   @Column()
-  refunded_date: Date;
+  refundedDate: Date;
   @Column()
   reason: number;
   @OneToOne(() => Sale, {})
