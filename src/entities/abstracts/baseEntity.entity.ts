@@ -16,5 +16,5 @@ export class BaseEntity {
   readonly updatedAt!: Date;
 
   @DeleteDateColumn({ type: "timestamp" })
-  deletedAt!: Date;
+  readonly deletedAt?: Date;
 }

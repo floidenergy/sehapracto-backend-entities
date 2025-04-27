@@ -28,8 +28,8 @@ export class Patient extends Profile {
   @Column({ default: 0, unsigned: true })
   balance: number;
 
-  @Column()
-  bloodGroup: string;
+  @Column({nullable: true})
+  bloodGroup?: string;
 
   constructor() {
     super();

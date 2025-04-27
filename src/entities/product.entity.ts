@@ -1,9 +1,13 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseEntity } from "./abstracts/baseEntity.entity";
-import { Category } from "./category.entity";
+import { ProductCategory } from "./ProductCategory.entity";
+import { ProductBrand } from "./ProductBrand.entity";
 
 @Entity("products")
 export class Product extends BaseEntity {
+  @Column()
+  imageId: number;
+
   @Column()
   name: string;
 
@@ -11,14 +15,26 @@ export class Product extends BaseEntity {
   pharmacyId: number;
 
   @Column()
+  businessId: number;
+
+  @Column()
   sku: string;
-  @ManyToOne(() => Category, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "category_id" })
-  category: Category;
+
+  @ManyToOne(() => ProductCategory, { onDelete: "SET NULL" })
+  @JoinColumn({ name: "categoryId" })
+  category: ProductCategory;
+
+  @ManyToOne(() => ProductBrand, { onDelete: "SET NULL" })
+  @JoinColumn({ name: "BrandId" })
+  brand: ProductBrand;
+
   @Column()
   requirePrescription: boolean;
   @Column()
   description: string;
   // @Column({ unsigned: true })
   // price: number;
+
+  @Column({ unsigned: true })
+  basePrice: number;
 }

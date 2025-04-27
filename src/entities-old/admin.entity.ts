@@ -18,7 +18,7 @@ export class Admin {
 
   // @ManyToOne(() => Department, (department) => department.id, { onDelete: 'CASCADE', })
   @OneToOne(() => Department, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "department_id" })
+  @JoinColumn({ name: "departmentId" })
   department: Department;
 
   @Column()
@@ -34,13 +34,13 @@ export class Admin {
     default:
       "https://s3.us-east-2.amazonaws.com/sehapracto-images/user_profile_images/Pc7bLYpjW2c56Jnb8ovCq3ZrA3rO8vPEL0j4ZsXH.jpg",
   })
-  profile_img: string;
+  profileImg: string;
 
   @Column()
   phone: string;
 
   @OneToOne(() => Country)
-  @JoinColumn({ name: "country_id" })
+  @JoinColumn({ name: "countryId" })
   country: Country;
 
   @Column({ default: false })

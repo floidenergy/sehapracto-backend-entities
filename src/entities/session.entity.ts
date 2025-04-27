@@ -19,9 +19,8 @@ export class Session extends BaseEntity {
   @Column({ nullable: true })
   refreshKey: string;
 
-  @ManyToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
-  user: User;
+  @Column()
+  userId: number;
 
   @Column({ nullable: true })
   ipAddress: string;

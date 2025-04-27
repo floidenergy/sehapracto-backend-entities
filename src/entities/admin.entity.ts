@@ -15,32 +15,29 @@ import { Department } from "./department.entity";
 import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Permission } from "./adminPermission.entity";
 import { User } from "./user.entity";
+import { Profile } from "./abstracts/profile.entity";
 
 @Entity("admins")
-export class Admin {
+export class Admin extends Profile {
   @PrimaryGeneratedColumn()
-  adminID: number;
+  adminId: number;
 
   @ManyToOne(() => Department, { onDelete: "NO ACTION" })
-  @JoinColumn({ name: "department_id" })
+  @JoinColumn({ name: "departmentId" })
   department: Department;
 
   @Column({ default: false })
   isActive: boolean;
 
-  @OneToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
-  user: User;
-
   @ManyToMany(() => Permission)
   @JoinTable({
-    name: "admin_permissions",
+    name: "adminPermissions",
     joinColumn: {
-      name: "admin_id",
-      referencedColumnName: "adminID",
+      name: "adminId",
+      referencedColumnName: "adminId",
     },
     inverseJoinColumn: {
-      name: "permission_id",
+      name: "permissionId",
       referencedColumnName: "id",
     },
   })

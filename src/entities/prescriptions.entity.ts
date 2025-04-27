@@ -7,7 +7,7 @@ import { Attachement } from "./attachements.entity";
 @Entity("prescriptions")
 export class Prescription extends BaseEntity {
   @ManyToOne(() => Order, { onDelete: "SET NULL" })
-  @JoinColumn({ name: "order_id" })
+  @JoinColumn({ name: "orderId" })
   order: Order;
 
   @Column({

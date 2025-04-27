@@ -12,7 +12,7 @@ export class Sale extends BaseEntity {
   customer: number;
 
   @ManyToOne(() => Order)
-  @JoinColumn({ name: "order_id" })
+  @JoinColumn({ name: "orderId" })
   order: Order;
 
   @Column({ unsigned: true })

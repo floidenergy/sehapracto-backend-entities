@@ -31,6 +31,9 @@ export class PharmacyStore extends BaseEntity {
   })
   active?: boolean;
 
+  @Column({ default: false })
+  mainStore: boolean;
+
   @ManyToOne(() => PharmacyBusiness, { onDelete: "SET NULL" })
   @JoinColumn({ name: "businessId" })
   business: PharmacyBusiness;

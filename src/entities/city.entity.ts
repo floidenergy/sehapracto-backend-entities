@@ -13,7 +13,7 @@ import { BaseEntity } from "./abstracts/baseEntity.entity";
 @Entity("cities")
 export class City extends BaseEntity {
   @ManyToOne(() => Country, (country) => country.id, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "country_id" })
+  @JoinColumn({ name: "countryId" })
   country: Country;
 
   @Column({ unique: true })

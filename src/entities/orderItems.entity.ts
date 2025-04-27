@@ -10,11 +10,10 @@ import { BaseEntity } from "./abstracts/baseEntity.entity";
 import { Order } from "./order.entity";
 import { Product } from "./product.entity";
 
-
 @Entity("order_items")
 export class OrderItem extends BaseEntity {
   @ManyToOne(() => Order, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "order_id" })
+  @JoinColumn({ name: "orderId" })
   order: Order;
 
   @Column({ unsigned: true })
