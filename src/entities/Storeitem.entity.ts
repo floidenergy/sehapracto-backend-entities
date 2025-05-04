@@ -4,16 +4,10 @@ import { Product } from "./product.entity";
 import { PharmacyStore } from "./pharmacyStore.entity";
 
 @Entity("store_item")
-export class PharmacyItem extends BaseEntity {
-  // @OneToOne(() => Product, { onDelete: "CASCADE" })
-  // @JoinColumn({ name: "product_id" })
-  // product: Product;
-  @Column({
-    type: "int",
-    nullable: false,
-    unique: true,
-  })
-  product: number;
+export class StoreItem extends BaseEntity {
+  @OneToOne(() => Product, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "product_id" })
+  product: Product;
 
   @Column({ unsigned: true })
   quantity: number;
@@ -21,12 +15,9 @@ export class PharmacyItem extends BaseEntity {
   @Column({ default: 0 })
   lowStockThreshold: number;
 
-  @Column({ unsigned: true })
-  overridenPrice: number;
+  @Column({ unsigned: true, nullable: true })
+  overridenPrice?: number;
 
   @Column()
   pharmacyStoreId: number;
-
-  @Column({ nullable: true })
-  priceOverride?: number;
 }

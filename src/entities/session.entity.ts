@@ -26,10 +26,23 @@ export class Session extends BaseEntity {
   ipAddress: string;
   @Column({
     type: "enum",
-    enum: APP_TYPE,
+    enum: Object.values([
+      APP_TYPE.ADMIN,
+      APP_TYPE.PATIENT,
+      APP_TYPE.HCP,
+      APP_TYPE.PHARMACY,
+      APP_TYPE.HOSPITAL,
+      APP_TYPE.DOCTOR,
+    ]),
     default: APP_TYPE.PATIENT,
   })
-  sessionRole: APP_TYPE;
+  sessionRole:
+    | APP_TYPE.ADMIN
+    | APP_TYPE.PATIENT
+    | APP_TYPE.HCP
+    | APP_TYPE.PHARMACY
+    | APP_TYPE.HOSPITAL
+    | APP_TYPE.DOCTOR;
 
   // CREATE TOKEN EVERY TIME U CREATE A SESSION
   @BeforeInsert()

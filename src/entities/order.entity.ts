@@ -35,7 +35,12 @@ export class Order extends BaseEntity {
   @Column({ unsigned: true })
   price: number;
 
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
-  orderItems: OrderItem[];
+  // @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
+  // orderItems: OrderItem[];
+
+  @Column()
+  adress: string;
+  @Column()
+  phone: string;
   //   prescription
 }

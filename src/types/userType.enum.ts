@@ -5,4 +5,5 @@ export enum APP_TYPE {
   HCP = "HCP",
   HOSPITAL = "HOSPITAL",
   DOCTOR = "DOCTOR",
+  SYSTEM = "SYSTEM",
 }

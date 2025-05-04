@@ -27,4 +27,7 @@ export class OrderItem extends BaseEntity {
     nullable: false,
   })
   product: number;
+
+  @Column({ nullable: true })
+  returedAt?: Date;
 }
