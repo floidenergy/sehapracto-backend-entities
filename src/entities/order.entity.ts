@@ -16,7 +16,7 @@ export class Order extends BaseEntity {
   @Column({
     type: "enum",
     enum: OrderStatus,
-    default: OrderStatus.PENDING,
+    default: OrderStatus.INQUEUE,
   })
   status: OrderStatus;
   @Column({
@@ -42,5 +42,10 @@ export class Order extends BaseEntity {
   adress: string;
   @Column()
   phone: string;
+
+  @Column({
+    nullable: true,
+  })
+  reason: string;
   //   prescription
 }

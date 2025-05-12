@@ -1,4 +1,5 @@
 export enum OrderStatus {
+  INQUEUE = "INQUEUE",
   PENDING = "PENDING",
   APPROVED = "APPROVED",
   REJECTED = "REJECTED",
