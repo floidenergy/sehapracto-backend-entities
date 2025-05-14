@@ -22,7 +22,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^22.13.10",
     "tslib": "^2.8.1",
     "tsup": "^8.4.0",
@@ -35,7 +35,7 @@
     "@nestjs/microservices": "^11.1.0",
     "@swc/core": "^1.11.9",
     "@types/express": "^5.0.0",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "kafkajs": "^2.2.4",
     "pg": "^8.14.0",
     "reflect-metadata": "^0.2.2",
