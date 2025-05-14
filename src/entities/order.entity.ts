@@ -19,12 +19,14 @@ export class Order extends BaseEntity {
     default: OrderStatus.INQUEUE,
   })
   status: OrderStatus;
+  
   @Column({
     type: "enum",
     enum: OrderType,
     default: OrderType.DELIVERY,
   })
   orderType: OrderType;
+
   @Column({
     type: "enum",
     enum: PaymentMethod,

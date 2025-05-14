@@ -14,7 +14,7 @@ export * from "./ProductBrand.entity";
 export * from "./ProductCategory.entity";
 export * from "./product.entity";
 export * from "./Storeitem.entity";
-export * from './pharmacyInventoryLog.entity'
+export * from "./pharmacyInventoryLog.entity";
 
 export * from "./attachements.entity";
 
@@ -29,3 +29,6 @@ export * from "./pharmacyBusiness.entity";
 export * from "./pharmacyStore.entity";
 
 export * from "./department.entity";
+
+export * from "./notification.entity";
+export * from "./pushToken.entity";
