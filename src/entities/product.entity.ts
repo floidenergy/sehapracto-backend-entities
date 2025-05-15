@@ -5,7 +5,9 @@ import { ProductBrand } from "./ProductBrand.entity";
 
 @Entity("products")
 export class Product extends BaseEntity {
-  @Column()
+  @Column({
+    nullable: true,
+  })
   imageId: number;
 
   @Column()
