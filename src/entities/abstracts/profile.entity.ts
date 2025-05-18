@@ -5,7 +5,7 @@ import {
   JoinColumn,
   OneToOne,
 } from "typeorm";
-import { genSalt, hash, compare } from "bcrypt";
+import { genSalt, hash, compare } from "bcryptjs";
 import { User } from "../user.entity";
 
 const saltRound = 10;

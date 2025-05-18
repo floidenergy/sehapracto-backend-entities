@@ -9,7 +9,7 @@ export class StoreItem extends BaseEntity {
   @JoinColumn({ name: "product_id" })
   product: Product;
 
-  @Column({ unsigned: true })
+  @Column({ unsigned: true, default: 0 })
   quantity: number;
 
   @Column({ default: 0 })

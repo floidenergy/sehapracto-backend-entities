@@ -10,8 +10,10 @@ export const KafkaEvents = {
     ORDER_INQUEUE: "order.inqueue",
     STOCK_FAILED: "order.stock.failed",
     STOCK_APPROVED: "order.stock.approved",
-    ATTACHEMENT_APPROVED: "order.attachement.approved",
-    ATTACHEMENT_FAILED: "order.attachement.failed",
+    PRESCRIPTION_APPROVED: "order.prescription.approved",
+    PRESCRIPTION_FAILED: "order.prescription.failed",
+    ORDER_SUBMITED: "order.submit.success",
+    ORDER_FAILED: "order.submit.failed" 
   },
   AUTH: {
     USER_SIGNIN: "auth.user.signin",
@@ -40,8 +42,8 @@ export type KafkaEventMap = {
   [KafkaEvents.ORDER.ORDER_INQUEUE]: OrderInQueuePayload;
   [KafkaEvents.ORDER.STOCK_APPROVED]: StockApprovedPayload;
   [KafkaEvents.ORDER.STOCK_FAILED]: FailedPayload;
-  [KafkaEvents.ORDER.ATTACHEMENT_APPROVED]: AttachementApprovedPayload;
-  [KafkaEvents.ORDER.ATTACHEMENT_FAILED]: FailedPayload;
+  [KafkaEvents.ORDER.PRESCRIPTION_APPROVED]: AttachementApprovedPayload;
+  [KafkaEvents.ORDER.PRESCRIPTION_FAILED]: FailedPayload;
 
   // AUTH
 

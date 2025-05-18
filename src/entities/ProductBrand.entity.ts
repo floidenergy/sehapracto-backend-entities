@@ -6,8 +6,6 @@ export class ProductBrand extends BaseEntity {
   @Column()
   name: string;
 
-  @Column({
-    nullable: true,
-  })
+  @Column({ nullable: true }) // TODO: remove nullable later
   logoId: number;
 }
