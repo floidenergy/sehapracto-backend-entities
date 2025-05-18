@@ -14,7 +14,7 @@ export class SaleItem extends BaseEntity {
   @OneToOne(() => Sale, { onDelete: "CASCADE" })
   sale: Sale;
 
-  @Column({ unsigned: true })
+  @Column({ unsigned: true, default: 0 })
   quantity: number;
 
   @Column({ unsigned: true })

@@ -14,9 +14,6 @@ export class Product extends BaseEntity {
   name: string;
 
   @Column()
-  pharmacyId: number;
-
-  @Column()
   businessId: number;
 
   @Column()
