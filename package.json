@@ -1,6 +1,6 @@
 {
-  "name": "@sehapracto/backend-entities",
-  "version": "1.0.7",
+  "name": "sehapracto-backend-entities",
+  "version": "1.0.6",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -14,14 +14,12 @@
     "dev": "tsup --watch",
     "lint": "eslint ."
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@sehapracto"
-  },
-  "repository": "https://github.com/SehaPracto/backend-entities",
+  "repository": "https://github.com/floidenergy/sehapracto-backend-entities/",
   "author": "Kias Mohamed Islam (floidenergy)",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^22.13.10",
     "tslib": "^2.8.1",
@@ -35,6 +33,7 @@
     "@nestjs/microservices": "^11.1.0",
     "@swc/core": "^1.11.9",
     "@types/express": "^5.0.0",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "kafkajs": "^2.2.4",
     "pg": "^8.14.0",
