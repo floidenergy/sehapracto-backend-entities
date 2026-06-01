@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com/
-          scope: '@SehaPracto'  # Replace with your org name
+          # scope: '@SehaPracto'  # Replace with your org name
 
       - name: Install Dependencies
         run: yarn install
